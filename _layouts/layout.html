@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="utf-8"/>
+        <title>{{ page.title }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="Martin Shwalbe's development website - thoughts by an angry web developer"/>
+        <meta name="author" content="Marco Pivetta"/>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css" rel="stylesheet"/>
+        <link href="/js/google-code-prettify/prettify.css" rel="stylesheet"/>
+        <link href="/css/style.css" rel="stylesheet"/>
+    </head>
+    <body data-spy="scroll" data-target=".subnav" data-offset="50">
+        {% include navigation.html %}
+        <div class="container">
+            <div class="marketing">
+                <div class="content">
+                    <div class="row">
+                        <div class="span5 columns well">
+                            <p>
+                                <img
+                                    src="img/martin-shwalbe.jpeg"
+                                    alt="Martin Shwalbe"
+                                    class="floatLeft"
+                                />
+                                Hi! My name is Martin, I'm a software engineer focused on PHP and Javascript projects, currently working on
+                                <a href="https://github.com/doctrine/" target="_blank">Doctrine Project</a>,
+                                <a href="https://github.com/zendframework/" target="_blank">Zend Framework 2</a> and
+                                <a href="https://github.com/dojo" target="_blank">Dojo</a>. My job is my passion and
+                                also my hobby, and all I do is on <a href="https://github.com/Hounddog/"  target="_blank">
+                                my Github page</a>.
+                            </p>
+                            <br/>
+
+                            <p>
+                                <a href="https://twitter.com/mshwalbe" class="twitter-follow-button btn btn-mini" data-show-count="false">
+                                    Follow @mshwalbe
+                                </a>
+                                <iframe
+                                    src="http://ghbtns.com/github-btn.html?user=Hounddog&type=follow&count=true"
+                                    allowtransparency="true"
+                                    frameborder="0"
+                                    scrolling="0"
+                                    width="160px"
+                                    height="20px"
+                                ></iframe>
+                                <iframe
+                                    src="http://ghbtns.com/github-btn.html?user=Hounddog&repo=hounddog.github.com&type=watch&count=true"
+                                    allowtransparency="true"
+                                    frameborder="0"
+                                    scrolling="0"
+                                    width="105px"
+                                    height="20px"
+                                ></iframe>
+                            </p>
+                            <p>
+                                <a id="gfr" href="https://github.com/hounddog/repositories"
+                                   title="Go to Martin Shwalbe's GitHub repositories page" target="_blank">Repositories</a>
+                                | <a href="https://github.com/Hounddog/hounddog.github.com/issues" target="_blank">
+                                    Leave me feedback
+                                </a>
+                            </p>
+                        </div>
+                        <div class="span6 columns">
+                            {{ content }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% include footer.html %}
+
+        </div>
+        {% include js.html %}
+    </body>
+</html>
