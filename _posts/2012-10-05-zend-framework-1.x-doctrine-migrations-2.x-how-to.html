@@ -1,0 +1,242 @@
+---
+layout: post
+title: Zend Framework 1.x + Doctrine Migrations 2.x - How to
+category: Coding
+tags: Zend Framework Doctrine Tutorial
+year: 2012
+month: 10
+day: 5
+published: true
+summary: A tutorial on how to setup Doctrine Migrations with Zend Framework 1
+---
+
+<div class="row">
+  <h2>Zend Framework 1.x and Doctrine Migrations - How to</h2>
+
+  <p>
+    Hello everybody!
+  </p>
+  
+  <p>
+    PEM (on irc freenode #dojo) and me have worked hard to make something useful to you! 
+  </p>
+  <p>
+    I'm pretty sure some of you already encountered that situation when you feel like poping your eyes out because of incomplete documentations, or lack of help/support... 
+    If you are reading this, you most likely were about to throw away your computer in anger... Fear not! We will try to save your day :)
+  <p>
+  <p>Just follow the steps :</p>
+
+  <ul>
+    <li>
+      You can have a look at my repository on github : <a href="https://github.com/PEM-FR/Doctrine2-ZendFramework1-Migrations-Setup" title="Doctrine Migration Scripts" target="_blank">Doctrine Migration Scripts for Zend Framework support</a>
+    </li>
+    <li>
+      You have now two choices : 
+      <ul>
+        <li>
+          Integrates Migrations into your already existing Doctrine folder, in this path : Doctrine/DBAL/Migrations.
+        </li>
+        <li>
+          Use Migrations as Standalone (in that case jump to step xxx).
+        </li>
+      </ul
+    </li>
+  </ul>
+  <h3>USING MIGRATIONS INSIDE DOCTRINE FOLDER</h3>
+
+  <ul>
+    <li>
+      So now basically you should have something like this :
+      <ul>
+       <li>Doctrine/DBAl/Migrations</li>
+       <li>Doctrine/DBAl/Migrations/Configuration</li>
+       <li>Doctrine/DBAl/Migrations/Tools</li>
+       <li>Doctrine/DBAl/Migrations/Tools/Console</li>
+       <li>Doctrine/DBAl/Migrations/Tools/Console/Command</li>
+      </ul>
+    </li>
+    <li>In the *scripts* directory you should have a file called ZendConfiguration.php (if not something went wrong go back to step 1)</li>
+    <li>If you have zend framework installed and running, with doctrine, you might want to create a file called doctrine.php (or whatever you like if you know already what we are talking about, or you could use the one provided in the scripts folder).</li>
+  </ul>
+
+  <p>doctrine.php should look like that (DO NOT FORGET TO EDIT THE FILE AND CHANGE THE PATHS)</p>
+  <pre class="prettyprint linemus lang-prepro">
+  // Display errors ?
+  //ini_set('display_errors', 1);
+  //error_reporting(E_ALL | E_STRICT);
+
+  // Define path to application directory
+  // DO NOT FORGET TO EDIT
+  defined('APPLICATION_PATH')
+      || define('APPLICATION_PATH','/path/to/your/application');
+
+  // Define application environment
+  defined('APPLICATION_ENV')
+      || define(
+          'APPLICATION_ENV',
+          (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'development')
+      );
+
+  // Ensure library/ is on include_path
+  // DO NOT FORGET TO EDIT
+  set_include_path(
+      '/path/to/where/your/zend/library/is' . PATH_SEPARATOR .
+      '/path/to/Doctrine' . PATH_SEPARATOR .
+      get_include_path()
+  );
+
+  // Requiring a batch of Classes we will need for namespacing
+  use Doctrine\Common\ClassLoader,
+      Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper,
+      Doctrine\ORM\Version,
+      Doctrine\ORM\Tools\Console\ConsoleRunner,
+      Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper,
+      Symfony\Component\Console\Helper\HelperSet,
+      Symfony\Component\Console\Helper\DialogHelper,
+      Symfony\Component\Console\Application;
+
+  // namespacing migrations commands we will be needing later
+  use Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand,
+      Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand,
+      Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand,
+      Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand,
+      Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand,
+      Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand;
+
+  // We need the Doctrine ClassLoader to manage autoloading
+  require_once 'Doctrine/Common/ClassLoader.php';
+
+  // Load Doctrine
+  $classLoader = new ClassLoader('Doctrine');
+  $classLoader->register();
+
+  // Load Symfony tools
+  $classLoader = new ClassLoader('Symfony', 'Doctrine');
+  $classLoader->register();
+
+  // Load Migration
+  $classLoader = new ClassLoader('Migrations', 'Doctrine/DBAL/');
+  $classLoader->register();
+
+  // Zend_Application
+  require_once 'Zend/Application.php';
+
+  // Create application
+  // DO NOT FORGET TO EDIT
+  $application = new Zend_Application(
+      APPLICATION_ENV, '/path/to/application.ini'
+  );
+
+  // Bootstrap
+  $application->bootstrap();
+
+  // loading doctrine resource, sometimes called entityManager
+  // DO NOT FORGET TO EDIT, set the resource to your entityManager
+  $em = $application->getBootstrap()->getResource('db');
+
+  // Load doctrine helpers
+  $helperSet = new HelperSet(array(
+      'db'     => new ConnectionHelper($em->getConnection()),
+      'em'     => new EntityManagerHelper($em),
+      'dialog' => new DialogHelper()
+  ));
+
+  $cli = new Application('Doctrine Command Line Interface', Version::VERSION);
+  $cli->setCatchExceptions(true);
+  $cli->setHelperSet($helperSet);
+
+  // We are settign the commands to bypass the configuration process and
+  // directly use our ZendConfiguration
+  // Just make sure to load from where the file actually is
+  require_once('ZendConfiguration.php');
+  $connexion = $em->getConnection();
+  $zendConfig = new ZendConfiguration($connexion);
+
+  // injecting configurations necessary to our ZendConfiguration
+  // Pass the Application.ini Parameters to our Configuration
+  $applicationConfig = new Zend_Config(
+      $application->getBootstrap()->getOptions(), true
+  );
+  // DO NOT FORGET TO EDIT, if needed
+  $zendConfig->setConfig($applicationConfig->resources->db->migration);
+  // Here we just need to put some string because the parameter is not optional
+  // though will not need it. Just need to call the function
+  $zendConfig->load('zend');
+
+  // Setting up Migrations Commands
+  $diffCmd = new DiffCommand();
+  $diffCmd->setMigrationConfiguration($zendConfig);
+
+  $executeCmd = new ExecuteCommand();
+  $executeCmd->setMigrationConfiguration($zendConfig);
+
+  $generateCmd = new GenerateCommand();
+  $generateCmd->setMigrationConfiguration($zendConfig);
+
+  $migrateCmd = new MigrateCommand();
+  $migrateCmd->setMigrationConfiguration($zendConfig);
+
+  $statusCmd = new StatusCommand();
+  $statusCmd->setMigrationConfiguration($zendConfig);
+
+  $versionCmd = new VersionCommand();
+  $versionCmd->setMigrationConfiguration($zendConfig);
+
+
+  // Register migration Commands
+  $cli->addCommands(array(
+      $diffCmd, $executeCmd, $generateCmd, $migrateCmd, $statusCmd, $versionCmd
+  ));
+
+  // Register All Doctrine Commands
+  ConsoleRunner::addCommands($cli);
+
+  // Runs console application
+  $cli->run();
+  </pre>
+  <p>for some more information you might want to check this article : <a href="http://victimofbabylon.com/setting-up-doctrine-2-cli-with-zend-framework" title="Setting up doctrine 2 cli for zend framework" target="_blank">Setting up doctrine 2 cli for zend framework</a>
+  <p>
+  <p>We now have to tweak your Zend Framework application.ini file. Add these few lines :</p>
+  <pre class="prettyprint linemus lang-prepro">
+  ; ------------------------------------------------------------------------------
+  ; Doctrine Migrations Configuration
+  ; ------------------------------------------------------------------------------
+  resources.db.migration.name = "YourSoft (development) Database Migrations"
+  resources.db.migration.tableName = "doctrine_migration_versions"
+  resources.db.migration.namespace = "DoctrineMigrations"
+  resources.db.migration.directory = APPLICATION_PATH "/path/to/migrationsClass/directory"
+  ;set the following two properties if you want to do manual naming on migration classes
+  ;resources.doctrine.migration.migrations.migration1.version = "20111020071337"
+  ;resources.doctrine.migration.migrations.migration1.class = "DoctrineMigrations\VersionNewMigration"
+  </pre>
+  <p>Now, try running from the scripts directory : </p>
+  <pre class="prettyprint linemus lang-sh">
+  ~$ php doctrine.php list migrations
+  </pre>
+  <p>As a result, you should see the commands available, something like that :</p>
+  <pre class="prettyprint linemus lang-sh">
+    Doctrine Command Line Interface version 2.2.1
+
+    Usage:
+      [options] command [arguments]
+
+    Options:
+      --help           -h Display this help message.
+      --quiet          -q Do not output any message.
+      --verbose        -v Increase verbosity of messages.
+      --version        -V Display this program version.
+      --ansi              Force ANSI output.
+      --no-ansi           Disable ANSI output.
+      --no-interaction -n Do not ask any interactive question.
+
+    Available commands for the "migration" namespace:
+      migrations:diff       Generate a migration by comparing your...
+      migrations:execute    Execute a single migration version up or down manually.
+      migrations:generate   Generate a blank migration class.
+      migrations:migrate    Execute a migration to a specified version...
+      migrations:status     View the status of a set of migrations.
+      migrations:version    Manually add and delete migration versions...
+    </pre>
+
+  <p>You are now supposed to cry of joy and let a Victory shout be heard by the whole company :)</p>
+</div>
