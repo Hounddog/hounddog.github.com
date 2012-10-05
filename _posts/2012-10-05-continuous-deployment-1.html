@@ -1,0 +1,105 @@
+---
+layout: post
+title: My Journey in Continuous Deployment
+category: Coding
+tags: Continuous Deployment Jenkins Phing
+year: 2012
+month: 10
+day: 5
+published: true
+summary: A set of tutorials on how to setup Continuous Deployment with Phing and Jenkins
+---
+
+<div class="row">
+  <h2>My Journey in Continuous Deployment</h2>
+    <p>
+      This will be a series of blogs about Continuous Deployment and how to get there. I will be writing about problems which I am facing and what I am experimenting with.
+    </p>
+
+    <p>
+      The target of this is to implement a fully automated system which continuously integrates and deploys our development to production servers.
+    </p>
+
+    <p>
+      Our main tool we use for this is <a href="http://jenkins-ci.org/" title="jenkins">Jenkins</a>. If you are not familiar with this. Please have a look. It has lot of plugins which can help you implement automated strategies.
+    </p>
+
+    <p>So, where am I at the moment?</p>
+
+    <p>
+      We are fairly new at using git and are currently discussing viable options on how to implement a successful strategy for git.
+    </p>
+
+    <p>
+      Currently I have implemented the solution given <a href="http://twasink.net/2011/09/20/git-feature-branches-and-jenkins-or-how-i-learned-to-stop-worrying-about-broken-builds/" title="here">here</a>
+    </p>
+
+    <p>
+      This solution is great, all the branches are tracked and tested against the master branch.
+      But... this provides us with another problem... What if we do not want every branch to be tested directly or tested against the master branch?
+    </p>
+
+    <p>
+      For this I am currently looking at opt-in branches by using a configuration file as described <a href="http://amokti.me/2011/10/11/automatic-opt-in-branch-building-with-jenkins-and-git-2/" title="here">here</a>
+    </p>
+
+    <p>
+      What I find interesting in this approach is that I could also modify it to use different jobs within Jenkins by adding parameters in the config file.
+      More about this later as I am not sure which approach I would be finally taking.
+    </p>
+
+    <p>
+      So, our branching as described above works and all the branches are automatically pushed to the master. Just that each developer has to wait currently for about 12 minutes to know if anything has failed or is Working as expected.
+    </p>
+
+    <p>I like working fast and getting Results fast. </p>
+
+    <p>
+      I have been toying around with Jenkins to make things work faster but hitting lot of Road blocks on the way.
+      As this is a pure php project we are also using phing to create the build.
+    </p>
+
+    <p>
+      The first question arises when I look at the build.xml which is one huge build process.
+    </p>
+
+    <p>
+      To make the build process faster I need to split this up into tasks which can be run in parallel.
+    </p>
+    <ul>
+      <li>Cleanup the Workspace</li>
+      <li>Initialize the Database</li>
+      <li>Run Unit Tests</li>
+      <li>Run Integration Tests</li>
+      <li>Run Statistic Analysers (PHPMD, Pdepend etc)</li>
+    </ul>
+
+    <p>
+      I had a look at Creating Downstream jobs within Jenkins. This is an Interesting Approach but does not suit our needs currently.
+    </p>
+
+    <p>
+      A downstream job is a job that executes after the Upstream job is completed.
+    </p>
+
+    <p>
+      My first attempt was to have a look at the build pipeline plugin. Works great but the Master job is successful even if the Downstream job fails. So I would never really get a fully broken build through the Downstream jobs.
+    </p>
+
+    <p>
+      I am going to check today if it is possible by using the Job Join plugin from Jenkins.
+    </p>
+
+    <p>
+      As per the information I have gathered I can run another Job after all the Downstream jobs have Completed which would allow me to aggregate all the final Results.
+    </p>
+
+    <p>
+      So, I will get started and let you guys know how it ended very soon!
+    </p>
+
+    <p>
+      To be Continued... :)
+    </p>
+<pre>
+</div>

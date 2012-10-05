@@ -2,9 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <title>Creating my own page with Jekyll and Github</title>
+        <title>My Journey in Continuous Deployment</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="description" content="Creating my own page with jekyll"/>
+        <meta name="description" content=""/>
         <meta name="author" content="Martin Shwalbe"/>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css" rel="stylesheet"/>
         <link href="/js/google-code-prettify/prettify.css" rel="stylesheet"/>
@@ -56,20 +56,26 @@
     <div class="span3 column">
         <h4>
             <strong>
-                September 29, 2012
+                October  5, 2012
                 <small>
                     . Coding .
-                    <a href="http://hounddog.github.com/blog/creating-my-page-with-jekyll#disqus_thread" data-disqus-identifier="/blog/creating-my-page-with-jekyll">Comments</a>
+                    <a href="http://hounddog.github.com/blog/continuous-deployment-1#disqus_thread" data-disqus-identifier="/blog/continuous-deployment-1">Comments</a>
                 </small>
             </strong>
             <br/>
             <small>
                 Tags:
                 
-                <a href="/tags/jekyll" title="View posts tagged with &quot;jekyll&quot;"><u>jekyll</u></a>
+                <a href="/tags/Continuous" title="View posts tagged with &quot;Continuous&quot;"><u>Continuous</u></a>
                  
                 
-                <a href="/tags/blog" title="View posts tagged with &quot;blog&quot;"><u>blog</u></a>
+                <a href="/tags/Deployment" title="View posts tagged with &quot;Deployment&quot;"><u>Deployment</u></a>
+                 
+                
+                <a href="/tags/Jenkins" title="View posts tagged with &quot;Jenkins&quot;"><u>Jenkins</u></a>
+                 
+                
+                <a href="/tags/Phing" title="View posts tagged with &quot;Phing&quot;"><u>Phing</u></a>
                 
                 
             </small>
@@ -78,8 +84,12 @@
     <div class="span9 column">
         <p class="pull-right">
             
+            <a href="/blog/creating-my-page-with-jekyll" title="Previous Post: Creating my own page with Jekyll and Github">
+                <i class="icon-chevron-left"></i>
+            </a>
             
-            <a href="/blog/continuous-deployment-1" title="Next Post: My Journey in Continuous Deployment">
+            
+            <a href="/blog/zend-framework-1.x-doctrine-migrations-2.x-how-to" title="Next Post: Zend Framework 1.x + Doctrine Migrations 2.x - How to">
                 <i class="icon-chevron-right"></i>
             </a>
             
@@ -100,7 +110,7 @@
         </div>
     </div>
 
-    <h1>Creating my own page with Jekyll and Github</h1>
+    <h1>My Journey in Continuous Deployment</h1>
 
     <div class="row">
         <div class="span12 column">
@@ -134,17 +144,97 @@
     <g:plusone size="medium"></g:plusone>
 </div>
     <div class="row">
-    <div class="span12 columns">
-        <h2>Why?</h2>
-        <p>I want to share my thoughts with the community.</p>
-        <p>
-            I have been working as a Developer for a long time now without my own page.
-            So i decided to create one on Github and with a short discussion thx to <a href="http://ocramius.github.com/blog/moving-my-blog-to-jekyll/" target="_blank">Marco Pivetta </a>. I copied his page and quickly dived into the code and found it very simple to setup.
-        </p>
-        <p>
-            Within just a few hours i was able to setup and modify my page. So here i am finally. Keep watching for updates.
-        </p>
-    </div>
+  <h2>My Journey in Continuous Deployment</h2>
+    <p>
+      This will be a series of blogs about Continuous Deployment and how to get there. I will be writing about problems which I am facing and what I am experimenting with.
+    </p>
+
+    <p>
+      The target of this is to implement a fully automated system which continuously integrates and deploys our development to production servers.
+    </p>
+
+    <p>
+      Our main tool we use for this is <a href="http://jenkins-ci.org/" title="jenkins">Jenkins</a>. If you are not familiar with this. Please have a look. It has lot of plugins which can help you implement automated strategies.
+    </p>
+
+    <p>So, where am I at the moment?</p>
+
+    <p>
+      We are fairly new at using git and are currently discussing viable options on how to implement a successful strategy for git.
+    </p>
+
+    <p>
+      Currently I have implemented the solution given <a href="http://twasink.net/2011/09/20/git-feature-branches-and-jenkins-or-how-i-learned-to-stop-worrying-about-broken-builds/" title="here">here</a>
+    </p>
+
+    <p>
+      This solution is great, all the branches are tracked and tested against the master branch.
+      But... this provides us with another problem... What if we do not want every branch to be tested directly or tested against the master branch?
+    </p>
+
+    <p>
+      For this I am currently looking at opt-in branches by using a configuration file as described <a href="http://amokti.me/2011/10/11/automatic-opt-in-branch-building-with-jenkins-and-git-2/" title="here">here</a>
+    </p>
+
+    <p>
+      What I find interesting in this approach is that I could also modify it to use different jobs within Jenkins by adding parameters in the config file.
+      More about this later as I am not sure which approach I would be finally taking.
+    </p>
+
+    <p>
+      So, our branching as described above works and all the branches are automatically pushed to the master. Just that each developer has to wait currently for about 12 minutes to know if anything has failed or is Working as expected.
+    </p>
+
+    <p>I like working fast and getting Results fast. </p>
+
+    <p>
+      I have been toying around with Jenkins to make things work faster but hitting lot of Road blocks on the way.
+      As this is a pure php project we are also using phing to create the build.
+    </p>
+
+    <p>
+      The first question arises when I look at the build.xml which is one huge build process.
+    </p>
+
+    <p>
+      To make the build process faster I need to split this up into tasks which can be run in parallel.
+    </p>
+    <ul>
+      <li>Cleanup the Workspace</li>
+      <li>Initialize the Database</li>
+      <li>Run Unit Tests</li>
+      <li>Run Integration Tests</li>
+      <li>Run Statistic Analysers (PHPMD, Pdepend etc)</li>
+    </ul>
+
+    <p>
+      I had a look at Creating Downstream jobs within Jenkins. This is an Interesting Approach but does not suit our needs currently.
+    </p>
+
+    <p>
+      A downstream job is a job that executes after the Upstream job is completed.
+    </p>
+
+    <p>
+      My first attempt was to have a look at the build pipeline plugin. Works great but the Master job is successful even if the Downstream job fails. So I would never really get a fully broken build through the Downstream jobs.
+    </p>
+
+    <p>
+      I am going to check today if it is possible by using the Job Join plugin from Jenkins.
+    </p>
+
+    <p>
+      As per the information I have gathered I can run another Job after all the Downstream jobs have Completed which would allow me to aggregate all the final Results.
+    </p>
+
+    <p>
+      So, I will get started and let you guys know how it ended very soon!
+    </p>
+
+    <p>
+      To be Continued... :)
+    </p>
+<pre>
 </div>
 </div>
 
@@ -153,8 +243,12 @@
     <div class="span9 column">
         <p class="pull-right">
             
+            <a href="/blog/creating-my-page-with-jekyll" title="Previous Post: Creating my own page with Jekyll and Github">
+                <i class="icon-chevron-left"></i>
+            </a>
             
-            <a href="/blog/continuous-deployment-1" title="Next Post: My Journey in Continuous Deployment">
+            
+            <a href="/blog/zend-framework-1.x-doctrine-migrations-2.x-how-to" title="Next Post: Zend Framework 1.x + Doctrine Migrations 2.x - How to">
                 <i class="icon-chevron-right"></i>
             </a>
             
@@ -211,8 +305,8 @@
 <script>$(prettyPrint);</script>
 <script>
     var disqus_shortname = 'hounddog-dev';
-    var disqus_identifier = '/blog/creating-my-page-with-jekyll';
-    var disqus_url = 'http://hounddog.github.com//blog/creating-my-page-with-jekyll';
+    var disqus_identifier = '/blog/continuous-deployment-1';
+    var disqus_url = 'http://hounddog.github.com//blog/continuous-deployment-1';
 </script>
 <script src="http://hounddog-dev.disqus.com/count.js"></script>
 <script src="http://hounddog-dev.disqus.com/embed.js"></script>
