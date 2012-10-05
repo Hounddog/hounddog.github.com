@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>Marco Pivetta - Ocramius</title>
-    <link href="http://ocramius.github.com/atom.xml" rel="self"/>
-    <link href="http://ocramius.github.com/"/>
-    <updated>2012-09-29T15:48:51+02:00</updated>
-    <id>http://ocramius.github.com</id>
+    <title>Martin Shwalbe - Hounddog</title>
+    <link href="http://hounddog.github.com/atom.xml" rel="self"/>
+    <link href="http://hounddog.github.com/"/>
+    <updated>2012-10-05T13:03:07+02:00</updated>
+    <id>http://hounddog.github.com</id>
     <author>
-        <name>Marco Pivetta</name>
+        <name>Martin Shwalbe</name>
     </author>
     
     <entry>
         <title>Creating my own page with Jekyll and Github</title>
-        <link href="http://ocramius.github.com/blog/creating-my-page-with-jekyll"/>
+        <link href="http://hounddog.github.com/blog/creating-my-page-with-jekyll"/>
         <updated>2012-09-29T00:00:00+02:00</updated>
-        <id>http://ocramius.github.com/blog/creating-my-page-with-jekyll</id>
+        <id>http://hounddog.github.com/blog/creating-my-page-with-jekyll</id>
         <content type="html">&lt;div class=&quot;row&quot;&gt;
     &lt;div class=&quot;span12 columns&quot;&gt;
         &lt;h2&gt;Why?&lt;/h2&gt;
