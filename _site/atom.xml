@@ -3,7 +3,7 @@
     <title>Martin Shwalbe - Hounddog</title>
     <link href="http://hounddog.github.com/atom.xml" rel="self"/>
     <link href="http://hounddog.github.com/"/>
-    <updated>2012-11-06T20:02:56+01:00</updated>
+    <updated>2012-11-06T20:09:25+01:00</updated>
     <id>http://hounddog.github.com</id>
     <author>
         <name>Martin Shwalbe</name>
@@ -125,7 +125,7 @@
     &lt;/pre&gt;
     &lt;p&gt;
       And voila, we are now using all the methods from TraitServiceManager within our own service!
-      At the time of writing this Mathew Weierophinney gave me the hint that a trait for EventManager is already existing. Thanks for that.
+      At the time of writing this Matthew Weier O'Phinney gave me the hint that a trait for EventManager is already existing. Thanks for that.
     &lt;/p&gt;
     &lt;p&gt;Let's implement that also in our Service. &lt;/p&gt;
 
