@@ -1,0 +1,196 @@
+---
+layout: post
+title: Using Traits with Zend Framework 2
+category: Coding
+tags: Zend Framework Tutorial
+year: 2012
+month: 10
+day: 5
+published: true
+summary: Example of using  traits in Zend Framework 2
+---
+
+<div class="row">
+  <p>
+    Today i want to show you the usefulness of Traits within ZF 2. Some of you like me are maybe wondering when you want to have the ServiceManager injected you always have to create something like this.
+  <p>
+  <pre class="prettyprint linemus lang-prepro">
+      namespace Application\Service;
+
+      use Zend\ServiceManager\ServiceManagerAwareInterface;
+      use Zend\ServiceManager\ServiceManager;
+
+      class MyService  implements ServiceManagerAwareInterface
+      {
+          /**
+           * @var ServiceManager
+           */
+          protected $serviceManager;
+
+          //implement some code here
+
+          /**
+           * Retrieve service manager instance
+           *
+           * @return ServiceManager
+           */
+          public function getServiceManager()
+          {
+              return $this->serviceManager;
+          }
+
+          /**
+           * Set service manager instance
+           *
+           * @param ServiceManager $locator
+           * @return User
+           */
+          public function setServiceManager(ServiceManager $serviceManager)
+          {
+              $this->serviceManager = $serviceManager;
+              return $this;
+          }
+      }
+    </pre>
+    <p>
+      This you will probably be doing for many Services. The result... the code becomes bloated. We are not following DRY principles. Instead we are copying and pasting this code  all over the place. If the structure changes sometime in the future we have to also replace this everywhere.
+      </p>
+      <p> If you are using PHP 5.4 You are in luck as you can now use traits If you are working on PHP version 5.4 you can now use traits. I will not go into detail about traits as there are a good bunch of tutorials out there explaining these and the <a href="http://php.net/manual/en/language.oop5.traits.php" target="_blank">PHP Manual</a> is also quite extensive on this topic.
+      </p>
+      <p>
+        I just want to show you a short example here on how you can actually benefit from them.
+      </p>
+        Let's get started creating a trait for ServiceManager. I assume here that you are using the <a href="https://github.com/zendframework/ZendSkeletonApplication">ZendSkeletonApplication</a>.
+      <p>
+
+      <pre class="prettyprint linemus lang-prepro">
+
+        namespace Application\Traits;
+
+        use Zend\ServiceManager\ServiceManager;
+
+        trait TraitServiceManager
+        {
+          /**
+           * @var ServiceManager
+           */
+          protected $serviceManager;
+
+          /**
+           * Retrieve service manager instance
+           *
+           * @return ServiceManager
+           */
+          public function getServiceManager()
+          {
+              return $this->serviceManager;
+          }
+
+          /**
+           * Set service manager instance
+           *
+           * @param ServiceManager $locator
+           * @return User
+           */
+          public function setServiceManager(ServiceManager $serviceManager)
+          {
+              $this->serviceManager = $serviceManager;
+              return $this;
+          }
+        }
+      </pre>
+
+      <p>
+        To use this we now go back to our Service and change it as follows:
+      </p>
+
+      <pre class="prettyprint linemus lang-prepro">
+
+        namespace Application\Service;
+
+        use Zend\ServiceManager\ServiceManagerAwareInterface;
+        use Application\Traits\TraitServiceManager;
+
+        class MyService  implements ServiceManagerAwareInterface
+        {
+            use TraitServiceManager;// Insert Trait
+
+            // implement code here....
+        }
+
+    </pre>
+    <p>
+      And voila, we are now using all the methods from TraitServiceManager within our own service!
+      The  same could already be done using the EntityManager
+    </p>
+    <p>Let's implement that also. </p>
+
+    <pre class="prettyprint linemus lang-prepro">
+
+      namespace Application\Traits;
+
+      use Zend\EventManager\EventManagerInterface;
+      use Zend\EventManager\EventManager;
+
+      trait TraitEventManager
+      {
+        /**
+         * @var EventManagerInterface
+         */
+        protected $events;
+
+        /**
+         * Set Event Manager
+         *
+         * @param  EventManagerInterface $events
+         * @return HybridAuth
+         */
+        public function setEventManager(EventManagerInterface $events)
+        {
+            $events->setIdentifiers(array(
+                __CLASS__,
+                get_called_class(),
+            ));
+            $this->events = $events;
+            return $this;
+        }
+
+        /**
+         * Get Event Manager
+         *
+         * Lazy-loads an EventManager instance if none registered.
+         *
+         * @return EventManagerInterface
+         */
+        public function getEventManager()
+        {
+            if (null === $this->events) {
+                $this->setEventManager(new EventManager());
+            }
+            return $this->events;
+        }
+      }
+    </pre>
+    <p>Add it to our Service.</p>
+    <pre class="prettyprint linemus lang-prepro">
+
+        namespace Application\Service;
+
+        use Zend\EventManager\EventManagerAwareInterface;
+        use Zend\ServiceManager\ServiceManagerAwareInterface;
+
+        use Application\Traits\TraitServiceManager;
+        use Application\Traits\TraitEventManager;
+
+        class MyService  implements ServiceManagerAwareInterface, EventManagerAwareInterface
+        {
+            use TraitServiceManager, TraitEventManager; //Insert Multiple Traits
+
+            // implement code here....
+        }
+
+    </pre>
+    <p>Now we have implement the functionality required for ServiceManager and EntityManager without needing to implement the getters/setter for these!</p>
+
+    <p>There are many other useful things for using Traits i can think of like DbMapper implementing a pagination etc etc etc. I hope you enjoyed this little excursion on How traits can be useful in your daily development. Happy Coding!
+    </p>

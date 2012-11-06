@@ -3,11 +3,203 @@
     <title>Martin Shwalbe - Hounddog</title>
     <link href="http://hounddog.github.com/atom.xml" rel="self"/>
     <link href="http://hounddog.github.com/"/>
-    <updated>2012-10-16T16:13:41+02:00</updated>
+    <updated>2012-11-06T19:47:07+01:00</updated>
     <id>http://hounddog.github.com</id>
     <author>
         <name>Martin Shwalbe</name>
     </author>
+    
+    <entry>
+        <title>Using Traits with Zend Framework 2</title>
+        <link href="http://hounddog.github.com/blog/using-traits-in-zend-framework-2"/>
+        <updated>2012-11-06T00:00:00+01:00</updated>
+        <id>http://hounddog.github.com/blog/using-traits-in-zend-framework-2</id>
+        <content type="html">&lt;div class=&quot;row&quot;&gt;
+  &lt;p&gt;
+    Today i want to show you the usefulness of Traits within ZF 2. Some of you like me are maybe wondering when you want to have the ServiceManager injected you always have to create something like this.
+  &lt;p&gt;
+  &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
+      namespace Application\Service;
+
+      use Zend\ServiceManager\ServiceManagerAwareInterface;
+      use Zend\ServiceManager\ServiceManager;
+
+      class MyService  implements ServiceManagerAwareInterface
+      {
+          /**
+           * @var ServiceManager
+           */
+          protected $serviceManager;
+
+          //implement some code here
+
+          /**
+           * Retrieve service manager instance
+           *
+           * @return ServiceManager
+           */
+          public function getServiceManager()
+          {
+              return $this-&gt;serviceManager;
+          }
+
+          /**
+           * Set service manager instance
+           *
+           * @param ServiceManager $locator
+           * @return User
+           */
+          public function setServiceManager(ServiceManager $serviceManager)
+          {
+              $this-&gt;serviceManager = $serviceManager;
+              return $this;
+          }
+      }
+    &lt;/pre&gt;
+    &lt;p&gt;
+      This you will probably be doing for many Services. The result... the code becomes bloated. We are not following DRY principles. Instead we are copying and pasting this code  all over the place. If the structure changes sometime in the future we have to also replace this everywhere.
+      &lt;/p&gt;
+      &lt;p&gt; If you are using PHP 5.4 You are in luck as you can now use traits If you are working on PHP version 5.4 you can now use traits. I will not go into detail about traits as there are a good bunch of tutorials out there explaining these and the &lt;a href=&quot;http://php.net/manual/en/language.oop5.traits.php&quot; target=&quot;_blank&quot;&gt;PHP Manual&lt;/a&gt; is also quite extensive on this topic.
+      &lt;/p&gt;
+      &lt;p&gt;
+        I just want to show you a short example here on how you can actually benefit from them.
+      &lt;/p&gt;
+        Let's get started creating a trait for ServiceManager. I assume here that you are using the &lt;a href=&quot;https://github.com/zendframework/ZendSkeletonApplication&quot;&gt;ZendSkeletonApplication&lt;/a&gt;.
+      &lt;p&gt;
+
+      &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
+
+        namespace Application\Traits;
+
+        use Zend\ServiceManager\ServiceManager;
+
+        trait TraitServiceManager
+        {
+          /**
+           * @var ServiceManager
+           */
+          protected $serviceManager;
+
+          /**
+           * Retrieve service manager instance
+           *
+           * @return ServiceManager
+           */
+          public function getServiceManager()
+          {
+              return $this-&gt;serviceManager;
+          }
+
+          /**
+           * Set service manager instance
+           *
+           * @param ServiceManager $locator
+           * @return User
+           */
+          public function setServiceManager(ServiceManager $serviceManager)
+          {
+              $this-&gt;serviceManager = $serviceManager;
+              return $this;
+          }
+        }
+      &lt;/pre&gt;
+
+      &lt;p&gt;
+        To use this we now go back to our Service and change it as follows:
+      &lt;/p&gt;
+
+      &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
+
+        namespace Application\Service;
+
+        use Zend\ServiceManager\ServiceManagerAwareInterface;
+        use Application\Traits\TraitServiceManager;
+
+        class MyService  implements ServiceManagerAwareInterface
+        {
+            use TraitServiceManager;// Insert Trait
+
+            // implement code here....
+        }
+
+    &lt;/pre&gt;
+    &lt;p&gt;
+      And voila, we are now using all the methods from TraitServiceManager within our own service!
+      The  same could already be done using the EntityManager
+    &lt;/p&gt;
+    &lt;p&gt;Let's implement that also. &lt;/p&gt;
+
+    &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
+
+      namespace Application\Traits;
+
+      use Zend\EventManager\EventManagerInterface;
+      use Zend\EventManager\EventManager;
+
+      trait TraitEventManager
+      {
+        /**
+         * @var EventManagerInterface
+         */
+        protected $events;
+
+        /**
+         * Set Event Manager
+         *
+         * @param  EventManagerInterface $events
+         * @return HybridAuth
+         */
+        public function setEventManager(EventManagerInterface $events)
+        {
+            $events-&gt;setIdentifiers(array(
+                __CLASS__,
+                get_called_class(),
+            ));
+            $this-&gt;events = $events;
+            return $this;
+        }
+
+        /**
+         * Get Event Manager
+         *
+         * Lazy-loads an EventManager instance if none registered.
+         *
+         * @return EventManagerInterface
+         */
+        public function getEventManager()
+        {
+            if (null === $this-&gt;events) {
+                $this-&gt;setEventManager(new EventManager());
+            }
+            return $this-&gt;events;
+        }
+      }
+    &lt;/pre&gt;
+    &lt;p&gt;Add it to our Service.&lt;/p&gt;
+    &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
+
+        namespace Application\Service;
+
+        use Zend\EventManager\EventManagerAwareInterface;
+        use Zend\ServiceManager\ServiceManagerAwareInterface;
+
+        use Application\Traits\TraitServiceManager;
+        use Application\Traits\TraitEventManager;
+
+        class MyService  implements ServiceManagerAwareInterface, EventManagerAwareInterface
+        {
+            use TraitServiceManager, TraitEventManager; //Insert Multiple Traits
+
+            // implement code here....
+        }
+
+    &lt;/pre&gt;
+    &lt;p&gt;Now we have implement the functionality required for ServiceManager and EntityManager without needing to implement the getters/setter for these!&lt;/p&gt;
+
+    &lt;p&gt;There are many other useful things for using Traits i can think of like DbMapper implementing a pagination etc etc etc. I hope you enjoyed this little excursion on How traits can be useful in your daily development. Happy Coding!
+    &lt;/p&gt;
+</content>
+    </entry>
     
     <entry>
         <title>Zend Framework 1.x + Doctrine Migrations 2.x - How to</title>
