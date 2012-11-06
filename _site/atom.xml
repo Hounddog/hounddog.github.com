@@ -3,7 +3,7 @@
     <title>Martin Shwalbe - Hounddog</title>
     <link href="http://hounddog.github.com/atom.xml" rel="self"/>
     <link href="http://hounddog.github.com/"/>
-    <updated>2012-11-06T19:47:07+01:00</updated>
+    <updated>2012-11-06T20:02:56+01:00</updated>
     <id>http://hounddog.github.com</id>
     <author>
         <name>Martin Shwalbe</name>
@@ -59,7 +59,7 @@
     &lt;p&gt;
       This you will probably be doing for many Services. The result... the code becomes bloated. We are not following DRY principles. Instead we are copying and pasting this code  all over the place. If the structure changes sometime in the future we have to also replace this everywhere.
       &lt;/p&gt;
-      &lt;p&gt; If you are using PHP 5.4 You are in luck as you can now use traits If you are working on PHP version 5.4 you can now use traits. I will not go into detail about traits as there are a good bunch of tutorials out there explaining these and the &lt;a href=&quot;http://php.net/manual/en/language.oop5.traits.php&quot; target=&quot;_blank&quot;&gt;PHP Manual&lt;/a&gt; is also quite extensive on this topic.
+      &lt;p&gt; If you are using PHP 5.4 You are in luck as you can now use traits. I will not go into detail about traits as there are a good bunch of tutorials out there explaining these and the &lt;a href=&quot;http://php.net/manual/en/language.oop5.traits.php&quot; target=&quot;_blank&quot;&gt;PHP Manual&lt;/a&gt; is also quite extensive on this topic.
       &lt;/p&gt;
       &lt;p&gt;
         I just want to show you a short example here on how you can actually benefit from them.
@@ -69,11 +69,11 @@
 
       &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
 
-        namespace Application\Traits;
+        namespace Application\Provider;
 
         use Zend\ServiceManager\ServiceManager;
 
-        trait TraitServiceManager
+        trait ProvidesServiceManager
         {
           /**
            * @var ServiceManager
@@ -113,11 +113,11 @@
         namespace Application\Service;
 
         use Zend\ServiceManager\ServiceManagerAwareInterface;
-        use Application\Traits\TraitServiceManager;
+        use Application\Provider\ProvidesServiceManager;
 
         class MyService  implements ServiceManagerAwareInterface
         {
-            use TraitServiceManager;// Insert Trait
+            use ProvidesServiceManager;// Insert Trait
 
             // implement code here....
         }
@@ -125,57 +125,10 @@
     &lt;/pre&gt;
     &lt;p&gt;
       And voila, we are now using all the methods from TraitServiceManager within our own service!
-      The  same could already be done using the EntityManager
+      At the time of writing this Mathew Weierophinney gave me the hint that a trait for EventManager is already existing. Thanks for that.
     &lt;/p&gt;
-    &lt;p&gt;Let's implement that also. &lt;/p&gt;
+    &lt;p&gt;Let's implement that also in our Service. &lt;/p&gt;
 
-    &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
-
-      namespace Application\Traits;
-
-      use Zend\EventManager\EventManagerInterface;
-      use Zend\EventManager\EventManager;
-
-      trait TraitEventManager
-      {
-        /**
-         * @var EventManagerInterface
-         */
-        protected $events;
-
-        /**
-         * Set Event Manager
-         *
-         * @param  EventManagerInterface $events
-         * @return HybridAuth
-         */
-        public function setEventManager(EventManagerInterface $events)
-        {
-            $events-&gt;setIdentifiers(array(
-                __CLASS__,
-                get_called_class(),
-            ));
-            $this-&gt;events = $events;
-            return $this;
-        }
-
-        /**
-         * Get Event Manager
-         *
-         * Lazy-loads an EventManager instance if none registered.
-         *
-         * @return EventManagerInterface
-         */
-        public function getEventManager()
-        {
-            if (null === $this-&gt;events) {
-                $this-&gt;setEventManager(new EventManager());
-            }
-            return $this-&gt;events;
-        }
-      }
-    &lt;/pre&gt;
-    &lt;p&gt;Add it to our Service.&lt;/p&gt;
     &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
 
         namespace Application\Service;
@@ -183,12 +136,12 @@
         use Zend\EventManager\EventManagerAwareInterface;
         use Zend\ServiceManager\ServiceManagerAwareInterface;
 
-        use Application\Traits\TraitServiceManager;
-        use Application\Traits\TraitEventManager;
+        use Application\Provider\ProvidesServiceManager;
+        use Zend\EventManager\ProvidesEvents;
 
         class MyService  implements ServiceManagerAwareInterface, EventManagerAwareInterface
         {
-            use TraitServiceManager, TraitEventManager; //Insert Multiple Traits
+            use ProvidesServiceManager, ProvidesEvents; //Insert Multiple Traits
 
             // implement code here....
         }
