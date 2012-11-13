@@ -447,7 +447,7 @@ summary: Building a Rest module module for Zend Framework 2
         In order to list the albums, we need to retrieve them from the model and pass them to the view. To do this, we fill in getList() within AlbumRestController. Update the AlbumRestController’s getList() like this:
     </p>
     <pre class="prettyprint linemus lang-prepro">
-    public function getLissrhoadt()
+    public function getList()
     {
         $results = $this-&gt;getAlbumTable()-&gt;fetchAll();
         $data = array();
@@ -598,7 +598,9 @@ summary: Building a Rest module module for Zend Framework 2
     <pre class="prettyprint linemus lang-prepro">
     public function delete($id)
     {
-        $this-&gt;getAlbumTable()-&gt;saveAlbum($album);
+        $this->getAlbumTable()->deleteAlbum($id);
+
+        return array('data' => 'deleted');
     }
     </pre>
     <pre>

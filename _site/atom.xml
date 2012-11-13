@@ -3,7 +3,7 @@
     <title>Martin Shwalbe - Hounddog</title>
     <link href="http://hounddog.github.com/atom.xml" rel="self"/>
     <link href="http://hounddog.github.com/"/>
-    <updated>2012-11-12T17:34:36+01:00</updated>
+    <updated>2012-11-13T13:46:10+01:00</updated>
     <id>http://hounddog.github.com</id>
     <author>
         <name>Martin Shwalbe</name>
@@ -451,7 +451,7 @@
         In order to list the albums, we need to retrieve them from the model and pass them to the view. To do this, we fill in getList() within AlbumRestController. Update the AlbumRestController’s getList() like this:
     &lt;/p&gt;
     &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
-    public function getLissrhoadt()
+    public function getList()
     {
         $results = $this-&amp;gt;getAlbumTable()-&amp;gt;fetchAll();
         $data = array();
@@ -602,7 +602,9 @@
     &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
     public function delete($id)
     {
-        $this-&amp;gt;getAlbumTable()-&amp;gt;saveAlbum($album);
+        $this-&gt;getAlbumTable()-&gt;deleteAlbum($id);
+
+        return array('data' =&gt; 'deleted');
     }
     &lt;/pre&gt;
     &lt;pre&gt;

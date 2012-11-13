@@ -574,7 +574,7 @@
         In order to list the albums, we need to retrieve them from the model and pass them to the view. To do this, we fill in getList() within AlbumRestController. Update the AlbumRestController’s getList() like this:
     </p>
     <pre class="prettyprint linemus lang-prepro">
-    public function getLissrhoadt()
+    public function getList()
     {
         $results = $this-&gt;getAlbumTable()-&gt;fetchAll();
         $data = array();
@@ -725,7 +725,9 @@
     <pre class="prettyprint linemus lang-prepro">
     public function delete($id)
     {
-        $this-&gt;getAlbumTable()-&gt;saveAlbum($album);
+        $this->getAlbumTable()->deleteAlbum($id);
+
+        return array('data' => 'deleted');
     }
     </pre>
     <pre>
@@ -798,7 +800,7 @@
             </div>
 
             <footer class="footer">
-	<p style="text-align:center">Getting Started with REST and Zend Framework 2 updated on November 12, 2012</p>
+	<p style="text-align:center">Getting Started with REST and Zend Framework 2 updated on November 13, 2012</p>
 </footer>
 
         </div>
