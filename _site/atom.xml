@@ -3,11 +3,41 @@
     <title>Martin Shwalbe - Hounddog</title>
     <link href="http://hounddog.github.com/atom.xml" rel="self"/>
     <link href="http://hounddog.github.com/"/>
-    <updated>2012-11-13T13:46:10+01:00</updated>
+    <updated>2012-11-18T18:14:25+01:00</updated>
     <id>http://hounddog.github.com</id>
     <author>
         <name>Martin Shwalbe</name>
     </author>
+    
+    <entry>
+        <title>Improving Performance in Zend Framework 2</title>
+        <link href="http://hounddog.github.com/blog/performance-in-zend-framework-2"/>
+        <updated>2012-11-18T00:00:00+01:00</updated>
+        <id>http://hounddog.github.com/blog/performance-in-zend-framework-2</id>
+        <content type="html">&lt;div class=&quot;row&quot;&gt;
+    &lt;p&gt;
+        I am going to list options here on how to improve the Performance. This will be an ongoing list wchich i will keep updated while doing performance improvements.
+    &lt;/p&gt;
+    &lt;h1&gt;Autoloader Classmap&lt;/h1&gt;
+    &lt;p&gt;As described by Rob Allen on his &lt;a href=&quot;http://akrabat.com/zend-framework-2/using-zendloaderautoloader/&quot;&gt;Blog&lt;/a&gt;.&lt;/&gt;
+    &lt;pre&gt;
+The class map autoloader is a high performance autoloader. It uses class maps, which are simply associative arrays of each classname to the name of the file disk that contains that class.
+    &lt;/pre&gt;
+    This is a very simple process and takes just a few minutes to generate and include the classmaps for each module you have created.
+
+    &lt;h1&gt;Template Map&lt;/h1&gt;
+    &lt;p&gt;Most people use the 'template_path_stack' during development. As pointed out by the &lt;a href=&quot;http://framework.zend.com/manual/2.0/en/modules/zend.view.quick-start.html#configuration&quot;&gt;manual&lt;/a&gt;, this can introduce a performance expense.
+    &lt;/p&gt;
+    &lt;pre&gt;
+This is a nice solution for rapid application
+development, but potentially introduces performance expense in
+production due to the number of stat calls necessary.
+    &lt;/pre&gt;
+    &lt;p&gt;Once development is completed, consider putting your view's into the template_map as described in the manual.&lt;/p&gt;
+
+    &lt;p&gt;This is just a quick write up and i will continue to update this with more options. If you feel anything is missing or should be mentioned, please do not hesitate to comment so i can keep this list updated. Thanks for reading!&lt;/p&gt;
+&lt;/div&gt;</content>
+    </entry>
     
     <entry>
         <title>Getting Started with REST and Zend Framework 2</title>
