@@ -15,10 +15,10 @@ summary: Building a Rest module module for Zend Framework 2
         Today i want to show you how to build a rest application. This tutorials assume you have completed the <a href="http://zf2.readthedocs.org/en/latest/user-guide/overview.html">Getting Started</a>. I will be repeating lot of the steps allready explained in there. There is also a sample Album module which you can install from <a href="https://github.com/Hounddog/Album">here</a>.
     </p>
     <h1>
-        Setting up the Album module
+        Setting up the AlbumRest module
     </h1>
     <p>
-        Start by creating a directory called AlbumRest under module with the following subdirectories to hold the module’s files:
+        Start by creating a directory called <code>AlbumRest</code> under module with the following subdirectories to hold the module’s files:
     </p>
     <pre>
     zf2-tutorial/
@@ -32,135 +32,139 @@ summary: Building a Rest module module for Zend Framework 2
     </pre>
 
     <p>
-        Create Module.php in the AlbumRest module at zf2-tutorial/module/AlbumRest:
+        Create <code>Module.php</code> in the AlbumRest module at <code>zf2-tutorial/module/AlbumRest</code>:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
+    <pre class="prettyprint linenums lang-prepro">
+&lt;?php
+namespace AlbumRest;
 
-    namespace AlbumRest;
-
-    class Module
+class Module
+{
+    public function getAutoloaderConfig()
     {
-        public function getAutoloaderConfig()
-        {
-            return array(
-                'Zend\Loader\ClassMapAutoloader' =&gt; array(
-                    __DIR__ . '/autoload_classmap.php',
+        return array(
+            'Zend\Loader\ClassMapAutoloader' =&gt; array(
+                __DIR__ . '/autoload_classmap.php',
+            ),
+            'Zend\Loader\StandardAutoloader' =&gt; array(
+                'namespaces' =&gt; array(
+                    __NAMESPACE__ =&gt; __DIR__ . '/src/' . __NAMESPACE__,
                 ),
-                'Zend\Loader\StandardAutoloader' =&gt; array(
-                    'namespaces' =&gt; array(
-                        __NAMESPACE__ =&gt; __DIR__ . '/src/' . __NAMESPACE__,
-                    ),
-                ),
-            );
-        }
-
-        public function getConfig()
-        {
-            return include __DIR__ . '/config/module.config.php';
-        }
+            ),
+        );
     }
-    </pre>
+
+    public function getConfig()
+    {
+        return include __DIR__ . '/config/module.config.php';
+    }
+}
+</pre>
 
     <h1>
         Configuration
     </h1>
     <p>
-        Create a file called module.config.php under zf2-tutorial/module/AlbumRest/config:
+        Create a file called <code>module.config.php</code> under <code>zf2-tutorial/module/AlbumRest/config</code>:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-    return array(
-        'controllers' =&gt; array(
-            'invokables' =&gt; array(
-                'AlbumRest\Controller\AlbumRest' =&gt; 'AlbumRest\Controller\AlbumRestController',
-            ),
+<pre class="prettyprint linenums lang-prepro">
+&lt;?php
+return array(
+    'controllers' =&gt; array(
+        'invokables' =&gt; array(
+            'AlbumRest\Controller\AlbumRest' =&gt; 'AlbumRest\Controller\AlbumRestController',
         ),
-        'view_manager' =&gt; array(
-            'template_path_stack' =&gt; array(
-                'album-rest' =&gt; __DIR__ . '/../view',
-            ),
+    ),
+    'view_manager' =&gt; array(
+        'template_path_stack' =&gt; array(
+            'album-rest' =&gt; __DIR__ . '/../view',
         ),
-    );
-    </pre>
+    ),
+);
+</pre>
 
     <p>
-        As we are in development, we don’t need to load files via the classmap, so we provide an empty array for the classmap autoloader. Create a file called autoload_classmap.php under zf2-tutorial/module/AlbumRest:
+        As we are in development, we don’t need to load files via the classmap, so we provide an empty array for the classmap autoloader. Create a file called <code>autoload_classmap.php</code> under <code>zf2-tutorial/module/AlbumRest</code>:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-    return array();
-    </pre>
+<pre class="prettyprint linenums lang-prepro">
+&lt;?php
+return array();
+</pre>
 
     <h1>
         Informing the application about our new module
     </h1>
     <p>
-        We now need to tell the ModuleManager that this new module exists. This is done in the application’s config/application.config.php file which is provided by the skeleton application. Update this file so that its modules section contains the Album module as well, so the file now looks like this:
+        We now need to tell the ModuleManager that this new module exists. This is done in the application’s <code>config/application.config.php</code> file which is provided by the skeleton application. Update this file so that its modules section contains the AlbumRest module as well, so the file now looks like this:
     </p>
     <p>
         (Changes required are highlighted using comments.)
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-    return array(
-        'modules' =&gt; array(
-            'Application',
-            'Album',
-            'AlbumRest',              // &lt;-- Add this line
+<pre class="prettyprint linenums lang-prepro">
+&lt;?php
+return array(
+    'modules' =&gt; array(
+        'Application',
+        'Album',
+        'AlbumRest',              // &lt;-- Add this line
+    ),
+    'module_listener_options' =&gt; array(
+        'config_glob_paths'    =&gt; array(
+            'config/autoload/{,*.}{global,local}.php',
         ),
-        'module_listener_options' =&gt; array(
-            'config_glob_paths'    =&gt; array(
-                'config/autoload/{,*.}{global,local}.php',
-            ),
-            'module_paths' =&gt; array(
-                './module',
-                './vendor',
-            ),
+        'module_paths' =&gt; array(
+            './module',
+            './vendor',
         ),
-    );
-    </pre>
+    ),
+);
+</pre>
 
     <p>
-        As you can see, we have added our AlbumRest module into the list of modules after the Album module.
+        As you can see, we have added our <code>AlbumRest</code> module into the list of modules after the <code>Album</code> module.
     </p>
     <p>
         We have now set up the module ready for putting our custom code into it.
     </p>
     <h1>
         Setup Rest Routing
-    </h1>We need to first add our custom REST routing so we are able to call the RestController. This is the updated module.config.php with the new code highlighted.
-    <pre class="prettyprint linemus lang-prepro">
-    return array(
-        'controllers' =&gt; array(
-            'invokables' =&gt; array(
-                'AlbumRest\Controller\AlbumRest' =&gt; 'AlbumRest\Controller\AlbumRestController',
-            ),
+    </h1>We need to first add our custom REST routing so we are able to call the RestController. This is the updated <code>module.config.php</code> with the new code highlighted.
+<pre class="prettyprint linenums lang-prepro">
+&lt;?php
+return array(
+    'controllers' =&gt; array(
+        'invokables' =&gt; array(
+            'AlbumRest\Controller\AlbumRest' =&gt; 'AlbumRest\Controller\AlbumRestController',
         ),
+    ),
 
-        // The following section is new and should be added to your file
-        'router' =&gt; array(
-            'routes' =&gt; array(
-                'album-rest' =&gt; array(
-                    'type'    =&gt; 'segment',
-                    'options' =&gt; array(
-                        'route'    =&gt; '/album-rest[/:id]',
-                        'constraints' =&gt; array(
-                            'id'     =&gt; '[0-9]+',
-                        ),
-                        'defaults' =&gt; array(
-                            'controller' =&gt; 'AlbumRest\Controller\AlbumRest',
-                        ),
+    // The following section is new and should be added to your file
+    'router' =&gt; array(
+        'routes' =&gt; array(
+            'album-rest' =&gt; array(
+                'type'    =&gt; 'segment',
+                'options' =&gt; array(
+                    'route'    =&gt; '/album-rest[/:id]',
+                    'constraints' =&gt; array(
+                        'id'     =&gt; '[0-9]+',
+                    ),
+                    'defaults' =&gt; array(
+                        'controller' =&gt; 'AlbumRest\Controller\AlbumRest',
                     ),
                 ),
             ),
         ),
+    ),
 
-        'view_manager' =&gt; array(
-            'template_path_stack' =&gt; array(
-                'album-rest' =&gt; __DIR__ . '/../view',
-            ),
+    'view_manager' =&gt; array(
+        'template_path_stack' =&gt; array(
+            'album-rest' =&gt; __DIR__ . '/../view',
         ),
-    );
-    </pre>
+    ),
+);
+</pre>
     <p>
-        The name of the route is ‘album-rest’ and has a type of ‘segment’. For a RestController we must provide a placeholder in this case the route is `/album-rest/id` which will match any URL that starts with /album-rest. The next segment will be an optional id which is required for the RestController The constraints section allows us to ensure that the characters within a segment are as expected.
+        The name of the route is <code>album-rest</code> and has a type of <code>segment</code>. For a RestController we must provide a placeholder in this case the route is <code>/album-rest/id</code> which will match any URL that starts with <code>/album-rest</code>. The next segment will be an optional id which is required for the RestController The constraints section allows us to ensure that the characters within a segment are as expected.
     </p>
     <h1>
         Setup View Strategy
@@ -169,92 +173,99 @@ summary: Building a Rest module module for Zend Framework 2
         We are just going to use Json output so i am going to use a view strategy described here by Jurian Sluiman on his <a href="http://juriansluiman.nl/en/article/119/attach-a-view-strategy-for-specific-modules">Blog</a>
     </p>
     <p>
-        Add the strategy to Module.php
+        Add the strategy to <code>Module.php</code>
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-    namespace AlbumRest;
+<pre class="prettyprint linenums lang-prepro">
+&lt;?php
+namespace AlbumRest;
 
-    use Zend\ModuleManager\Feature;         // &lt;-- Add this import
-    use Zend\EventManager\EventInterface;   // &lt;-- Add this import
-    use Zend\Mvc\MvcEvent;                  // &lt;-- Add this import
+use Zend\ModuleManager\Feature;         // &lt;-- Add this import
+use Zend\EventManager\EventInterface;   // &lt;-- Add this import
+use Zend\Mvc\MvcEvent;                  // &lt;-- Add this import
 
-    class Module implements
-        Feature\BootstrapListenerInterface // Add this Interface
+class Module implements
+    Feature\BootstrapListenerInterface // Add this Interface
+{
+    public function getAutoloaderConfig()
     {
-        public function getAutoloaderConfig()
-        {
-            return array(
-                'Zend\Loader\ClassMapAutoloader' =&gt; array(
-                    __DIR__ . '/autoload_classmap.php',
+        return array(
+            'Zend\Loader\ClassMapAutoloader' =&gt; array(
+                __DIR__ . '/autoload_classmap.php',
+            ),
+            'Zend\Loader\StandardAutoloader' =&gt; array(
+                'namespaces' =&gt; array(
+                    __NAMESPACE__ =&gt; __DIR__ . '/src/' . __NAMESPACE__,
                 ),
-                'Zend\Loader\StandardAutoloader' =&gt; array(
-                    'namespaces' =&gt; array(
-                        __NAMESPACE__ =&gt; __DIR__ . '/src/' . __NAMESPACE__,
-                    ),
-                ),
-            );
-        }
-
-        // Add this Method
-        public function onBootstrap(EventInterface $e)
-        {
-            $app = $e-&gt;getApplication();
-            $em  = $app-&gt;getEventManager()-&gt;getSharedManager();
-            $sm  = $app-&gt;getServiceManager();
-
-            $em-&gt;attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, function($e) use ($sm) {
-                $strategy = $sm-&gt;get('ViewJsonStrategy');
-                $view     = $sm-&gt;get('ViewManager')-&gt;getView();
-                $strategy-&gt;attach($view-&gt;getEventManager());
-            });
-        }
-
-        public function getConfig()
-        {
-            return include __DIR__ . '/config/module.config.php';
-        }
+            ),
+        );
     }
-    </pre>
+
+    // Add this Method
+    public function onBootstrap(EventInterface $e)
+    {
+        $app = $e-&gt;getApplication();
+        $em  = $app-&gt;getEventManager()-&gt;getSharedManager();
+        $sm  = $app-&gt;getServiceManager();
+
+        $em-&gt;attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, function($e) use ($sm) {
+            $strategy = $sm-&gt;get('ViewJsonStrategy');
+            $view     = $sm-&gt;get('ViewManager')-&gt;getView();
+            $strategy-&gt;attach($view-&gt;getEventManager());
+        });
+    }
+
+    public function getConfig()
+    {
+        return include __DIR__ . '/config/module.config.php';
+    }
+}
+</pre>
 
     <h1>
         Create the controller
     </h1>
     <p>
-        Let’s go ahead and create our controller class AlbumRestController.php at zf2-tutorials/module/AlbumRest/src/AlbumRest/Controller :
+        Let’s go ahead and create our controller class <code>AlbumRestController.php</code> at <code>zf2-tutorials/module/AlbumRest/src/AlbumRest/Controller</code>:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-    namespace AlbumRest\Controller;
+<pre class="prettyprint linenums lang-prepro">
+&lt;?php
+namespace AlbumRest\Controller;
 
-    use Zend\Mvc\Controller\AbstractRestfulController;
+use Zend\Mvc\Controller\AbstractRestfulController;
 
-    class AlbumRestController extends AbstractRestfulController
+use Album\Model\Album;
+use Album\Form\AlbumForm;
+use Album\Model\AlbumTable;
+use Zend\View\Model\ViewModel;
+
+class AlbumRestController extends AbstractRestfulController
+{
+    public function getList()
     {
-        public function getList()
-        {
-            # code...
-        }
-
-        public function get($id)
-        {
-            # code...
-        }
-
-        public function create($data)
-        {
-            # code...
-        }
-
-        public function update($id, $data)
-        {
-            # code...
-        }
-
-        public function delete($id)
-        {
-            # code...
-        }
+        # code...
     }
-    </pre>
+
+    public function get($id)
+    {
+        # code...
+    }
+
+    public function create($data)
+    {
+        # code...
+    }
+
+    public function update($id, $data)
+    {
+        # code...
+    }
+
+    public function delete($id)
+    {
+        # code...
+    }
+}
+</pre>
 
     <p>
         We have now set up the controller methods to map the HTTP request methods. You can find a detailed explanation of the methods in the <a href="http://framework.zend.com/manual/2.0/en/modules/zend.mvc.controllers.html#the-abstractrestfulcontroller">Manual</a>
@@ -289,120 +300,122 @@ summary: Building a Rest module module for Zend Framework 2
         </li>
     </ul>
     <p>
-        Remember here to change the namespace in Bootstrap.php and change the the ``TestConfig.php.dist.
+        Remember here to change the <code>namespace</code> in <code>Bootstrap.php</code> and change the the <code>TestConfig.php.dist</code> to following:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-    return array(
-        'modules' =&gt; array(
-            'Album',
-            'AlbumRest'
+<pre class="prettyprint linenums lang-prepro">
+&lt;?php
+return array(
+    'modules' =&gt; array(
+        'Album',
+        'AlbumRest'
+    ),
+    'module_listener_options' =&gt; array(
+        'config_glob_paths'    =&gt; array(
+            '../../../config/autoload/{,*.}{global,local}.php',
         ),
-        'module_listener_options' =&gt; array(
-            'config_glob_paths'    =&gt; array(
-                '../../../config/autoload/{,*.}{global,local}.php',
-            ),
-            'module_paths' =&gt; array(
-                'module',
-                'vendor',
-            ),
+        'module_paths' =&gt; array(
+            'module',
+            'vendor',
         ),
-    );
-    </pre>
+    ),
+);
+</pre>
     <p>
-        In phpunit.xml change the directory to point at AlbumRestTest
+        In <code>phpunit.xml</code> change the directory to point at AlbumRestTest
     </p>
     <p>
-        Create zf2-tutorial/Album/module/Album/test/AlbumTest/Controller/AlbumControllerTest.php` with the following contents:
+        Create <code>zf2-tutorial/Album/module/Album/test/AlbumTest/Controller/AlbumControllerTest.php</code> with the following contents:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-    namespace AlbumRestTest\Controller;
+<pre class="prettyprint linenums lang-prepro">
+&lt;?php
+namespace AlbumRestTest\Controller;
 
-    use AlbumRestTest\Bootstrap;
-    use AlbumRest\Controller\AlbumRestController;
-    use Zend\Http\Request;
-    use Zend\Http\Response;
-    use Zend\Mvc\MvcEvent;
-    use Zend\Mvc\Router\RouteMatch;
-    use Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter;
-    use PHPUnit_Framework_TestCase;
+use AlbumRestTest\Bootstrap;
+use AlbumRest\Controller\AlbumRestController;
+use Zend\Http\Request;
+use Zend\Http\Response;
+use Zend\Mvc\MvcEvent;
+use Zend\Mvc\Router\RouteMatch;
+use Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter;
+use PHPUnit_Framework_TestCase;
 
-    class AlbumRestControllerTest extends PHPUnit_Framework_TestCase
+class AlbumRestControllerTest extends PHPUnit_Framework_TestCase
+{
+    protected $controller;
+    protected $request;
+    protected $response;
+    protected $routeMatch;
+    protected $event;
+
+    protected function setUp()
     {
-        protected $controller;
-        protected $request;
-        protected $response;
-        protected $routeMatch;
-        protected $event;
-
-        protected function setUp()
-        {
-            $serviceManager = Bootstrap::getServiceManager();
-            $this-&gt;controller = new AlbumRestController();
-            $this-&gt;request    = new Request();
-            $this-&gt;routeMatch = new RouteMatch(array('controller' =&gt; 'index'));
-            $this-&gt;event      = new MvcEvent();
-            $config = $serviceManager-&gt;get('Config');
-            $routerConfig = isset($config['router']) ? $config['router'] : array();
-            $router = HttpRouter::factory($routerConfig);
-            $this-&gt;event-&gt;setRouter($router);
-            $this-&gt;event-&gt;setRouteMatch($this-&gt;routeMatch);
-            $this-&gt;controller-&gt;setEvent($this-&gt;event);
-            $this-&gt;controller-&gt;setServiceLocator($serviceManager);
-        }
-
-        public function testGetListCanBeAccessed()
-        {
-            $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
-            $response = $this-&gt;controller-&gt;getResponse();
-
-            $this-&gt;assertEquals(200, $response-&gt;getStatusCode());
-        }
-
-        public function testGetCanBeAccessed()
-        {
-            $this-&gt;routeMatch-&gt;setParam('id', '1');
-
-            $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
-            $response = $this-&gt;controller-&gt;getResponse();
-
-            $this-&gt;assertEquals(200, $response-&gt;getStatusCode());
-        }
-
-        public function testCreateCanBeAccessed()
-        {
-            $this-&gt;routeMatch-&gt;setParam('id', '1');
-            $this-&gt;request-&gt;setMethod('post');
-
-            $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
-            $response = $this-&gt;controller-&gt;getResponse();
-
-            $this-&gt;assertEquals(200, $response-&gt;getStatusCode());
-        }
-
-        public function testUpdateCanBeAccessed()
-        {
-            $this-&gt;routeMatch-&gt;setParam('id', '1');
-            $this-&gt;request-&gt;setMethod('put');
-
-            $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
-            $response = $this-&gt;controller-&gt;getResponse();
-
-            $this-&gt;assertEquals(200, $response-&gt;getStatusCode());
-        }
-
-        public function testDeleteCanBeAccessed()
-        {
-            $this-&gt;routeMatch-&gt;setParam('id', '1');
-            $this-&gt;request-&gt;setMethod('delete');
-
-            $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
-            $response = $this-&gt;controller-&gt;getResponse();
-
-            $this-&gt;assertEquals(200, $response-&gt;getStatusCode());
-        }
+        $serviceManager = Bootstrap::getServiceManager();
+        $this-&gt;controller = new AlbumRestController();
+        $this-&gt;request    = new Request();
+        $this-&gt;routeMatch = new RouteMatch(array('controller' =&gt; 'index'));
+        $this-&gt;event      = new MvcEvent();
+        $config = $serviceManager-&gt;get('Config');
+        $routerConfig = isset($config['router']) ? $config['router'] : array();
+        $router = HttpRouter::factory($routerConfig);
+        $this-&gt;event-&gt;setRouter($router);
+        $this-&gt;event-&gt;setRouteMatch($this-&gt;routeMatch);
+        $this-&gt;controller-&gt;setEvent($this-&gt;event);
+        $this-&gt;controller-&gt;setServiceLocator($serviceManager);
     }
-    </pre>
-    <p>And execute phpunit from module/AlbumRest/test.</p>
+
+    public function testGetListCanBeAccessed()
+    {
+        $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
+        $response = $this-&gt;controller-&gt;getResponse();
+
+        $this-&gt;assertEquals(200, $response-&gt;getStatusCode());
+    }
+
+    public function testGetCanBeAccessed()
+    {
+        $this-&gt;routeMatch-&gt;setParam('id', '1');
+
+        $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
+        $response = $this-&gt;controller-&gt;getResponse();
+
+        $this-&gt;assertEquals(200, $response-&gt;getStatusCode());
+    }
+
+    public function testCreateCanBeAccessed()
+    {
+        $this-&gt;routeMatch-&gt;setParam('id', '1');
+        $this-&gt;request-&gt;setMethod('post');
+
+        $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
+        $response = $this-&gt;controller-&gt;getResponse();
+
+        $this-&gt;assertEquals(200, $response-&gt;getStatusCode());
+    }
+
+    public function testUpdateCanBeAccessed()
+    {
+        $this-&gt;routeMatch-&gt;setParam('id', '1');
+        $this-&gt;request-&gt;setMethod('put');
+
+        $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
+        $response = $this-&gt;controller-&gt;getResponse();
+
+        $this-&gt;assertEquals(200, $response-&gt;getStatusCode());
+    }
+
+    public function testDeleteCanBeAccessed()
+    {
+        $this-&gt;routeMatch-&gt;setParam('id', '1');
+        $this-&gt;request-&gt;setMethod('delete');
+
+        $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
+        $response = $this-&gt;controller-&gt;getResponse();
+
+        $this-&gt;assertEquals(200, $response-&gt;getStatusCode());
+    }
+}
+</pre>
+    <p>And execute <code>phpunit</code> from <code>module/AlbumRest/test</code>.</p>
     <pre>
         PHPUnit 3.7.8 by Sebastian Bergmann.
 
@@ -413,28 +426,28 @@ summary: Building a Rest module module for Zend Framework 2
         OK (5 tests, 5 assertions)
     </pre>
     <p>
-        We are going to consume services from the Album module. Let's start adding in some functionality. In our AlbumRestController add:
+        We are going to consume services from the Album module. Let's start adding in some functionality. In our <code>AlbumRestController.php</code> add:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-    public function getAlbumTable()
-    {
-        if (!$this-&gt;albumTable) {
-            $sm = $this-&gt;getServiceLocator();
-            $this-&gt;albumTable = $sm-&gt;get('Album\Model\AlbumTable');
-        }
-        return $this-&gt;albumTable;
+<pre class="prettyprint linenums:38 lang-prepro">
+public function getAlbumTable()
+{
+    if (!$this-&gt;albumTable) {
+        $sm = $this-&gt;getServiceLocator();
+        $this-&gt;albumTable = $sm-&gt;get('Album\Model\AlbumTable');
     }
-    </pre>
+    return $this-&gt;albumTable;
+}
+</pre>
     <p>
         You should also add:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-        protected $albumTable;
-    </pre>
+<pre class="prettyprint linenums:13 lang-prepro">
+    protected $albumTable;
+</pre>
     <p>
-        Add this test to your AlbumControllerTest class:
+        Add this test to your <code>AlbumControllerTest.php</code>:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
+    <pre class="prettyprint linenums:88 lang-prepro">
     public function testGetAlbumTableReturnsAnInstanceOfAlbumTable()
     {
         $this-&gt;assertInstanceOf('Album\Model\AlbumTable', $this-&gt;controller-&gt;getAlbumTable());
@@ -444,22 +457,22 @@ summary: Building a Rest module module for Zend Framework 2
         Listing albums
     </h2>
     <p>
-        In order to list the albums, we need to retrieve them from the model and pass them to the view. To do this, we fill in getList() within AlbumRestController. Update the AlbumRestController’s getList() like this:
+        In order to list the albums, we need to retrieve them from the model and pass them to the view. To do this, we fill in getList() within <code>AlbumRestController</code>. Update the AlbumRestController’s getList() like this:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-    public function getList()
-    {
-        $results = $this-&gt;getAlbumTable()-&gt;fetchAll();
-        $data = array();
-        foreach($results as $result) {
-            $data[] = $result;
-        }
-
-        return array('data' =&gt; $data);
+<pre class="prettyprint linenums:15 lang-prepro">
+public function getList()
+{
+    $results = $this-&gt;getAlbumTable()-&gt;fetchAll();
+    $data = array();
+    foreach($results as $result) {
+        $data[] = $result;
     }
-    </pre>
+
+    return array('data' =&gt; $data);
+}
+</pre>
     <p>
-        As we do not have any views for our Controller we need a method on how to test these. For this example i am using curl to test the functionality.
+        As we do not have any views for our Controller we need a method on how to test these. For this example i am using <code>curl</code> to test the functionality.
     </p>
     <pre>
     $ curl -i -H "Accept: application/json" http://zf2-tutorial.localhost/album-rest
@@ -477,19 +490,19 @@ summary: Building a Rest module module for Zend Framework 2
         Adding Missing functionality
     </h1>
     <p>
-        Let's add the rest of the functionality to AlbumRestController.
+        Let's add the rest of the functionality to <code>AlbumRestController</code>.
     </p>
     <h2>
         Get Album
     </h2>
-    <pre class="prettyprint linemus lang-prepro">
-    public function get($id)
-    {
-        $album = $this-&gt;getAlbumTable()-&gt;getAlbum($id);
+<pre class="prettyprint linenums:26 lang-prepro">
+public function get($id)
+{
+    $album = $this-&gt;getAlbumTable()-&gt;getAlbum($id);
 
-        return array("data" =&gt; $album);
-    }
-    </pre>
+    return array("data" =&gt; $album);
+}
+</pre>
     <p>
         And run curl to see the output.
     </p>
@@ -507,47 +520,47 @@ summary: Building a Rest module module for Zend Framework 2
     </pre>
     <h2>
         Add Album
-    </h2>We need to modify the AlbumTable in module/Album/src/Album/Model to return the generated id
-    <pre class="prettyprint linemus lang-prepro">
-    public function saveAlbum(Album $album)
-    {
-        $data = array(
-            'artist' =&gt; $album-&gt;artist,
-            'title'  =&gt; $album-&gt;title,
-        );
+    </h2>We need to modify the <code>AlbumTable</code> in <code>module/Album/src/Album/Model</code> to return the generated id
+<pre class="prettyprint linenums:32 lang-prepro">
+public function saveAlbum(Album $album)
+{
+    $data = array(
+        'artist' =&gt; $album-&gt;artist,
+        'title'  =&gt; $album-&gt;title,
+    );
 
-        $id = (int)$album-&gt;id;
-        if ($id == 0) {
-            $id =  $this-&gt;tableGateway-&gt;insert($data); //Modify this
+    $id = (int)$album-&gt;id;
+    if ($id == 0) {
+        $id =  $this-&gt;tableGateway-&gt;insert($data); //Modify this
+    } else {
+        if ($this-&gt;getAlbum($id)) {
+            $this-&gt;tableGateway-&gt;update($data, array('id' =&gt; $id));
         } else {
-            if ($this-&gt;getAlbum($id)) {
-                $this-&gt;tableGateway-&gt;update($data, array('id' =&gt; $id));
-            } else {
-                throw new \Exception('Form id does not exist');
-            }
+            throw new \Exception('Form id does not exist');
         }
-
-        return $id; // Add Return
     }
-    </pre>
+
+    return $id; // Add Return
+}
+</pre>
     <p>
-        Modify the create method in module/AlbumRest/src/AlbumRest/Controller/AlbumRestController as following:
+        Modify the create method in <code>module/AlbumRest/src/AlbumRest/Controller/AlbumRestController</code> as following:
     </p>
-    <pre class="prettyprint linemus lang-prepro">
-    public function create($data)
-    {
-        $form = new AlbumForm();
-        $album = new Album();
-        $form-&gt;setInputFilter($album-&gt;getInputFilter());
-        $form-&gt;setData($data);
-        if ($form-&gt;isValid()) {
-            $album-&gt;exchangeArray($form-&gt;getData());
-            $id = $this-&gt;getAlbumTable()-&gt;saveAlbum($album);
-        }
-
-        return $this-&gt;get($id);
+<pre class="prettyprint linenums:33 lang-prepro">
+public function create($data)
+{
+    $form = new AlbumForm();
+    $album = new Album();
+    $form-&gt;setInputFilter($album-&gt;getInputFilter());
+    $form-&gt;setData($data);
+    if ($form-&gt;isValid()) {
+        $album-&gt;exchangeArray($form-&gt;getData());
+        $id = $this-&gt;getAlbumTable()-&gt;saveAlbum($album);
     }
-    </pre>
+
+    return $this-&gt;get($id);
+}
+</pre>
     <pre>
     $ curl -i -H "Accept: application/json" -X POST -d "artist=AC DC&amp;title=Dirty Deeds" http://zf2-tutorial.localhost/album-rest
 
@@ -564,22 +577,22 @@ summary: Building a Rest module module for Zend Framework 2
     <h2>
         Edit Album
     </h2>
-    <pre class="prettyprint linemus lang-prepro">
-    public function update($id, $data)
-    {
-        $data['id'] = $id;
-        $album = $this-&gt;getAlbumTable()-&gt;getAlbum($id);
-        $form  = new AlbumForm();
-        $form-&gt;bind($album);
-        $form-&gt;setInputFilter($album-&gt;getInputFilter());
-        $form-&gt;setData($data);
-        if ($form-&gt;isValid()) {
-            $id = $this-&gt;getAlbumTable()-&gt;saveAlbum($form-&gt;getData());
-        }
-
-        return $this-&gt;get($id);
+<pre class="prettyprint linenums:47 lang-prepro">
+public function update($id, $data)
+{
+    $data['id'] = $id;
+    $album = $this-&gt;getAlbumTable()-&gt;getAlbum($id);
+    $form  = new AlbumForm();
+    $form-&gt;bind($album);
+    $form-&gt;setInputFilter($album-&gt;getInputFilter());
+    $form-&gt;setData($data);
+    if ($form-&gt;isValid()) {
+        $id = $this-&gt;getAlbumTable()-&gt;saveAlbum($form-&gt;getData());
     }
-    </pre>
+
+    return $this-&gt;get($id);
+}
+</pre>
     <pre>
     $ curl -i -H "Accept: application/json" -X PUT -d "artist=Ac-Dc&amp;title=Dirty Deeds" http://zf2-tutorial.localhost/album-rest/1
 
@@ -595,14 +608,14 @@ summary: Building a Rest module module for Zend Framework 2
     <h2>
         Delete Album
     </h2>
-    <pre class="prettyprint linemus lang-prepro">
-    public function delete($id)
-    {
-        $this->getAlbumTable()->deleteAlbum($id);
+<pre class="prettyprint linenums:62 lang-prepro">
+public function delete($id)
+{
+    $this->getAlbumTable()->deleteAlbum($id);
 
-        return array('data' => 'deleted');
-    }
-    </pre>
+    return array('data' => 'deleted');
+}
+</pre>
     <pre>
     $ curl -i -H "Accept: application/json" -X DELETE http://modules.zendframework.com.dev/album-rest/7
 

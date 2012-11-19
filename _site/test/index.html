@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <link href="/js/google-code-prettify/sunburst.css" type="text/css" rel="stylesheet" />
+
+        <script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+    </head>
+    <body >
+<pre class="prettyprint linenums">
+&lt;?php
+namespace Application\Provider;
+
+use Zend\ServiceManager\ServiceManager;
+
+trait ProvidesServiceManager
+{
+  /**
+   * @var ServiceManager
+   */
+  protected $serviceManager;
+
+  /**
+   * Retrieve service manager instance
+   *
+   * @return ServiceManager
+   */
+  public function getServiceManager()
+  {
+      return $this-&gt;serviceManager;
+  }
+
+  /**
+   * Set service manager instance
+   *
+   * @param ServiceManager $locator
+   * @return User
+   */
+  public function setServiceManager(ServiceManager $serviceManager)
+  {
+      $this-&gt;serviceManager = $serviceManager;
+      return $this;
+  }
+}
+</pre>
+    </body>
+</html>
