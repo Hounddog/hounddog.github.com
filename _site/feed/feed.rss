@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>Martin Shwalbe - Hounddog</title>
-    <link href="http://hounddog.github.com/atom.xml" rel="self"/>
-    <link href="http://hounddog.github.com/"/>
-    <updated>2012-11-29T16:44:59+01:00</updated>
-    <id>http://hounddog.github.com</id>
-    <author>
-        <name>Martin Shwalbe</name>
-    </author>
-    
-    <entry>
-        <title>Improving Performance in Zend Framework 2</title>
-        <link href="http://hounddog.github.com/blog/performance-in-zend-framework-2"/>
-        <updated>2012-11-18T00:00:00+01:00</updated>
-        <id>http://hounddog.github.com/blog/performance-in-zend-framework-2</id>
-        <content type="html">&lt;div class=&quot;row&quot;&gt;
+
+ <title>Martin Shwalbe Blog Feed</title>
+ <link href="http://hounddog.github.com/feed/" rel="self"/>
+ <link href="http://hounddog.github.com/"/>
+ <updated>2012-11-29T16:44:59+01:00</updated>
+ <id>http://hounddog.github.com/</id>
+ <author>
+   <name>Martin Shwalbe</name>
+   <email>martin.shwalbe@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Improving Performance in Zend Framework 2</title>
+   <link href="http://hounddog.github.com/blog/performance-in-zend-framework-2"/>
+   <updated>2012-11-18T00:00:00+01:00</updated>
+   <id>http://hounddog.github.com/blog/performance-in-zend-framework-2</id>
+   <content type="html">&lt;div class=&quot;row&quot;&gt;
     &lt;p&gt;
         I am going to list options here on how to improve the Performance. This will be an ongoing list which i will keep updated while doing performance improvements.
     &lt;/p&gt;
@@ -80,14 +83,14 @@ return array(
 &lt;/pre&gt;
     &lt;p&gt;This is just a quick write up and i will continue to update this with more options. If you feel anything is missing or should be mentioned, please do not hesitate to comment so i can keep this list updated. Thanks for reading!&lt;/p&gt;
 &lt;/div&gt;</content>
-    </entry>
-    
-    <entry>
-        <title>Getting Started with REST and Zend Framework 2</title>
-        <link href="http://hounddog.github.com/blog/getting-started-with-rest-and-zend-framework-2"/>
-        <updated>2012-11-10T00:00:00+01:00</updated>
-        <id>http://hounddog.github.com/blog/getting-started-with-rest-and-zend-framework-2</id>
-        <content type="html">&lt;div class=&quot;row&quot;&gt;
+ </entry>
+ 
+ <entry>
+   <title>Getting Started with REST and Zend Framework 2</title>
+   <link href="http://hounddog.github.com/blog/getting-started-with-rest-and-zend-framework-2"/>
+   <updated>2012-11-10T00:00:00+01:00</updated>
+   <id>http://hounddog.github.com/blog/getting-started-with-rest-and-zend-framework-2</id>
+   <content type="html">&lt;div class=&quot;row&quot;&gt;
     &lt;p&gt;
         Today i want to show you how to build a rest application. This tutorials assume you have completed the &lt;a href=&quot;http://zf2.readthedocs.org/en/latest/user-guide/overview.html&quot;&gt;Getting Started&lt;/a&gt;. I will be repeating lot of the steps allready explained in there. There is also a sample Album module which you can install from &lt;a href=&quot;https://github.com/Hounddog/Album&quot;&gt;here&lt;/a&gt;.
     &lt;/p&gt;
@@ -712,14 +715,14 @@ public function delete($id)
         The sample source code for this Module can be found &lt;a href=&quot;https://github.com/hounddog/AlbumRest&quot;&gt;here&lt;/a&gt;.
     &lt;/p&gt;
 &lt;/div&gt;</content>
-    </entry>
-    
-    <entry>
-        <title>Using Traits with Zend Framework 2</title>
-        <link href="http://hounddog.github.com/blog/using-traits-in-zend-framework-2"/>
-        <updated>2012-11-06T00:00:00+01:00</updated>
-        <id>http://hounddog.github.com/blog/using-traits-in-zend-framework-2</id>
-        <content type="html">&lt;div class=&quot;row&quot;&gt;
+ </entry>
+ 
+ <entry>
+   <title>Using Traits with Zend Framework 2</title>
+   <link href="http://hounddog.github.com/blog/using-traits-in-zend-framework-2"/>
+   <updated>2012-11-06T00:00:00+01:00</updated>
+   <id>http://hounddog.github.com/blog/using-traits-in-zend-framework-2</id>
+   <content type="html">&lt;div class=&quot;row&quot;&gt;
     &lt;p&gt;
         Today i want to show you the usefulness of Traits within ZF 2. Some of you like me are maybe wondering when you want to have the ServiceManager injected you always have to create something like this.
     &lt;/p&gt;
@@ -856,14 +859,14 @@ class MyService  implements ServiceManagerAwareInterface, EventManagerAwareInter
     &lt;/p&gt;
 &lt;/div&gt;
 </content>
-    </entry>
-    
-    <entry>
-        <title>Zend Framework 1.x + Doctrine Migrations 2.x - How to</title>
-        <link href="http://hounddog.github.com/blog/zend-framework-1.x-doctrine-migrations-2.x-how-to"/>
-        <updated>2012-10-05T00:00:00+02:00</updated>
-        <id>http://hounddog.github.com/blog/zend-framework-1.x-doctrine-migrations-2.x-how-to</id>
-        <content type="html">&lt;div class=&quot;row&quot;&gt;
+ </entry>
+ 
+ <entry>
+   <title>Zend Framework 1.x + Doctrine Migrations 2.x - How to</title>
+   <link href="http://hounddog.github.com/blog/zend-framework-1.x-doctrine-migrations-2.x-how-to"/>
+   <updated>2012-10-05T00:00:00+02:00</updated>
+   <id>http://hounddog.github.com/blog/zend-framework-1.x-doctrine-migrations-2.x-how-to</id>
+   <content type="html">&lt;div class=&quot;row&quot;&gt;
   &lt;p&gt;
     Hello everybody!
   &lt;/p&gt;
@@ -1091,14 +1094,14 @@ class MyService  implements ServiceManagerAwareInterface, EventManagerAwareInter
 
   &lt;p&gt;You are now supposed to cry of joy and let a Victory shout be heard by the whole company :)&lt;/p&gt;
 &lt;/div&gt;</content>
-    </entry>
-    
-    <entry>
-        <title>My Journey in Continuous Deployment</title>
-        <link href="http://hounddog.github.com/blog/continuous-deployment-1"/>
-        <updated>2012-10-05T00:00:00+02:00</updated>
-        <id>http://hounddog.github.com/blog/continuous-deployment-1</id>
-        <content type="html">&lt;div class=&quot;row&quot;&gt;
+ </entry>
+ 
+ <entry>
+   <title>My Journey in Continuous Deployment</title>
+   <link href="http://hounddog.github.com/blog/continuous-deployment-1"/>
+   <updated>2012-10-05T00:00:00+02:00</updated>
+   <id>http://hounddog.github.com/blog/continuous-deployment-1</id>
+   <content type="html">&lt;div class=&quot;row&quot;&gt;
     &lt;p&gt;
       This will be a series of blogs about Continuous Deployment and how to get there. I will be writing about problems which I am facing and what I am experimenting with.
     &lt;/p&gt;
@@ -1189,14 +1192,14 @@ class MyService  implements ServiceManagerAwareInterface, EventManagerAwareInter
       To be Continued... :)
     &lt;/p&gt;
 &lt;/div&gt;</content>
-    </entry>
-    
-    <entry>
-        <title>Creating my own page with Jekyll and Github</title>
-        <link href="http://hounddog.github.com/blog/creating-my-page-with-jekyll"/>
-        <updated>2012-09-29T00:00:00+02:00</updated>
-        <id>http://hounddog.github.com/blog/creating-my-page-with-jekyll</id>
-        <content type="html">&lt;div class=&quot;row&quot;&gt;
+ </entry>
+ 
+ <entry>
+   <title>Creating my own page with Jekyll and Github</title>
+   <link href="http://hounddog.github.com/blog/creating-my-page-with-jekyll"/>
+   <updated>2012-09-29T00:00:00+02:00</updated>
+   <id>http://hounddog.github.com/blog/creating-my-page-with-jekyll</id>
+   <content type="html">&lt;div class=&quot;row&quot;&gt;
     &lt;div class=&quot;span12 columns&quot;&gt;
         &lt;h2&gt;Why?&lt;/h2&gt;
         &lt;p&gt;I want to share my thoughts with the community.&lt;/p&gt;
@@ -1209,6 +1212,7 @@ class MyService  implements ServiceManagerAwareInterface, EventManagerAwareInter
         &lt;/p&gt;
     &lt;/div&gt;
 &lt;/div&gt;</content>
-    </entry>
-    
+ </entry>
+ 
+
 </feed>
