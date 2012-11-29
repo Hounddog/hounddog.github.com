@@ -3,7 +3,7 @@
     <title>Martin Shwalbe - Hounddog</title>
     <link href="http://hounddog.github.com/atom.xml" rel="self"/>
     <link href="http://hounddog.github.com/"/>
-    <updated>2012-11-19T17:12:22+01:00</updated>
+    <updated>2012-11-29T15:23:32+01:00</updated>
     <id>http://hounddog.github.com</id>
     <author>
         <name>Martin Shwalbe</name>
@@ -43,6 +43,41 @@ production due to the number of stat calls necessary.
     &lt;/pre&gt;
     &lt;p&gt;Once development is completed, consider putting your view's into the template_map as described in the manual.&lt;/p&gt;
 
+    &lt;p&gt;I have now created a templatemap_generator to be found in my &lt;a href=&quot;https://gist.github.com/4169214&quot;&gt;Gist&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;Run this script from the root of your module example &lt;code&gt;module/Album&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;
+$ php ../../vendor/ZF2/bin/templatemap_generator.php
+Creating template file map for library in 'zf2-tutorial/module/Album'...
+Wrote templatemap file to 'zf2-tutorial/module/Album/template_map.php'
+&lt;/pre&gt;
+
+    &lt;p&gt; You can then just include this file in your &lt;code&gt;module.config.php&lt;/code&gt; as following:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-prepro&quot;&gt;
+&amp;lt;?php
+return array(
+    'view_manager' =&gt; array(
+        'template_map' =&gt; include __DIR__  .'/../template_map.php',
+    ),
+);
+&lt;/pre&gt;
+&lt;h1&gt;Module Config Cache&lt;/h1&gt;
+    &lt;p&gt;As pointed out by Bakura we should also add a module config cache.&lt;/p&gt;
+    &lt;p&gt;Create a &lt;code&gt;modulecache.local.php&lt;/code&gt; file in &lt;code&gt;config/autoload&lt;/code&gt; as follows.
+&lt;pre class=&quot;prettyprint linenums lang-prepro&quot;&gt;
+&amp;lt;?php
+return array(
+    // Whether or not to enable a configuration cache.
+    // If enabled, the merged configuration will be cached and used in
+    // subsequent requests.
+    'config_cache_enabled' =&gt; true,
+    // The key used to create the configuration cache file name.
+    'config_cache_key' =&gt; 'module_config_cache',
+    // The path in which to cache merged configuration.
+    'cache_dir' =&gt;  './data/cache',
+);
+ &lt;/pre&gt;
+
+&lt;/pre&gt;
     &lt;p&gt;This is just a quick write up and i will continue to update this with more options. If you feel anything is missing or should be mentioned, please do not hesitate to comment so i can keep this list updated. Thanks for reading!&lt;/p&gt;
 &lt;/div&gt;</content>
     </entry>

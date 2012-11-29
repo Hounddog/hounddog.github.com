@@ -166,6 +166,41 @@ production due to the number of stat calls necessary.
     </pre>
     <p>Once development is completed, consider putting your view's into the template_map as described in the manual.</p>
 
+    <p>I have now created a templatemap_generator to be found in my <a href="https://gist.github.com/4169214">Gist</a></p>
+    <p>Run this script from the root of your module example <code>module/Album</code>:</p>
+<pre>
+$ php ../../vendor/ZF2/bin/templatemap_generator.php
+Creating template file map for library in 'zf2-tutorial/module/Album'...
+Wrote templatemap file to 'zf2-tutorial/module/Album/template_map.php'
+</pre>
+
+    <p> You can then just include this file in your <code>module.config.php</code> as following:</p>
+<pre class="prettyprint linenums lang-prepro">
+&lt;?php
+return array(
+    'view_manager' => array(
+        'template_map' => include __DIR__  .'/../template_map.php',
+    ),
+);
+</pre>
+<h1>Module Config Cache</h1>
+    <p>As pointed out by Bakura we should also add a module config cache.</p>
+    <p>Create a <code>modulecache.local.php</code> file in <code>config/autoload</code> as follows.
+<pre class="prettyprint linenums lang-prepro">
+&lt;?php
+return array(
+    // Whether or not to enable a configuration cache.
+    // If enabled, the merged configuration will be cached and used in
+    // subsequent requests.
+    'config_cache_enabled' => true,
+    // The key used to create the configuration cache file name.
+    'config_cache_key' => 'module_config_cache',
+    // The path in which to cache merged configuration.
+    'cache_dir' =>  './data/cache',
+);
+ </pre>
+
+</pre>
     <p>This is just a quick write up and i will continue to update this with more options. If you feel anything is missing or should be mentioned, please do not hesitate to comment so i can keep this list updated. Thanks for reading!</p>
 </div>
 </div>
@@ -219,7 +254,7 @@ production due to the number of stat calls necessary.
             </div>
 
             <footer class="footer">
-	<p style="text-align:center">Improving Performance in Zend Framework 2 updated on November 19, 2012</p>
+	<p style="text-align:center">Improving Performance in Zend Framework 2 updated on November 29, 2012</p>
 </footer>
 
         </div>
