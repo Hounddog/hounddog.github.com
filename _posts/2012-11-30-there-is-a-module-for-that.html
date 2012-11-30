@@ -25,16 +25,15 @@ summary: Why create your own modules if there is something existing. this post w
     </ul>
     <p>Let's just take a look at some of these answers.</p>
 
-    <p><code>I Would need to learn this module</code> Yes, i absolutely agree but even if you build your own solution don't you have to invest time and effort also to make it do what you want? Lot of people who answered this are also learning Zend Framework 2 but I see none of them building their own framework.</p>
+    <p><strong>I Would need to learn this module.</strong> Yes, i absolutely agree but even if you build your own solution don't you have to invest time and effort also to make it do what you want? Lot of people who answered this are also learning Zend Framework 2 but I see none of them building their own framework.</p>
 
-    <p><code>I need a customized solution</code> This is mostly with reference to ZfcUser. I agree this module is not perfect but mostly it fits every need I can think of. It has been designed with scalability in mind so you can just change your form the way you require it or adapt your database to hold new information. If it still does not support the required feature you can also modify it and submit a pr to make it a better module.</p>
+    <p><strong>I need a customized solution.</strong> This is mostly with reference to ZfcUser. I agree this module is not perfect but mostly it fits every need I can think of. It has been designed with scalability in mind so you can just change your form the way you require it or adapt your database to hold new information. If it still does not support the required feature you can also modify it and submit a pr to make it a better module.</p>
 
-    <p><code>I want to learn how the system works</code> No arguments against that but why learn how to build something that is existing? Why not try and build your own application in a fast way. Having an application up and running in no time gives me the greatest learning experience as I have this nice and cozy feeling when I see what I have accomplished in a short time instead of wasting hours trying to build something which is existing.</p>
+    <p><strong>I want to learn how the system works.</strong> No arguments against that but why learn how to build something that is existing? Why not try and build your own application in a fast way. Having an application up and running in no time gives me the greatest learning experience as I have this nice and cozy feeling when I see what I have accomplished in a short time instead of wasting hours trying to build something which is existing.</p>
 
-    <p><code>I just need something simple</code> Again... Most modules are designed with scalability in mind and mostly just solve the most basic use cases by default. What could be more simpler?
-</p>
+    <p><strong>I just need something simple.</strong> Again... Most modules are designed with scalability in mind and mostly just solve the most basic use cases by default. What could be simpler?</p>
 
-    <p><code>My boss does not pay me to learn/fix someone elses module</code>  I don't know about you, but my boss also does not pay to sit around and build something which exists. My boss wants results and that as fast as possible. If I can show my boss that instead of building our own solution we can use some module and modify it to our needs which might take less time or even the same and justifying it by explaining that this has been tested by many people out of the community, he hardly never says no.</p>
+    <p><strong>My boss does not pay me to learn/fix someone elses module.</strong>  I don't know about you, but my boss also does not pay to sit around and build something which exists. My boss wants results and that as fast as possible. If I can show my boss that instead of building our own solution we can use some module and modify it to our needs which might take less time or even the same and justifying it by explaining that this has been tested by many people out of the community, he hardly never says no.</p>
 
     <p>Let's be honest, you or I might be thinking that we are the greatest programmers in the world but there is always someone better out there or someone who has some genius idea. Use the power of this great community, most of us are more then willing to help you find your module or even build one together with you if it does not exist.</p>
 
@@ -42,60 +41,9 @@ summary: Why create your own modules if there is something existing. this post w
 
     <p>This brings me to another point. As I am currently building the <a href="http://modules.zendframework.com">modules.zendframework.com</a> website I mostly also observe every module that get's submitted there. It's really great to see all these contributions and new modules popping up on a daily basis. Again, check first if a module is existing. I see a lot of modules solving problems which others already have.</p>
 
-    <h1> Search before you create/submit a module!!!</h1>
+    <h1>Search before you create a module!!!</h1>
 
-    <h1>Best Practices for Modules</h1>
-
-    <h2>Composer</h2>
-    <ul>
-        <li>Default dependency management as of Zend Framework 2</li>
-        <li>Modules should be registered on Packagist</li>
-        <li>Use Packagist to create your own composer index</li>
-        <li>Make sure to enable the "Packagist" commit hook</li>
-    </ul>
-<pre>
-{
-    "name": "acme/my-bundle",
-    "type": "zend-framework-module",
-    "description": "This Module is an example",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Duffy Duck",
-            "email": "diffy@acme.com"
-        }
-    ],
-    "require": {
-        "php":                      ">=5.3.3",
-        "zendframework/zf2": ">=2.0",
-    }
-}
-</pre>
-
-    <h2>Create Tests for your modules with travis.ci</h2>
-    <p>Create a <code>travis.yml</code> file and enable github hooks to run tests automatically.</p>
-<pre>
-language: php
-php:
-  - "5.3"
-
-before_script:
-- cd ..
-- git clone git://github.com/zendframework/ZendSkeletonApplication.git
-- cd ZendSkeletonApplication
-- php composer.phar self-update
-- php composer.phar install --dev
-- cp -r ../MyModule module/MyModule
-- cd vendor/MyModule
-- wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
-
-script:
-  - phpunit
-  - php coverage-checker.php clover.xml 76
-  - output=$(php php-cs-fixer.phar fix -v --dry-run --level=psr2 .); if [[ $output ]]; then while read -r line; do echo -e "\e[00;31m$line\e[00m"; done <<< "$output"; false; fi;
-</pre>
-
-<h1>How To extend a Module</h1>
+    <h1>Flexibility of Modules and how to override them</h1>
 
 <p>You can nearly override anything with in a module from views to controller over services and mappers</p>
 <p>Create your own module which can extend/modify the original module. All you need to do is register it after the original Module in <code>application.config.php</code></p>
@@ -200,5 +148,56 @@ public function onBootstrap($e)
 <p>If you are unsure on how to contribute, you can come and ask us on irc #zftalk and most people will be more then willing to help. Furthermore just get started by forking existing modules on github and submit a pr</p>
 
 <p>I hope that you are going to think of this post in the future and will keep in mind the essence of it <code>There is a module for that</code> and if not, create one that can be used by the community. I hope you enjoyed reading this and hope to see you soon creating and contributing to existing modules. So long!</p>
+
+<!--
+<h2>Composer</h2>
+    <ul>
+        <li>Default dependency management as of Zend Framework 2</li>
+        <li>Modules should be registered on Packagist</li>
+        <li>Use Packagist to create your own composer index</li>
+        <li>Make sure to enable the "Packagist" commit hook</li>
+    </ul>
+<pre>
+{
+    "name": "acme/my-bundle",
+    "type": "zend-framework-module",
+    "description": "This Module is an example",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Duffy Duck",
+            "email": "diffy@acme.com"
+        }
+    ],
+    "require": {
+        "php":                      ">=5.3.3",
+        "zendframework/zf2": ">=2.0",
+    }
+}
+</pre>
+
+    <h2>Create Tests for your modules with travis.ci</h2>
+    <p>Create a <code>travis.yml</code> file and enable github hooks to run tests automatically.</p>
+<pre>
+language: php
+php:
+  - "5.3"
+
+before_script:
+- cd ..
+- git clone git://github.com/zendframework/ZendSkeletonApplication.git
+- cd ZendSkeletonApplication
+- php composer.phar self-update
+- php composer.phar install --dev
+- cp -r ../MyModule module/MyModule
+- cd vendor/MyModule
+- wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
+
+script:
+  - phpunit
+  - php coverage-checker.php clover.xml 76
+  - output=$(php php-cs-fixer.phar fix -v --dry-run --level=psr2 .); if [[ $output ]]; then while read -r line; do echo -e "\e[00;31m$line\e[00m"; done <<< "$output"; false; fi;
+</pre>
+-->
 
 </div>-

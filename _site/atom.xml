@@ -3,7 +3,7 @@
     <title>Martin Shwalbe - Hounddog</title>
     <link href="http://hounddog.github.com/atom.xml" rel="self"/>
     <link href="http://hounddog.github.com/"/>
-    <updated>2012-11-30T12:43:01+01:00</updated>
+    <updated>2012-11-30T14:58:40+01:00</updated>
     <id>http://hounddog.github.com</id>
     <author>
         <name>Martin Shwalbe</name>
@@ -15,10 +15,9 @@
         <updated>2012-11-30T00:00:00+01:00</updated>
         <id>http://hounddog.github.com/blog/there-is-a-module-for-that</id>
         <content type="html">&lt;div class=&quot;row&quot;&gt;
-    &lt;p&gt;This is a blog post greatly inspired by a slide that i have found created by Christophe Coevet, his slide can be found &lt;a href=&quot;http://friendsofsymfony.github.com/slides/there_is_a_bundle_for_that.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;This is a blog post greatly inspired by a slide that I have found created by Christophe Coevet, his slide can be found &lt;a href=&quot;http://friendsofsymfony.github.com/slides/there_is_a_bundle_for_that.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-    &lt;p&gt;I spend a lot of my time on #zftalk freenode.net helping people to solve their problems or just chatting away. One of the things i am noticing every day is that people despite our trys to help them keep building their own &quot;custom&quot; modules. Why?
-    I mean a very simple example for this is ZfcUser. Every day i see someone asking about authentication problem or how to create a login or even acl. When we tell them there is a module existing  we get the most diverse answers to this.&lt;/p&gt;
+    &lt;p&gt;I spend a lot of my time on #zftalk freenode.net helping people to solve their problems or just chatting away. One of the things I am noticing every day is that people despite our tries to help them keep building their own &quot;custom&quot; modules. Why? I mean a very simple example for this is ZfcUser. Every day I see someone asking about authentication problem or how to create a login or even acl. When we tell them there is a module existing we get the most diverse answers to this.&lt;/p&gt;
 
     &lt;p&gt; Some of these answers are:&lt;/p&gt;
     &lt;ul&gt;
@@ -30,79 +29,28 @@
     &lt;/ul&gt;
     &lt;p&gt;Let's just take a look at some of these answers.&lt;/p&gt;
 
-    &lt;p&gt;&lt;code&gt;I Would need to learn this module&lt;/code&gt; In my humble opinion. Yes, so what? I mean even if you build it yourself you have to invest time and effort to build your own solution to make it do what you want. Lot of people who answered this are also learning Zend Framework 2 but i see none of them building their own framework.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;I Would need to learn this module.&lt;/strong&gt; Yes, i absolutely agree but even if you build your own solution don't you have to invest time and effort also to make it do what you want? Lot of people who answered this are also learning Zend Framework 2 but I see none of them building their own framework.&lt;/p&gt;
 
-    &lt;p&gt;&lt;code&gt;I need a customized solution&lt;/code&gt; This is mostly with reference to ZfcUser. I agree this module is not perfect but mostly it fits every need i can think of. It has been designed with scalability in mind so you can just change your form the way you require it or adapt your database to hold new information. If it still does not support the required feature you can also modify it and submit a pr to make it a better module.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;I need a customized solution.&lt;/strong&gt; This is mostly with reference to ZfcUser. I agree this module is not perfect but mostly it fits every need I can think of. It has been designed with scalability in mind so you can just change your form the way you require it or adapt your database to hold new information. If it still does not support the required feature you can also modify it and submit a pr to make it a better module.&lt;/p&gt;
 
-    &lt;p&gt;&lt;code&gt;I want to learn how the system works&lt;/code&gt; No arguments against that but why learn how to build something that is existing? Why not try and build your own application in a fast way. Having an application up and running in no time gives me the greatest learning experience as i have this nice and cozy feeling when i see what i have accomplished in a short time instead of wasting hours trying to build something which is existing.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;I want to learn how the system works.&lt;/strong&gt; No arguments against that but why learn how to build something that is existing? Why not try and build your own application in a fast way. Having an application up and running in no time gives me the greatest learning experience as I have this nice and cozy feeling when I see what I have accomplished in a short time instead of wasting hours trying to build something which is existing.&lt;/p&gt;
 
-    &lt;p&gt;&lt;code&gt;I just need something simple&lt;/code&gt; Again... most modules are designed with scalability in mind and most of them only solve the most basic use cases by default. What could be more simpler?&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;I just need something simple.&lt;/strong&gt; Again... Most modules are designed with scalability in mind and mostly just solve the most basic use cases by default. What could be simpler?&lt;/p&gt;
 
-    &lt;p&gt;&lt;code&gt;My boss does not pay me to learn/fix someone elses module&lt;/code&gt; I don't know about you, but my boss also does not pay to sit around and build something which exists. My boss wants results and that as fast as possible. If i can show my boss that instead of building our own solution we can use some module and modify it to our needs which might take less time or even the same and justifying it by explaining that this has been tested by many people out of the community, he hardly never says no.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;My boss does not pay me to learn/fix someone elses module.&lt;/strong&gt;  I don't know about you, but my boss also does not pay to sit around and build something which exists. My boss wants results and that as fast as possible. If I can show my boss that instead of building our own solution we can use some module and modify it to our needs which might take less time or even the same and justifying it by explaining that this has been tested by many people out of the community, he hardly never says no.&lt;/p&gt;
 
-    &lt;p&gt;Let's be honest, you or i might be thinking that we are the greatest programmers in the world but there is always someone better out there or someone who has some genious idea. Use the power of this great community, most of us are more then willing to help you find your module or even build one together with you if it does not exist.&lt;/p&gt;
+    &lt;p&gt;Let's be honest, you or I might be thinking that we are the greatest programmers in the world but there is always someone better out there or someone who has some genius idea. Use the power of this great community, most of us are more then willing to help you find your module or even build one together with you if it does not exist.&lt;/p&gt;
 
-    &lt;p&gt; The time of sitting alone and grumbling how the module could be made reusable is over. Invest your time to find a suitable module or even discuss with people on how to create a module that can be useful to the community. I personally cannot think of a greater feeling when someone comes and tells me &quot;hey i used your module and it just took me a few minutes to get up and running&quot;. Having helped myself and someone else by creating a reusable module is more then i could ask for.&lt;/p&gt;
+    &lt;p&gt; The time of sitting alone and grumbling how the module could be made reusable is over. Invest your time to find a suitable module or even discuss with people on how to create a module that can be useful to the community. I personally cannot think of a greater feeling when someone comes and tells me &quot;hey I used your module and it just took me a few minutes to get up and running&quot;. Having helped myself and someone else by creating a reusable module is more then I could ask for.&lt;/p&gt;
 
-    &lt;p&gt;This brings me to another point. As i am currently building the &lt;a href=&quot;http://modules.zendframework.com&quot;&gt;modules.zendframework.com&lt;/a&gt; website i mostly also observe every module that get's submitted there. It's really great to see all these contributions and new modules popping up on a daily basis. Again, check first if a module is existing. I see a lot of modules solving problems which others already have.&lt;/p&gt;
+    &lt;p&gt;This brings me to another point. As I am currently building the &lt;a href=&quot;http://modules.zendframework.com&quot;&gt;modules.zendframework.com&lt;/a&gt; website I mostly also observe every module that get's submitted there. It's really great to see all these contributions and new modules popping up on a daily basis. Again, check first if a module is existing. I see a lot of modules solving problems which others already have.&lt;/p&gt;
 
-    &lt;h1&gt; Search before you create/submit a module!!!&lt;/h1&gt;
+    &lt;h1&gt;Search before you create a module!!!&lt;/h1&gt;
 
-    &lt;h1&gt;Best Practices for Modules&lt;/h1&gt;
-
-    &lt;h2&gt;Composer&lt;/h2&gt;
-    &lt;ul&gt;
-        &lt;li&gt;Default dependency management as of Zend Framework 2&lt;/li&gt;
-        &lt;li&gt;Modules should be registered on Packagist&lt;/li&gt;
-        &lt;li&gt;Use Packagist to create your own composer index&lt;/li&gt;
-        &lt;li&gt;Make sure to enable the &quot;Packagist&quot; commit hook&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;pre&gt;
-{
-    &quot;name&quot;: &quot;acme/my-bundle&quot;,
-    &quot;type&quot;: &quot;zend-framework-module&quot;,
-    &quot;description&quot;: &quot;This Module is an example&quot;,
-    &quot;license&quot;: &quot;MIT&quot;,
-    &quot;authors&quot;: [
-        {
-            &quot;name&quot;: &quot;Duffy Duck&quot;,
-            &quot;email&quot;: &quot;diffy@acme.com&quot;
-        }
-    ],
-    &quot;require&quot;: {
-        &quot;php&quot;:                      &quot;&gt;=5.3.3&quot;,
-        &quot;zendframework/zf2&quot;: &quot;&gt;=2.0&quot;,
-    }
-}
-&lt;/pre&gt;
-
-    &lt;h2&gt;Create Tests for your modules with travis.ci&lt;/h2&gt;
-    &lt;p&gt;Create a &lt;code&gt;travis.yml&lt;/code&gt; file and enable github hooks to run tests automatically.&lt;/p&gt;
-&lt;pre&gt;
-language: php
-php:
-  - &quot;5.3&quot;
-
-before_script:
-- cd ..
-- git clone git://github.com/zendframework/ZendSkeletonApplication.git
-- cd ZendSkeletonApplication
-- php composer.phar self-update
-- php composer.phar install --dev
-- cp -r ../MyModule module/MyModule
-- cd vendor/MyModule
-- wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
-
-script:
-  - phpunit
-  - php coverage-checker.php clover.xml 76
-  - output=$(php php-cs-fixer.phar fix -v --dry-run --level=psr2 .); if [[ $output ]]; then while read -r line; do echo -e &quot;\e[00;31m$line\e[00m&quot;; done &lt;&lt;&lt; &quot;$output&quot;; false; fi;
-&lt;/pre&gt;
-
-&lt;h1&gt;How To extend a Module&lt;/h1&gt;
+    &lt;h1&gt;Flexibility of Modules and how to override them&lt;/h1&gt;
 
 &lt;p&gt;You can nearly override anything with in a module from views to controller over services and mappers&lt;/p&gt;
-&lt;p&gt;Create your own module which can extend/modify the original module. All you need to do is register it after the original Module in &lt;&lt;code&gt;application.config.php&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Create your own module which can extend/modify the original module. All you need to do is register it after the original Module in &lt;code&gt;application.config.php&lt;/code&gt;&lt;/p&gt;
 
 &lt;pre class=&quot;prettyprint lang-prepro&quot;&gt;
 &amp;lt;?php
@@ -125,7 +73,7 @@ return array(
     &lt;h2&gt;Override a template&lt;/h2&gt;
     &lt;p&gt; create the same view structure as the OriginalModule and place your custom templates there. Example:&lt;/p&gt;
 
-    &lt;h3&gt;Original Module&lt;/h3&gt;
+    &lt;h3&gt;OriginalModule&lt;/h3&gt;
 &lt;pre class=&quot;prettyprint lang-prepro&quot;&gt;
 Config:
 'view_manager' =&gt; array(
@@ -141,7 +89,7 @@ view/
             index.phtml
 &lt;/pre&gt;
 
-&lt;h3&gt;My Module&lt;/h3&gt;
+&lt;h3&gt;MyModule&lt;/h3&gt;
 &lt;pre class=&quot;prettyprint lang-prepro&quot;&gt;
 Config:
 'view_manager' =&gt; array(
@@ -205,7 +153,258 @@ public function onBootstrap($e)
 
 &lt;p&gt;I hope that you are going to think of this post in the future and will keep in mind the essence of it &lt;code&gt;There is a module for that&lt;/code&gt; and if not, create one that can be used by the community. I hope you enjoyed reading this and hope to see you soon creating and contributing to existing modules. So long!&lt;/p&gt;
 
+&lt;!--
+&lt;h2&gt;Composer&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Default dependency management as of Zend Framework 2&lt;/li&gt;
+        &lt;li&gt;Modules should be registered on Packagist&lt;/li&gt;
+        &lt;li&gt;Use Packagist to create your own composer index&lt;/li&gt;
+        &lt;li&gt;Make sure to enable the &quot;Packagist&quot; commit hook&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;pre&gt;
+{
+    &quot;name&quot;: &quot;acme/my-bundle&quot;,
+    &quot;type&quot;: &quot;zend-framework-module&quot;,
+    &quot;description&quot;: &quot;This Module is an example&quot;,
+    &quot;license&quot;: &quot;MIT&quot;,
+    &quot;authors&quot;: [
+        {
+            &quot;name&quot;: &quot;Duffy Duck&quot;,
+            &quot;email&quot;: &quot;diffy@acme.com&quot;
+        }
+    ],
+    &quot;require&quot;: {
+        &quot;php&quot;:                      &quot;&gt;=5.3.3&quot;,
+        &quot;zendframework/zf2&quot;: &quot;&gt;=2.0&quot;,
+    }
+}
+&lt;/pre&gt;
+
+    &lt;h2&gt;Create Tests for your modules with travis.ci&lt;/h2&gt;
+    &lt;p&gt;Create a &lt;code&gt;travis.yml&lt;/code&gt; file and enable github hooks to run tests automatically.&lt;/p&gt;
+&lt;pre&gt;
+language: php
+php:
+  - &quot;5.3&quot;
+
+before_script:
+- cd ..
+- git clone git://github.com/zendframework/ZendSkeletonApplication.git
+- cd ZendSkeletonApplication
+- php composer.phar self-update
+- php composer.phar install --dev
+- cp -r ../MyModule module/MyModule
+- cd vendor/MyModule
+- wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
+
+script:
+  - phpunit
+  - php coverage-checker.php clover.xml 76
+  - output=$(php php-cs-fixer.phar fix -v --dry-run --level=psr2 .); if [[ $output ]]; then while read -r line; do echo -e &quot;\e[00;31m$line\e[00m&quot;; done &lt;&lt;&lt; &quot;$output&quot;; false; fi;
+&lt;/pre&gt;
+--&gt;
+
 &lt;/div&gt;-</content>
+    </entry>
+    
+    <entry>
+        <title>Best Practices for creating a Module</title>
+        <link href="http://hounddog.github.com/blog/modules-best-practices"/>
+        <updated>2012-11-30T00:00:00+01:00</updated>
+        <id>http://hounddog.github.com/blog/modules-best-practices</id>
+        <content type="html">&lt;div class=&quot;row&quot;&gt;
+    &lt;p&gt;This is a blog post greatly inspired by a slide that I have found created by Christophe Coevet, his slide can be found &lt;a href=&quot;http://friendsofsymfony.github.com/slides/there_is_a_bundle_for_that.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+    &lt;p&gt;I spend a lot of my time on #zftalk freenode.net helping people to solve their problems or just chatting away. One of the things I am noticing every day is that people despite our tries to help them keep building their own &quot;custom&quot; modules. Why? I mean a very simple example for this is ZfcUser. Every day I see someone asking about authentication problem or how to create a login or even acl. When we tell them there is a module existing we get the most diverse answers to this.&lt;/p&gt;
+
+    &lt;p&gt; Some of these answers are:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;I would need to learn this module&lt;/li&gt;
+        &lt;li&gt;I need a customized solution&lt;/li&gt;
+        &lt;li&gt;I want to learn how the system works&lt;/li&gt;
+        &lt;li&gt;I just need something simple&lt;/li&gt;
+        &lt;li&gt;My boss does not pay me to learn/fix someone elses module&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;Let's just take a look at some of these answers.&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;I Would need to learn this module.&lt;/strong&gt; Yes, i absolutely agree but even if you build your own solution don't you have to invest time and effort also to make it do what you want? Lot of people who answered this are also learning Zend Framework 2 but I see none of them building their own framework.&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;I need a customized solution.&lt;/strong&gt; This is mostly with reference to ZfcUser. I agree this module is not perfect but mostly it fits every need I can think of. It has been designed with scalability in mind so you can just change your form the way you require it or adapt your database to hold new information. If it still does not support the required feature you can also modify it and submit a pr to make it a better module.&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;I want to learn how the system works.&lt;/strong&gt; No arguments against that but why learn how to build something that is existing? Why not try and build your own application in a fast way. Having an application up and running in no time gives me the greatest learning experience as I have this nice and cozy feeling when I see what I have accomplished in a short time instead of wasting hours trying to build something which is existing.&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;I just need something simple.&lt;/strong&gt; Again... Most modules are designed with scalability in mind and mostly just solve the most basic use cases by default. What could be more simpler?&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;My boss does not pay me to learn/fix someone elses module.&lt;/strong&gt;  I don't know about you, but my boss also does not pay to sit around and build something which exists. My boss wants results and that as fast as possible. If I can show my boss that instead of building our own solution we can use some module and modify it to our needs which might take less time or even the same and justifying it by explaining that this has been tested by many people out of the community, he hardly never says no.&lt;/p&gt;
+
+    &lt;p&gt;Let's be honest, you or I might be thinking that we are the greatest programmers in the world but there is always someone better out there or someone who has some genius idea. Use the power of this great community, most of us are more then willing to help you find your module or even build one together with you if it does not exist.&lt;/p&gt;
+
+    &lt;p&gt; The time of sitting alone and grumbling how the module could be made reusable is over. Invest your time to find a suitable module or even discuss with people on how to create a module that can be useful to the community. I personally cannot think of a greater feeling when someone comes and tells me &quot;hey I used your module and it just took me a few minutes to get up and running&quot;. Having helped myself and someone else by creating a reusable module is more then I could ask for.&lt;/p&gt;
+
+    &lt;p&gt;This brings me to another point. As I am currently building the &lt;a href=&quot;http://modules.zendframework.com&quot;&gt;modules.zendframework.com&lt;/a&gt; website I mostly also observe every module that get's submitted there. It's really great to see all these contributions and new modules popping up on a daily basis. Again, check first if a module is existing. I see a lot of modules solving problems which others already have.&lt;/p&gt;
+
+    &lt;h1&gt; Search before you create a module!!!&lt;/h1&gt;
+
+    &lt;h1&gt;Flexibility of Modules and how to override them&lt;/h1&gt;
+
+    &lt;p&gt;You can nearly override anything with in a module from views to controller over services and mappers&lt;/p&gt;
+&lt;p&gt;Create your own module which can extend/modify the original module. All you need to do is register it after the original Module in &lt;code&gt;application.config.php&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre class=&quot;prettyprint lang-prepro&quot;&gt;
+&amp;lt;?php
+return array(
+    'modules' =&gt; array(
+        'OriginalModule',
+        'MyModule',//this will override OriginalModule with any custom configurations you require
+    ),
+    'module_listener_options' =&gt; array(
+        'config_glob_paths'    =&gt; array(
+            'config/autoload/{,*.}{global,local}.php',
+        ),
+        'module_paths' =&gt; array(
+            './module',
+            './vendor',
+        ),
+    ),
+);
+&lt;/pre&gt;
+    &lt;h2&gt;Override a template&lt;/h2&gt;
+    &lt;p&gt; create the same view structure as the OriginalModule and place your custom templates there. Example:&lt;/p&gt;
+
+    &lt;h3&gt;OriginalModule&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint lang-prepro&quot;&gt;
+Config:
+'view_manager' =&gt; array(
+    'template_path_stack' =&gt; array(
+        __DIR__ . '/../view',
+    ),
+),
+
+Folder Structure:
+view/
+    index/
+        index/
+            index.phtml
+&lt;/pre&gt;
+
+&lt;h3&gt;MyModule&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint lang-prepro&quot;&gt;
+Config:
+'view_manager' =&gt; array(
+    'template_path_stack' =&gt; array(
+        __DIR__ . '/../view',
+    ),
+),
+
+Folder Structure:
+view/
+    index/
+        index/
+            index.phtml //Overrides the Original index.phtml with our custom code
+&lt;/pre&gt;
+
+&lt;h3&gt;Override a Controller/Service&lt;/h3&gt;
+
+&lt;p&gt; Mostly all controllers and services are registered with the servicemanager and can be overriden bey they key&lt;/p&gt;
+
+&lt;h3&gt;OriginalModule&lt;/h3&gt;
+
+&lt;pre class=&quot;prettyprint lang-prepro&quot;&gt;
+'controllers' =&gt; array(
+    'invokables' =&gt; array(
+        'Application\Controller\Index' =&gt; 'Application\Controller\IndexController',
+    ),
+),
+&lt;/pre&gt;
+
+&lt;h3&gt;MyModule&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint lang-prepro&quot;&gt;
+'controllers' =&gt; array(
+    'invokables' =&gt; array(
+        'Application\Controller\Index' =&gt; 'MyModule\Controller\IndexController',
+    ),
+),
+&lt;/pre&gt;
+
+&lt;p&gt;Just by assigning my Custom controller to the Key &lt;code&gt;Application\Controller\Index&lt;/code&gt; i have now replaced it. Same goes for the services or anything else that was configured using the service configuration&lt;/p&gt;
+
+
+&lt;h3&gt;Extending Forms in ZfcUser&lt;/h3&gt;
+&lt;p&gt;I am taking this as an example as there is a nice way of extending forms in ZfcUser just by using an event.&lt;/p&gt;
+&lt;p&gt;Just place the following code as also explained in the wiki into your Module.php&lt;/p&gt;
+&lt;pre class=&quot;prettyprint lang-prepro&quot;&gt;
+public function onBootstrap($e)
+{
+    $events = $e-&gt;getApplication()-&gt;getEventManager()-&gt;getSharedManager();
+    $events-&gt;attach('ZfcUser\Form\Register','init', function($e) {
+        $form = $e-&gt;getTarget();
+        // Do what you please with the form instance ($form)
+    });
+    $events-&gt;attach('ZfcUser\Form\RegisterFilter','init', function($e) {
+        $filter = $e-&gt;getTarget();
+        // Do what you please with the filter instance ($filter)
+    });
+}
+&lt;/pre&gt;
+&lt;p&gt;As you can see you can attach anything to the formobject here and modify it to do exactly what you require&lt;/p&gt;
+
+&lt;p&gt;If you are unsure on how to contribute, you can come and ask us on irc #zftalk and most people will be more then willing to help. Furthermore just get started by forking existing modules on github and submit a pr&lt;/p&gt;
+
+&lt;p&gt;I hope that you are going to think of this post in the future and will keep in mind the essence of it &lt;code&gt;There is a module for that&lt;/code&gt; and if not, create one that can be used by the community. I hope you enjoyed reading this and hope to see you soon creating and contributing to existing modules. So long!&lt;/p&gt;
+
+
+&lt;!--
+    &lt;h2&gt;Composer&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Default dependency management as of Zend Framework 2&lt;/li&gt;
+        &lt;li&gt;Modules should be registered on Packagist&lt;/li&gt;
+        &lt;li&gt;Use Packagist to create your own composer index&lt;/li&gt;
+        &lt;li&gt;Make sure to enable the &quot;Packagist&quot; commit hook&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;pre&gt;
+{
+    &quot;name&quot;: &quot;acme/my-bundle&quot;,
+    &quot;type&quot;: &quot;zend-framework-module&quot;,
+    &quot;description&quot;: &quot;This Module is an example&quot;,
+    &quot;license&quot;: &quot;MIT&quot;,
+    &quot;authors&quot;: [
+        {
+            &quot;name&quot;: &quot;Duffy Duck&quot;,
+            &quot;email&quot;: &quot;diffy@acme.com&quot;
+        }
+    ],
+    &quot;require&quot;: {
+        &quot;php&quot;:                      &quot;&gt;=5.3.3&quot;,
+        &quot;zendframework/zf2&quot;: &quot;&gt;=2.0&quot;,
+    }
+}
+&lt;/pre&gt;
+
+    &lt;h2&gt;Create Tests for your modules with travis.ci&lt;/h2&gt;
+    &lt;p&gt;Create a &lt;code&gt;travis.yml&lt;/code&gt; file and enable github hooks to run tests automatically.&lt;/p&gt;
+&lt;pre&gt;
+language: php
+php:
+  - &quot;5.3&quot;
+
+before_script:
+- cd ..
+- git clone git://github.com/zendframework/ZendSkeletonApplication.git
+- cd ZendSkeletonApplication
+- php composer.phar self-update
+- php composer.phar install --dev
+- cp -r ../MyModule module/MyModule
+- cd vendor/MyModule
+- wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
+
+script:
+  - phpunit
+  - php coverage-checker.php clover.xml 76
+  - output=$(php php-cs-fixer.phar fix -v --dry-run --level=psr2 .); if [[ $output ]]; then while read -r line; do echo -e &quot;\e[00;31m$line\e[00m&quot;; done &lt;&lt;&lt; &quot;$output&quot;; false; fi;
+&lt;/pre&gt;
+
+&lt;h1&gt;How To extend a Module&lt;/h1&gt;--&gt;
+&lt;/div&gt;</content>
     </entry>
     
     <entry>
@@ -250,7 +449,7 @@ Creating template file map for library in 'zf2-tutorial/module/Album'...
 Wrote templatemap file to 'zf2-tutorial/module/Album/template_map.php'
 &lt;/pre&gt;
 
-    &lt;p&gt; You can then just include this file in your &lt;code&gt;module.config.php&lt;/code&gt; as following:&lt;/p&gt;
+    &lt;p&gt;You can then just include this file in your &lt;code&gt;module.config.php&lt;/code&gt; as following:&lt;/p&gt;
 &lt;pre class=&quot;prettyprint linenums lang-prepro&quot;&gt;
 &amp;lt;?php
 return array(
@@ -259,6 +458,7 @@ return array(
     ),
 );
 &lt;/pre&gt;
+    &lt;p&gt;You may also include &lt;a href=&quot;https://github.com/Ocramius/OcraCachedViewResolver&quot; target=&quot;_blank&quot;&gt;OcraCachedViewResolver&lt;/a&gt; to handle template resolving performance through caching instead.&lt;/p&gt;
 &lt;h1&gt;Module Config Cache&lt;/h1&gt;
     &lt;p&gt;As pointed out by Bakura we should also add a module config cache.&lt;/p&gt;
     &lt;p&gt;Create a &lt;code&gt;modulecache.local.php&lt;/code&gt; file in &lt;code&gt;config/autoload&lt;/code&gt; as follows.
