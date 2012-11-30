@@ -1,0 +1,204 @@
+---
+layout: post
+title: There is a Module for that
+category: Coding
+tags: jekyll blog
+year: 2012
+month: 11
+day: 30
+published: true
+summary: Why create your own modules if there is something existing. this post will cover the basic question on why to use existing modules and how to override them
+---
+
+<div class="row">
+    <p>This is a blog post greatly inspired by a slide that i have found created by Christophe Coevet, his slide can be found <a href="http://friendsofsymfony.github.com/slides/there_is_a_bundle_for_that.html">here</a>.</p>
+
+    <p>I spend a lot of my time on #zftalk freenode.net helping people to solve their problems or just chatting away. One of the things i am noticing every day is that people despite our trys to help them keep building their own "custom" modules. Why?
+    I mean a very simple example for this is ZfcUser. Every day i see someone asking about authentication problem or how to create a login or even acl. When we tell them there is a module existing  we get the most diverse answers to this.</p>
+
+    <p> Some of these answers are:</p>
+    <ul>
+        <li>I would need to learn this module</li>
+        <li>I need a customized solution</li>
+        <li>I want to learn how the system works</li>
+        <li>I just need something simple</li>
+        <li>My boss does not pay me to learn/fix someone elses module</li>
+    </ul>
+    <p>Let's just take a look at some of these answers.</p>
+
+    <p><code>I Would need to learn this module</code> In my humble opinion. Yes, so what? I mean even if you build it yourself you have to invest time and effort to build your own solution to make it do what you want. Lot of people who answered this are also learning Zend Framework 2 but i see none of them building their own framework.</p>
+
+    <p><code>I need a customized solution</code> This is mostly with reference to ZfcUser. I agree this module is not perfect but mostly it fits every need i can think of. It has been designed with scalability in mind so you can just change your form the way you require it or adapt your database to hold new information. If it still does not support the required feature you can also modify it and submit a pr to make it a better module.</p>
+
+    <p><code>I want to learn how the system works</code> No arguments against that but why learn how to build something that is existing? Why not try and build your own application in a fast way. Having an application up and running in no time gives me the greatest learning experience as i have this nice and cozy feeling when i see what i have accomplished in a short time instead of wasting hours trying to build something which is existing.</p>
+
+    <p><code>I just need something simple</code> Again... most modules are designed with scalability in mind and most of them only solve the most basic use cases by default. What could be more simpler?</p>
+
+    <p><code>My boss does not pay me to learn/fix someone elses module</code> I don't know about you, but my boss also does not pay to sit around and build something which exists. My boss wants results and that as fast as possible. If i can show my boss that instead of building our own solution we can use some module and modify it to our needs which might take less time or even the same and justifying it by explaining that this has been tested by many people out of the community, he hardly never says no.</p>
+
+    <p>Let's be honest, you or i might be thinking that we are the greatest programmers in the world but there is always someone better out there or someone who has some genious idea. Use the power of this great community, most of us are more then willing to help you find your module or even build one together with you if it does not exist.</p>
+
+    <p> The time of sitting alone and grumbling how the module could be made reusable is over. Invest your time to find a suitable module or even discuss with people on how to create a module that can be useful to the community. I personally cannot think of a greater feeling when someone comes and tells me "hey i used your module and it just took me a few minutes to get up and running". Having helped myself and someone else by creating a reusable module is more then i could ask for.</p>
+
+    <p>This brings me to another point. As i am currently building the <a href="http://modules.zendframework.com">modules.zendframework.com</a> website i mostly also observe every module that get's submitted there. It's really great to see all these contributions and new modules popping up on a daily basis. Again, check first if a module is existing. I see a lot of modules solving problems which others already have.</p>
+
+    <h1> Search before you create/submit a module!!!</h1>
+
+    <h1>Best Practices for Modules</h1>
+
+    <h2>Composer</h2>
+    <ul>
+        <li>Default dependency management as of Zend Framework 2</li>
+        <li>Modules should be registered on Packagist</li>
+        <li>Use Packagist to create your own composer index</li>
+        <li>Make sure to enable the "Packagist" commit hook</li>
+    </ul>
+<pre>
+{
+    "name": "acme/my-bundle",
+    "type": "zend-framework-module",
+    "description": "This Module is an example",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Duffy Duck",
+            "email": "diffy@acme.com"
+        }
+    ],
+    "require": {
+        "php":                      ">=5.3.3",
+        "zendframework/zf2": ">=2.0",
+    }
+}
+</pre>
+
+    <h2>Create Tests for your modules with travis.ci</h2>
+    <p>Create a <code>travis.yml</code> file and enable github hooks to run tests automatically.</p>
+<pre>
+language: php
+php:
+  - "5.3"
+
+before_script:
+- cd ..
+- git clone git://github.com/zendframework/ZendSkeletonApplication.git
+- cd ZendSkeletonApplication
+- php composer.phar self-update
+- php composer.phar install --dev
+- cp -r ../MyModule module/MyModule
+- cd vendor/MyModule
+- wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
+
+script:
+  - phpunit
+  - php coverage-checker.php clover.xml 76
+  - output=$(php php-cs-fixer.phar fix -v --dry-run --level=psr2 .); if [[ $output ]]; then while read -r line; do echo -e "\e[00;31m$line\e[00m"; done <<< "$output"; false; fi;
+</pre>
+
+<h1>How To extend a Module</h1>
+
+<p>You can nearly override anything with in a module from views to controller over services and mappers</p>
+<p>Create your own module which can extend/modify the original module. All you need to do is register it after the original Module in <<code>application.config.php</code></p>
+
+<pre class="prettyprint lang-prepro">
+&lt;?php
+return array(
+    'modules' => array(
+        'OriginalModule',
+        'MyModule',//this will override OriginalModule with any custom configurations you require
+    ),
+    'module_listener_options' => array(
+        'config_glob_paths'    => array(
+            'config/autoload/{,*.}{global,local}.php',
+        ),
+        'module_paths' => array(
+            './module',
+            './vendor',
+        ),
+    ),
+);
+</pre>
+    <h2>Override a template</h2>
+    <p> create the same view structure as the OriginalModule and place your custom templates there. Example:</p>
+
+    <h3>Original Module</h3>
+<pre class="prettyprint lang-prepro">
+Config:
+'view_manager' => array(
+    'template_path_stack' => array(
+        __DIR__ . '/../view',
+    ),
+),
+
+Folder Structure:
+view/
+    index/
+        index/
+            index.phtml
+</pre>
+
+<h3>My Module</h3>
+<pre class="prettyprint lang-prepro">
+Config:
+'view_manager' => array(
+    'template_path_stack' => array(
+        __DIR__ . '/../view',
+    ),
+),
+
+Folder Structure:
+view/
+    index/
+        index/
+            index.phtml //Overrides the Original index.phtml with our custom code
+</pre>
+
+<h3>Override a Controller/Service</h3>
+
+<p> Mostly all controllers and services are registered with the servicemanager and can be overriden bey they key</p>
+
+<h3>OriginalModule</h3>
+
+<pre class="prettyprint lang-prepro">
+'controllers' => array(
+    'invokables' => array(
+        'Application\Controller\Index' => 'Application\Controller\IndexController',
+    ),
+),
+</pre>
+
+<h3>MyModule</h3>
+<pre class="prettyprint lang-prepro">
+'controllers' => array(
+    'invokables' => array(
+        'Application\Controller\Index' => 'MyModule\Controller\IndexController',
+    ),
+),
+</pre>
+
+<p>Just by assigning my Custom controller to the Key <code>Application\Controller\Index</code> i have now replaced it. Same goes for the services or anything else that was configured using the service configuration</p>
+
+<h3>Extending Forms in ZfcUser</h3>
+<p>I am taking this as an example as there is a nice way of extending forms in ZfcUser just by using an event.</p>
+<p>Just place the following code as also explained in the wiki into your Module.php</p>
+<pre class="prettyprint lang-prepro">
+public function onBootstrap($e)
+{
+    $events = $e->getApplication()->getEventManager()->getSharedManager();
+    $events->attach('ZfcUser\Form\Register','init', function($e) {
+        $form = $e->getTarget();
+        // Do what you please with the form instance ($form)
+    });
+    $events->attach('ZfcUser\Form\RegisterFilter','init', function($e) {
+        $filter = $e->getTarget();
+        // Do what you please with the filter instance ($filter)
+    });
+}
+</pre>
+<p>As you can see you can attach anything to the formobject here and modify it to do exactly what you require</p>
+
+<p>If you are unsure on how to contribute, you can come and ask us on irc #zftalk and most people will be more then willing to help. Furthermore just get started by forking existing modules on github and submit a pr</p>
+
+<p>I hope that you are going to think of this post in the future and will keep in mind the essence of it <code>There is a module for that</code> and if not, create one that can be used by the community. I hope you enjoyed reading this and hope to see you soon creating and contributing to existing modules. So long!</p>
+
+</div>-
