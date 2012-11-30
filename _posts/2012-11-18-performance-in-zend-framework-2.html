@@ -47,7 +47,7 @@ Creating template file map for library in 'zf2-tutorial/module/Album'...
 Wrote templatemap file to 'zf2-tutorial/module/Album/template_map.php'
 </pre>
 
-    <p> You can then just include this file in your <code>module.config.php</code> as following:</p>
+    <p>You can then just include this file in your <code>module.config.php</code> as following:</p>
 <pre class="prettyprint linenums lang-prepro">
 &lt;?php
 return array(
@@ -56,6 +56,7 @@ return array(
     ),
 );
 </pre>
+    <p>You may also include <a href="https://github.com/Ocramius/OcraCachedViewResolver" target="_blank">OcraCachedViewResolver</a> to handle template resolving performance through caching instead.</p>
 <h1>Module Config Cache</h1>
     <p>As pointed out by Bakura we should also add a module config cache.</p>
     <p>Create a <code>modulecache.local.php</code> file in <code>config/autoload</code> as follows.
