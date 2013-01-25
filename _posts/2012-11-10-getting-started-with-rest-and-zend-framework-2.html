@@ -12,9 +12,6 @@ summary: Building a Rest module module for Zend Framework 2
 
 <div class="row">
     <p>
-        <code>This Tutorial currently only works with zf2 <= 2.0.3 as there have been some updates pertaining the view strategy. I am currently working on a upgrade for this tutorial.</code>
-    </p>
-    <p>
         Today i want to show you how to build a rest application. This tutorials assume you have completed the <a href="http://zf2.readthedocs.org/en/latest/user-guide/overview.html">Getting Started</a>. I will be repeating lot of the steps allready explained in there. There is also a sample Album module which you can install from <a href="https://github.com/Hounddog/Album">here</a>.
     </p>
     <h1>
@@ -173,55 +170,40 @@ return array(
         Setup View Strategy
     </h1>
     <p>
-        We are just going to use Json output so i am going to use a view strategy described here by Jurian Sluiman on his <a href="http://juriansluiman.nl/en/article/119/attach-a-view-strategy-for-specific-modules">Blog</a>
+        We add the view strategy to our config at zf2-tutorial/module/Albumrest/config/module.config.php
     </p>
-    <p>
-        Add the strategy to <code>Module.php</code>
-    </p>
+
 <pre class="prettyprint linenums lang-prepro">
 &lt;?php
-namespace AlbumRest;
+return array(
+    'controllers' => array(
+        'invokables' => array(
+            'AlbumRest\Controller\AlbumRest' => 'AlbumRest\Controller\AlbumRestController',
+        ),
+    ),
 
-use Zend\ModuleManager\Feature;         // &lt;-- Add this import
-use Zend\EventManager\EventInterface;   // &lt;-- Add this import
-use Zend\Mvc\MvcEvent;                  // &lt;-- Add this import
-
-class Module implements
-    Feature\BootstrapListenerInterface // Add this Interface
-{
-    public function getAutoloaderConfig()
-    {
-        return array(
-            'Zend\Loader\ClassMapAutoloader' =&gt; array(
-                __DIR__ . '/autoload_classmap.php',
-            ),
-            'Zend\Loader\StandardAutoloader' =&gt; array(
-                'namespaces' =&gt; array(
-                    __NAMESPACE__ =&gt; __DIR__ . '/src/' . __NAMESPACE__,
+    // The following section is new` and should be added to your file
+    'router' => array(
+        'routes' => array(
+            'album-rest' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/album-rest[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'AlbumRest\Controller\AlbumRest',
+                    ),
                 ),
             ),
-        );
-    }
-
-    // Add this Method
-    public function onBootstrap(EventInterface $e)
-    {
-        $app = $e-&gt;getApplication();
-        $em  = $app-&gt;getEventManager()-&gt;getSharedManager();
-        $sm  = $app-&gt;getServiceManager();
-
-        $em-&gt;attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, function($e) use ($sm) {
-            $strategy = $sm-&gt;get('ViewJsonStrategy');
-            $view     = $sm-&gt;get('ViewManager')-&gt;getView();
-            $strategy-&gt;attach($view-&gt;getEventManager());
-        });
-    }
-
-    public function getConfig()
-    {
-        return include __DIR__ . '/config/module.config.php';
-    }
-}
+        ),
+    ),
+    'view_manager' => array( //Add this config
+        'strategies' => array(
+            'ViewJsonStrategy',
+        ),
+    ),
 </pre>
 
     <h1>
@@ -239,7 +221,7 @@ use Zend\Mvc\Controller\AbstractRestfulController;
 use Album\Model\Album;
 use Album\Form\AlbumForm;
 use Album\Model\AlbumTable;
-use Zend\View\Model\ViewModel;
+use Zend\View\Model\JsonModel;
 
 class AlbumRestController extends AbstractRestfulController
 {
@@ -386,8 +368,9 @@ class AlbumRestControllerTest extends PHPUnit_Framework_TestCase
 
     public function testCreateCanBeAccessed()
     {
-        $this-&gt;routeMatch-&gt;setParam('id', '1');
         $this-&gt;request-&gt;setMethod('post');
+        $this-&gt;request-&gt;getPost()-&gt;set('artist', 'foo');
+        $this-&gt;request-&gt;getPost()-&gt;set('title', 'bar');
 
         $result   = $this-&gt;controller-&gt;dispatch($this-&gt;request);
         $response = $this-&gt;controller-&gt;getResponse();
@@ -460,7 +443,7 @@ public function getAlbumTable()
         Listing albums
     </h2>
     <p>
-        In order to list the albums, we need to retrieve them from the model and pass them to the view. To do this, we fill in getList() within <code>AlbumRestController</code>. Update the AlbumRestController’s getList() like this:
+        In order to list the albums, we need to retrieve them from the model and return a JsonModel. To do this, we fill in getList() within <code>AlbumRestController</code>. Update the AlbumRestController’s getList() like this:
     </p>
 <pre class="prettyprint linenums:15 lang-prepro">
 public function getList()
@@ -534,7 +517,8 @@ public function saveAlbum(Album $album)
 
     $id = (int)$album-&gt;id;
     if ($id == 0) {
-        $id =  $this-&gt;tableGateway-&gt;insert($data); //Modify this
+        $this-&gt;tableGateway-&gt;insert($data);
+        $id = $this-&gt;tableGateWay-&gt;getLastInsertValue(); //Add this line
     } else {
         if ($this-&gt;getAlbum($id)) {
             $this-&gt;tableGateway-&gt;update($data, array('id' =&gt; $id));
@@ -561,7 +545,9 @@ public function create($data)
         $id = $this-&gt;getAlbumTable()-&gt;saveAlbum($album);
     }
 
-    return $this-&gt;get($id);
+    return new JsonModel(array(
+        'data' => $this->get($id),
+    ));
 }
 </pre>
     <pre>
@@ -593,7 +579,9 @@ public function update($id, $data)
         $id = $this-&gt;getAlbumTable()-&gt;saveAlbum($form-&gt;getData());
     }
 
-    return $this-&gt;get($id);
+    return new JsonModel(array(
+        'data' => $this->get($id),
+    ));
 }
 </pre>
     <pre>
@@ -616,7 +604,9 @@ public function delete($id)
 {
     $this->getAlbumTable()->deleteAlbum($id);
 
-    return array('data' => 'deleted');
+    return new JsonModel(array(
+        'data' => 'deleted',
+    ));
 }
 </pre>
     <pre>
@@ -632,7 +622,7 @@ public function delete($id)
     {"content":{"data":"deleted"}}
     </pre>
     <p>
-        So now we have turned our Album into a Restfull Application. I wanted to implement a jGrid for this tutorial but i belive that would be suited for a new Module.
+        So now we have turned our Album into a Restfull Application. I wanted to implement a jGrid for this tutorial but i belive that would be suited for a new Module. Thanks for all the commments to upgrade/fix this blog.
     </p>
     <p>
         The sample source code for this Module can be found <a href="https://github.com/hounddog/AlbumRest">here</a>.
