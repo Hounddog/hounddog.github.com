@@ -309,7 +309,7 @@ return array(
         In <code>phpunit.xml</code> change the directory to point at AlbumRestTest
     </p>
     <p>
-        Create <code>zf2-tutorial/Album/module/Album/test/AlbumTest/Controller/AlbumControllerTest.php</code> with the following contents:
+        Create <code>zf2-tutorial/Album/module/AlbumRest/test/AlbumRestTest/Controller/AlbumRestControllerTest.php</code> with the following contents:
     </p>
 <pre class="prettyprint linenums lang-prepro">
 &lt;?php
@@ -518,7 +518,7 @@ public function saveAlbum(Album $album)
     $id = (int)$album-&gt;id;
     if ($id == 0) {
         $this-&gt;tableGateway-&gt;insert($data);
-        $id = $this-&gt;tableGateWay-&gt;getLastInsertValue(); //Add this line
+        $id = $this-&gt;tableGateway-&gt;getLastInsertValue(); //Add this line
     } else {
         if ($this-&gt;getAlbum($id)) {
             $this-&gt;tableGateway-&gt;update($data, array('id' =&gt; $id));
