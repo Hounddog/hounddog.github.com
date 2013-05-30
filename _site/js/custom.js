@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
     $('#gf').text('GitHub Followers');
     $('#gfr').text('GitHub Repos');
 
-    JSONP('https://api.github.com/users/ocramius?callback=?', function (response) {
+    JSONP('https://api.github.com/users/hounddog?callback=?', function (response) {
         var data = response.data;
         $('#gf').text(data.followers + ' GitHub Followers');
         $('#gfr').text(data.public_repos + ' GitHub Repos');
@@ -22,7 +22,7 @@ jQuery(document).ready(function () {
     }
 
     $('#ghw').githubWidget({
-        'username':                   'Ocramius',
+        'username':                   'Hounddog',
         'displayActions':             false,
         'firstCount':                 10,
         'displayHeader':              false,
