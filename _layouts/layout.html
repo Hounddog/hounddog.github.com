@@ -5,7 +5,7 @@
         <title>{{ page.title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="description" content="Martin Shwalbe's development website - thoughts by an angry web developer"/>
-        <meta name="author" content="Marco Pivetta"/>
+        <meta name="author" content="Martin Shwalbe"/>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css" rel="stylesheet"/>
         <link href="/css/style.css" rel="stylesheet"/>
 	<link href="/css/docs.css" rel="stylesheet"/>
@@ -17,49 +17,78 @@
             <div class="marketing">
                 <div class="content">
                     <div class="row">
-                        <div class="span5 columns well">
-                            <p>
-                                <img
-                                    src="img/martin-shwalbe.jpeg"
-                                    alt="Martin Shwalbe"
-                                    class="floatLeft"
-                                />
-                                Hi! My name is Martin, I'm a software engineer focused on PHP and Javascript projects, currently working on
-                                <a href="https://github.com/doctrine/" target="_blank">Doctrine Project</a>,
-                                <a href="https://github.com/zendframework/" target="_blank">Zend Framework 2</a> and
-                                <a href="https://github.com/dojo" target="_blank">Dojo</a>. My job is my passion and
-                                also my hobby, and all I do is on <a href="https://github.com/Hounddog/"  target="_blank">
-                                my Github page</a>.
-                            </p>
+                        <div class="span6">
+                            <div class="row-fluid">
+                                <div class="span12  well">
+                                    <p>
+                                        <img
+                                            src="img/martin-shwalbe.jpeg"
+                                            alt="Martin Shwalbe"
+                                            class="floatLeft"
+                                        />
+                                        Hi! My name is Martin, I'm a software engineer focused on PHP and Javascript projects, currently working on
+                                        <a href="https://github.com/doctrine/" target="_blank">Doctrine Project</a>,
+                                        <a href="https://github.com/zendframework/" target="_blank">Zend Framework 2</a> and
+                                        <a href="https://github.com/dojo" target="_blank">Dojo</a>. My job is my passion and
+                                        also my hobby, and all I do is on <a href="https://github.com/Hounddog/"  target="_blank">
+                                        my Github page</a>.
+                                    </p>
 
-                            <p style="clear: both">
-                                <a href="https://twitter.com/mshwalbe" class="twitter-follow-button btn btn-mini" data-show-count="false">
-                                    Follow @mshwalbe
-                                </a>
-                                <iframe
-                                    src="http://ghbtns.com/github-btn.html?user=Hounddog&type=follow&count=true"
-                                    allowtransparency="true"
-                                    frameborder="0"
-                                    scrolling="0"
-                                    width="160px"
-                                    height="20px"
-                                ></iframe>
-                                <iframe
-                                    src="http://ghbtns.com/github-btn.html?user=Hounddog&repo=hounddog.github.com&type=watch&count=true"
-                                    allowtransparency="true"
-                                    frameborder="0"
-                                    scrolling="0"
-                                    width="105px"
-                                    height="20px"
-                                ></iframe>
-                            </p>
-                            <p>
-                                <a id="gfr" href="https://github.com/hounddog/repositories"
-                                   title="Go to Martin Shwalbe's GitHub repositories page" target="_blank">Repositories</a>
-                                | <a href="https://github.com/Hounddog/hounddog.github.com/issues" target="_blank">
-                                    Leave me feedback
-                                </a>
-                            </p>
+                                    <p style="clear: both">
+                                        <a href="https://twitter.com/mshwalbe" class="twitter-follow-button btn btn-mini" data-show-count="false">
+                                            Follow @mshwalbe
+                                        </a>
+                                        <iframe
+                                            src="http://ghbtns.com/github-btn.html?user=Hounddog&type=follow&count=true"
+                                            allowtransparency="true"
+                                            frameborder="0"
+                                            scrolling="0"
+                                            width="160px"
+                                            height="20px"
+                                        ></iframe>
+                                        <iframe
+                                            src="http://ghbtns.com/github-btn.html?user=Hounddog&repo=hounddog.github.com&type=watch&count=true"
+                                            allowtransparency="true"
+                                            frameborder="0"
+                                            scrolling="0"
+                                            width="105px"
+                                            height="20px"
+                                        ></iframe>
+                                    </p>
+                                    <p>
+                                        <a id="gfr" href="https://github.com/hounddog/repositories"
+                                           title="Go to Martin Shwalbe's GitHub repositories page" target="_blank">Repositories</a>
+                                        | <a href="https://github.com/Hounddog/hounddog.github.com/issues" target="_blank">
+                                            Leave me feedback
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <h2>Slides</h2>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                        {% for post in site.posts %}
+                                            {% if post.categories contains 'slide' %}
+                                                <tr>
+                                                    <td>
+                                                        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                                                        <p>
+                                                            <small>
+                                                                {{ post.date | date: "%B %e, %Y" }} .
+
+                                                            </small>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="span6 columns">
                             {{ content }}

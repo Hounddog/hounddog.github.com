@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>{{ page.title }}</title>
+        <meta name="author" content="Martin Shwalbe">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="/js/reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="/js/reveal.js/css/theme/default.css" id="theme">
+        <!-- #040E27 -->
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="/js/reveal.js/lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="/js/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="/js/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style type="text/css">
+            /* overrides */
+            body {
+                background: #040E27;
+                background: -moz-radial-gradient(center, circle cover, #555a5f 0%, #040E27 100%);
+                background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555a5f), color-stop(100%, #040E27));
+                background: -webkit-radial-gradient(center, circle cover, #555a5f 0%, #040E27 100%);
+                background: -o-radial-gradient(center, circle cover, #555a5f 0%, #040E27 100%);
+                background: -ms-radial-gradient(center, circle cover, #555a5f 0%, #040E27 100%);
+                background: radial-gradient(center, circle cover, #555a5f 0%, #040E27 100%);
+                background-color: #040E27;
+            }
+
+            .reveal section img {
+                border: 0;
+                background: none;
+                box-shadow: 0 0 #000;
+            }
+
+            .zf-color {
+                color: #68B604;
+            }
+
+            .doctrine-color {
+                color: #FC6A31;
+            }
+
+            .doctrine-bg {
+                background-color: #040E27;
+            }
+        </style>
+    </head>
+
+    <body>
+        {{ content }}
+        <script src="/js/reveal.js/lib/js/head.min.js"></script>
+        <script src="/js/reveal.js/js/reveal.min.js"></script>
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel//js/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                //transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+                transition: Reveal.getQueryHash().transition || 'page', // default/cube/page/concave/zoom/linear/none
+
+                // Optional libraries used to extend on /js/reveal.js
+                dependencies: [
+                    { src: '/js/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '/js/reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '/js/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '/js/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '/js/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '/js/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: '/js/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+    </body>
+</html>
