@@ -4,7 +4,7 @@
  <title>Martin Shwalbe Blog Feed</title>
  <link href="http://hounddog.github.com/feed/" rel="self"/>
  <link href="http://hounddog.github.com/"/>
- <updated>2013-05-30T03:58:19+02:00</updated>
+ <updated>2013-06-02T13:57:27+02:00</updated>
  <id>http://hounddog.github.com/</id>
  <author>
    <name>Martin Shwalbe</name>
@@ -17,812 +17,107 @@
    <link href="http://hounddog.github.com/blog/continuous-deployment"/>
    <updated>2013-05-20T00:00:00+02:00</updated>
    <id>http://hounddog.github.com/blog/continuous-deployment</id>
-   <content type="html">        &lt;div class=&quot;reveal&quot;&gt;
-
-            &lt;!-- Any section element inside of this container is displayed as a slide --&gt;
-            &lt;div class=&quot;slides&quot;&gt;
-
-                &lt;section&gt;
-                    &lt;h1&gt;
-                        &lt;span class=&quot;doctrine-color&quot;&gt;Doctrine 2&lt;/span&gt;
-                        &amp;amp;
-                        &lt;span class=&quot;zf-color&quot;&gt;ZF2&lt;/span&gt;
-                    &lt;/h1&gt;
-                    &lt;h1&gt;
-                        &lt;img
-                            src=&quot;assets/img/doctrine.svg&quot;
-                            alt=&quot;Doctrine Project&quot; border=&quot;0&quot;
-                            height=&quot;200px&quot;
-                            style=&quot;margin-bottom: -50px; &quot;
-                        /&gt;
-                        +
-                        &lt;img
-                            src=&quot;assets/img/zf-logo-large.png&quot;
-                            alt=&quot;Zend Framework 2&quot;
-                            border=&quot;0&quot;
-                            height=&quot;200px&quot;
-                            style=&quot;margin-bottom: -50px;&quot;
-                        /&gt;
-                    &lt;/h1&gt;
-                &lt;/section&gt;
-                &lt;section&gt;
-                    &lt;h2&gt;
-                        &lt;img
-                            src=&quot;assets/img/ocramius.gif&quot;
-                            alt=&quot;Marco Pivetta&quot;
-                            style=&quot;width: 50px&quot;
-                        /&gt;
-                        &lt;a href=&quot;http://ocramius.github.com/&quot; target=&quot;_blank&quot; rel=&quot;me&quot;&gt;Marco Pivetta&lt;/a&gt;
-                    &lt;/h2&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        &lt;span class=&quot;doctrine-color&quot;&gt;Doctrine&lt;/span&gt; core team
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        &lt;span class=&quot;zf-color&quot;&gt;Zf2&lt;/span&gt; contributor
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        &lt;span class=&quot;zf-color&quot;&gt;Modules&lt;/span&gt; &lt;strike&gt;developer&lt;/strike&gt; &lt;span class=&quot;fragment&quot;&gt;time waster&lt;/span&gt;
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        &lt;a href=&quot;http://twitter.com/Ocramius&quot; target=&quot;_blank&quot;&gt;@Ocramius&lt;/a&gt;
-                        -
-                        &lt;a href=&quot;http://github.com/Ocramius&quot; target=&quot;_blank&quot;&gt;Ocramius&lt;/a&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-                &lt;section&gt;
-                    &lt;h2&gt;Main Libraries&lt;/h2&gt;
-                    &lt;p&gt;
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/bjyoungblood/BjyAuthorize&quot;&gt;BjyAuthorize&lt;/a&gt;,
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/RWOverdijk/AssetManager&quot;&gt;AssetManager&lt;/a&gt;,
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/BinaryKitten/ZeffMu&quot;&gt;ZeffMu&lt;/a&gt;,
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/zf-fr/ZfrRest&quot;&gt;ZfrRest&lt;/a&gt;,
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/Ocramius/OcraDiCompiler&quot;&gt;OcraDiCompiler&lt;/a&gt;,
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/Ocramius/OcraServiceManager&quot;&gt;OcraServiceManager&lt;/a&gt;,
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/Ocramius/OcraCachedViewResolver&quot;&gt;OcraCachedViewResolver&lt;/a&gt;,
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/doctrine/DoctrineModule&quot;&gt;DoctrineModule&lt;/a&gt;,
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/doctrine/DoctrineORMModule&quot;&gt;DoctrineORMModule&lt;/a&gt;,
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/doctrine/DoctrineMongoODMModule&quot;&gt;DoctrineMongoODMModule&lt;/a&gt;,
-                        &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/Ocramius/VersionEyeModule&quot;&gt;VersionEyeModule&lt;/a&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Doctrine Project&lt;/span&gt;&lt;/h2&gt;
-                    &lt;p&gt;
-                        An incubator for &lt;span class=&quot;doctrine-color&quot;&gt;persistence&lt;/span&gt;-oriented libraries
-                    &lt;/p&gt;
-                    &lt;p&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/d07a7a143b14fc8309f9abb78d569344?s=70&quot; alt=&quot;asm89&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/f000c9b4dd0656f60de1dc9e75f7386c?s=70&quot; alt=&quot;avalanche123&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/75f5fb3ddda052e46f1daed314ae69ab?s=70&quot; alt=&quot;beberlei&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/14327ba6a017db91465d34f5910df5ab?s=70&quot; alt=&quot;davidino&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/c9f4f8ce2c2936bacaf49500b5a127dc?s=70&quot; alt=&quot;dbu&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/847009eb569c152f194f70e2deba99e1?s=70&quot; alt=&quot;FabioBatSilva&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/f1a2c5905e121d09feba5ad73898ffca?s=70&quot; alt=&quot;fabpot&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/fbfe5a0027befc4b766f5fdc4cd530d8?s=70&quot; alt=&quot;golovanov&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/5f258a6128e0e026bf91f7ace0f85967?s=70&quot; alt=&quot;guilhermeblanco&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/f23700b51dc0c196c1dc02f84aeeecdf?s=70&quot; alt=&quot;jmikola&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/f76041410752f9019752b6afd2bebc2a?s=70&quot; alt=&quot;jwage&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/29225b18371c37ec44c7b8831ea3dae3?s=70&quot; alt=&quot;kore&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/097f39f4cd9a83a03d92c246a2797880?s=70&quot; alt=&quot;kriswallsmith&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/54787afbd0e7c30936101c2fa84bd89b?s=70&quot; alt=&quot;lsmith77&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/9f580202b05cc640aa9297ab7a1ae764?s=70&quot; alt=&quot;naderman&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/1c29f9b1bf5f1b88ed8b0c9a9be39788?s=70&quot; alt=&quot;nrk&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/3cf7a8ab0bccee5b65d39b50a170a555?s=70&quot; alt=&quot;Ocramius&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/7e1b44a243d0cd4a01e5de1fa41fc0ed?s=70&quot; alt=&quot;odino&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/ae002f3da6a8fb6714653dc49c9284b8?s=70&quot; alt=&quot;richardfullmer&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/20f4b48ecceee43353a1ec364cd0059c?s=70&quot; alt=&quot;rndstr&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/a459a18ff578f511412e9b78b1c3a7fb?s=70&quot; alt=&quot;romanb&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/96a13b96ece78afe3c2dc841edc4a8f5?s=70&quot; alt=&quot;schmittjoh&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/48b79d17cd8a911327cbd88c122b1efb?s=70&quot; alt=&quot;Seldaek&quot;/&gt;
-                        &lt;img src=&quot;https://secure.gravatar.com/avatar/7894bbdf1c05b18a1444ad8c76c9d583?s=70&quot; alt=&quot;stof&quot;/&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-                &lt;section&gt;
-                    &lt;h2&gt;What is &lt;span class=&quot;doctrine-color&quot;&gt;Doctrine ORM&lt;/span&gt;?&lt;/h2&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        &lt;span class=&quot;doctrine-color&quot;&gt;Doctrine ORM&lt;/span&gt; is an Object Relational Mapper
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        It is inspired by Hibernate and the &lt;abbr title=&quot;Java Persistece API&quot;&gt;JPA&lt;/abbr&gt; (JSR-317)
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        It is based on a
-                        &lt;abbr title=&quot;Database Abstraction Layer&quot; class=&quot;doctrine-color&quot;&gt;DBAL&lt;/abbr&gt;
-                        (DataBase Abstraction Layer)
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        Allows developers to save and load &lt;abbr title=&quot;Plain Old PHP Object&quot;&gt;POPO&lt;/abbr&gt; with SQL
-                    &lt;/p&gt;
-
-                    &lt;aside class=&quot;notes&quot;&gt;
-                        Also consider that Doctrine ORM abstract the underlying SQL dialect of the DB platform you are
-                        using, so it's possible for you to switch DB vendor from a day to another
-                    &lt;/aside&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;p&gt;
-                        An &lt;span class=&quot;doctrine-color&quot;&gt;ORM&lt;/span&gt; gives you the impression that you are working
-                        with a &quot;virtual&quot; database (graph) composed by objects
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;p&gt;
-                        Simply put:
-                    &lt;/p&gt;
-                    &lt;h2 class=&quot;doctrine-color&quot;&gt;Forget the database!&lt;/h2&gt;
-
-                    &lt;aside class=&quot;notes&quot;&gt;
-                        The job of an ORM is all about abstracting the underlying data structure into something that
-                        gives the developer access to what looks like an in-memory representation of the database.
-                    &lt;/aside&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;
-                        The &lt;span class=&quot;zf-color&quot;&gt;Modules&lt;/span&gt;!
-                    &lt;/h2&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        &lt;span class=&quot;zf-color&quot;&gt;DoctrineModule&lt;/span&gt;
-                        &lt;br/&gt;
-                        basic common functionality
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        &lt;span class=&quot;zf-color&quot;&gt;DoctrineORMModule&lt;/span&gt;
-                        &lt;br/&gt;
-                        ORM/SQL Connection
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        &lt;span class=&quot;zf-color&quot;&gt;DoctrineMongoODMModule&lt;/span&gt;
-                        &lt;br/&gt;
-                        ODM/MongoDB Connection
-                    &lt;/p&gt;
-
-                    &lt;aside class=&quot;notes&quot;&gt;
-                        DoctrineModule is a set of functionality common to all ZF2-Doctrine integration layers
-                    &lt;/aside&gt;
-                &lt;/section&gt;
-
-                &lt;section data-state=&quot;soothe&quot;&gt;
-                    &lt;p&gt;
-                        &lt;img src=&quot;http://yuml.me/diagram/scruffy;dir:TB;/class/[doctrine/common{bg:orange}]&lt;-.- [doctrine/doctrine-module{bg:green}],[doctrine/orm{bg:orange}]&lt;-.- [doctrine/doctrine-orm-module{bg:green}],[doctrine/mongodb-odm{bg:orange}]&lt;-.- [doctrine/doctrine-mongo-odm-module{bg:green}],[doctrine/doctrine-module{bg:green}]&lt;-.- [doctrine/doctrine-orm-module{bg:green}],[doctrine/doctrine-module{bg:green}]&lt;-.- [doctrine/doctrine-mongo-odm-module{bg:green}],[doctrine/common{bg:orange}]&lt;-.- [doctrine/mongodb-odm{bg:orange}],[doctrine/common{bg:orange}]&lt;-.- [doctrine/orm{bg:orange}]&quot;&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Installation!&lt;/h2&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;&lt;span class=&quot;doctrine-color&quot;&gt;php composer.phar&lt;/span&gt; require doctrine/doctrine-orm-module:&lt;span class=&quot;zf-color&quot;&gt;0.7.*&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;img src=&quot;assets/img/waiting-meme.png&quot; width=&quot;600px&quot; alt=&quot;Wait a bit&quot;/&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;img src=&quot;assets/img/successful-installation.png&quot; alt=&quot;Doctrine ORM Module successfully installed!&quot;/&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;&lt;span class=&quot;doctrine-color&quot;&gt;php composer.phar&lt;/span&gt; require zendframework/zend-developer-tools:&lt;span class=&quot;zf-color&quot;&gt;dev-master&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;img src=&quot;assets/img/waiting-meme.png&quot; width=&quot;600px&quot; alt=&quot;Wait a bit more&quot;/&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;img src=&quot;assets/img/successful-zdt-installation.png&quot; alt=&quot;ZendDeveloperTools successfully installed!&quot;/&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;cp vendor/zendframework/zend-developer-tools/config/zenddevelopertools.local.php.dist config/autoload/zdt.local.php&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h3&gt;Enabling the modules&lt;/h3&gt;
-                    &lt;pre&gt;&lt;code&gt;config/application.config.php&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code contenteditable&gt;return array(
-    'modules' =&gt; array(
-        'ZendDeveloperTools',
-        'DoctrineModule',
-        'DoctrineORMModule',
-        'Application',
-    ),
-    // [...]
-);
-&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;p&gt;You should see:&lt;/p&gt;
-                    &lt;p&gt;
-                        &lt;img src=&quot;assets/img/toolbar-preview.png&quot; alt=&quot;Successful toolbar installation&quot;/&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Write your first entity&lt;/h2&gt;
-                    &lt;pre&gt;&lt;code&gt;module/Application/src/Application/Entity/User&lt;/code&gt;&lt;/pre&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;namespace Application\Entity;
-use Doctrine\ORM\Mapping as ORM;
-/** @ORM\Entity */
-class User {
-    /**
-    * @ORM\Id
-    * @ORM\GeneratedValue(strategy=&quot;AUTO&quot;)
-    * @ORM\Column(type=&quot;integer&quot;)
-    */
-    protected $id;
-
-    /** @ORM\Column(type=&quot;string&quot;) */
-    protected $fullName;
-
-    // getters/setters
-}&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Configure &lt;span class=&quot;doctrine-color&quot;&gt;mappings&lt;/span&gt;&lt;/h2&gt;
-                    &lt;pre&gt;&lt;code&gt;module/Application/config/module.config.php&lt;/code&gt;&lt;/pre&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;return array(
-'doctrine' =&gt; array(
-  'driver' =&gt; array(
-    'application_entities' =&gt; array(
-      'class' =&gt;'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-      'cache' =&gt; 'array',
-      'paths' =&gt; array(__DIR__ . '/../src/Application/Entity')
-    ),
-
-    'orm_default' =&gt; array(
-      'drivers' =&gt; array(
-        'Application\Entity' =&gt; 'application_entities'
-      )
-))), // [...]&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;p&gt;You should see:&lt;/p&gt;
-                    &lt;img src=&quot;assets/img/successful-mapping-of-user.png&quot; alt=&quot;Successful mapping of the user entity&quot;/&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Configure the &lt;span class=&quot;doctrine-color&quot;&gt;connection&lt;/span&gt;&lt;/h2&gt;
-                    &lt;pre&gt;&lt;code&gt;config/autoload/doctrine.local.php&lt;/code&gt;&lt;/pre&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;return array(
-  'doctrine' =&gt; array(
-    'connection' =&gt; array(
-      'orm_default' =&gt; array(
-        'driverClass' =&gt;'Doctrine\DBAL\Driver\PDOMySql\Driver',
-        'params' =&gt; array(
-          'host'     =&gt; 'localhost',
-          'port'     =&gt; '3306',
-          'user'     =&gt; 'username',
-          'password' =&gt; 'password',
-          'dbname'   =&gt; 'database',
-)))));&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Validate &lt;span class=&quot;doctrine-color&quot;&gt;mappings&lt;/span&gt;&lt;/h2&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;&lt;span class=&quot;zf-color&quot;&gt;./vendor/bin/doctrine-module&lt;/span&gt; &lt;span class=&quot;doctrine-color&quot;&gt;orm:validate-schema&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-                    &lt;p&gt;
-                        &lt;img src=&quot;assets/img/validate-mappings.png&quot; alt=&quot;Validate schema mappings&quot;/&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Generate&lt;/span&gt; the database&lt;/h2&gt;
-                    &lt;p&gt;
-                        &lt;img src=&quot;assets/img/amazed-meme.gif&quot; alt=&quot;Generating databases?! WOAH!&quot;/&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;&lt;span class=&quot;zf-color&quot;&gt;./vendor/bin/doctrine-module&lt;/span&gt; &lt;span class=&quot;doctrine-color&quot;&gt;orm:schema-tool:create&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-                    &lt;p&gt;
-                        &lt;img src=&quot;assets/img/database-generated-successfully.png&quot; alt=&quot;generating the database&quot;/&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-
-                &lt;!-- add slide about mapping overview in ZDT --&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Test it!&lt;/h2&gt;
-                    &lt;pre&gt;&lt;code&gt;module/Application/src/Application/Controller/IndexController.php&lt;/code&gt;&lt;/pre&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;public function indexAction() {
-    $objectManager = $this
-        -&gt;getServiceLocator()
-        -&gt;get('Doctrine\ORM\EntityManager');
-
-    $user = new \Application\Entity\User();
-    $user-&gt;setFullName('Marco Pivetta');
-
-    $objectManager-&gt;persist($user);
-    $objectManager-&gt;flush();
-
-    die(var_dump($user-&gt;getId())); // yes, I'm lazy
-}&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;section&gt;
-                        &lt;h2&gt;Examples&lt;/h2&gt;
-                        &lt;img width=&quot;178&quot; height=&quot;238&quot; src=&quot;assets/img/down-arrow.png&quot; alt=&quot;Down arrow&quot;/&gt;
-                    &lt;/section&gt;
-                    &lt;section&gt;
-                        &lt;h3&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Persisting&lt;/span&gt; an object&lt;/h3&gt;
-                        &lt;pre&gt;&lt;code contenteditable&gt;$user = new User();
-$user-&gt;setFullName('Marco Pivetta');
-
-$objectManager-&gt;persist($user); // $user is now &quot;&lt;span class=&quot;doctrine-color&quot;&gt;managed&lt;/span&gt;&quot;
-$objectManager-&gt;flush(); // commit changes to db
-
-var_dump($user-&gt;getId()); // 1&lt;/code&gt;&lt;/pre&gt;
-                    &lt;/section&gt;
-                    &lt;section&gt;
-                        &lt;h3&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Persisting&lt;/span&gt; multiple objects&lt;/h3&gt;
-                        &lt;pre&gt;&lt;code contenteditable&gt;$user1 = new User();
-$user1-&gt;setFullName('Marco Pivetta');
-$objectManager-&gt;persist($user1);
-
-$user2 = new User();
-$user2-&gt;setFullName('Michaël Gallego');
-$objectManager-&gt;persist($user2);
-
-$user3 = new User();
-$user3-&gt;setFullName('Kyle Spraggs');
-$objectManager-&gt;persist($user3);
-
-$objectManager-&gt;flush();&lt;/code&gt;&lt;/pre&gt;
-                    &lt;/section&gt;
-                    &lt;section&gt;
-                        &lt;h3&gt;Retrieving an object&lt;/h3&gt;
-                        &lt;pre&gt;&lt;code contenteditable&gt;$user1 = $objectManager-&gt;find('Application\Entity\User', 1);
-
-var_dump($user1-&gt;getFullName()); // Marco Pivetta
-
-$user2 = $objectManager
-    -&gt;getRepository('Application\Entity\User')
-    -&gt;findOneBy(array('fullName' =&gt; 'Michaël Gallego'));
-
-var_dump($user2-&gt;getFullName()); // Michaël Gallego&lt;/code&gt;&lt;/pre&gt;
-                    &lt;/section&gt;
-                    &lt;section&gt;
-                        &lt;h3&gt;Updating an object&lt;/h3&gt;
-                        &lt;pre&gt;&lt;code contenteditable&gt;$user = $objectManager-&gt;find('Application\Entity\User', 1);
-
-$user-&gt;setFullName('Guilherme Blanco');
-
-$objectManager-&gt;flush();&lt;/code&gt;&lt;/pre&gt;
-                    &lt;/section&gt;
-                    &lt;section&gt;
-                        &lt;h3&gt;Deleting an object&lt;/h3&gt;
-                        &lt;pre&gt;&lt;code contenteditable&gt;$user = $objectManager-&gt;find('Application\Entity\User', 1);
-
-$objectManager-&gt;remove($user);
-
-$objectManager-&gt;flush();&lt;/code&gt;&lt;/pre&gt;
-                        &lt;/section&gt;
-                        &lt;section&gt;
-                            &lt;h3&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Associations&lt;/span&gt; - User&lt;/h3&gt;
-                        &lt;pre&gt;&lt;code contenteditable&gt;/** @ORM\Entity */
-class User {
-    // like before
-
-    /** @ORM\ManyToOne(targetEntity=&quot;Address&quot;) */
-    protected $address;
-
-    /** @ORM\ManyToMany(targetEntity=&quot;Project&quot;) */
-    protected $projects;
-
-    public function __construct()
-    {
-        $this-&gt;projects = new ArrayCollection();
-    }
-
-    // getters/setters
-}&lt;/code&gt;&lt;/pre&gt;
-                    &lt;/section&gt;
-                    &lt;section&gt;
-                        &lt;h3&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Associations&lt;/span&gt; - Address&lt;/h3&gt;
-                        &lt;pre&gt;&lt;code contenteditable&gt;/** @ORM\Entity */
-class Address {
-    /* @ORM\Id @ORM\Column(type=&quot;integer&quot;) @ORM\GeneratedValue(strategy=&quot;AUTO&quot;) */
-    protected $id;
-
-    /** @ORM\Column(type=&quot;string&quot;) */
-    protected $city;
-
-    /** @ORM\Column(type=&quot;string&quot;) */
-    protected $country;
-
-    // getters/setters etc.
-}&lt;/code&gt;&lt;/pre&gt;
-                    &lt;/section&gt;
-                    &lt;section&gt;
-                        &lt;h3&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Associations&lt;/span&gt; - Projects&lt;/h3&gt;
-&lt;pre&gt;&lt;code contenteditable&gt;/** @ORM\Entity */
-class Project {
-    /* @ORM\Id @ORM\Column(type=&quot;integer&quot;) @ORM\GeneratedValue(strategy=&quot;AUTO&quot;) */
-    protected $id;
-
-    /** @ORM\Column(type=&quot;string&quot;) */
-    protected $name;
-
-    // getters/setters
-}&lt;/code&gt;&lt;/pre&gt;
-                    &lt;/section&gt;
-                    &lt;section&gt;
-                        &lt;h3&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Associations&lt;/span&gt; - Persisting associations&lt;/h3&gt;
-&lt;pre&gt;&lt;code contenteditable&gt;$user = new User();
-$user-&gt;setFullName('Marco Pivetta');
-$objectManager-&gt;persist($user);
-
-$address = new Address();
-$address-&gt;setCity('Frankfurt')
-$address-&gt;setCountry('Germany');
-$objectManager-&gt;persist($address);
-
-$project = new Project();
-$project-&gt;setName('Doctrine ORM');
-$objectManager-&gt;persist($project);
-
-$user-&gt;setAddress($address);
-$user-&gt;getProjects()-&gt;add($project);
-$objectManager-&gt;flush();&lt;/code&gt;&lt;/pre&gt;
-                    &lt;/section&gt;
-                    &lt;section&gt;
-                        &lt;h3&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Associations&lt;/span&gt; - Retrieving associations&lt;/h3&gt;
-&lt;pre&gt;&lt;code contenteditable&gt;$user = $objectManager-&gt;find('Application\Entity\User', 1);
-
-var_dump($user-&gt;getAddress()-&gt;getCity()); // Frankfurt
-var_dump($user-&gt;getProjects()-&gt;first()-&gt;getName()) // Doctrine ORM&lt;/code&gt;&lt;/pre&gt;
-                    &lt;/section&gt;
-
-                    &lt;section&gt;
-                        &lt;p&gt;
-                            More tutorials at
-                            &lt;a href=&quot;http://marco-pivetta.com/doctrine2-orm-tutorial&quot; target=&quot;_blank&quot; title=&quot;Doctrine 2 ORM Tutorial&quot;&gt;
-                                http://marco-pivetta.com/doctrine2-orm-tutorial
-                            &lt;/a&gt;
-                        &lt;/p&gt;
-                        &lt;p&gt;
-                            &lt;img
-                                src=&quot;assets/img/yo-dawg-presentation-in-presentation.jpg&quot;
-                                alt=&quot;Yo Dawg, I heard you like presentations, so I've put a presentation in your presentation&quot;
-                            /&gt;
-                        &lt;/p&gt;
-                    &lt;/section&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;&lt;span class=&quot;zf-color&quot;&gt;DoctrineModule&lt;/span&gt; goodies&lt;/h2&gt;
-                &lt;/section&gt;
-
-                &lt;section data-state=&quot;soothe&quot;&gt;
-                    &lt;h2&gt;&lt;span class=&quot;doctrine-color&quot;&gt;&lt;abbr title=&quot;Enhanced entity-relationship&quot;&gt;EER&lt;/abbr&gt; UML model&lt;/span&gt;&lt;/h2&gt;
-                    &lt;p&gt;
-                        See what your entities look like in a graph:
-                    &lt;/p&gt;
-                    &lt;p&gt;
-                        &lt;img src=&quot;assets/img/sample-eer-diagram.png&quot; alt=&quot;Example EER UML diagram generated by DoctrineORMModule&quot;/&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;&lt;span class=&quot;zf-color&quot;&gt;Paginator&lt;/span&gt; Adapter&lt;/h2&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;use Doctrine\Common\Collections\ArrayCollection;
-use DoctrineModule\Paginator\Adapter\Collection as Adapter;
-use Zend\Paginator\Paginator;
-
-// Create a Doctrine Collection
-$collection = new ArrayCollection(range(1, 101));
-
-// Create the paginator itself
-$paginator = new Paginator(new Adapter($collection));
-
-$paginator
-    -&gt;setCurrentPageNumber(1)
-    -&gt;setItemCountPerPage(5);&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;
-                        &lt;span class=&quot;zf-color&quot;&gt;Paginator&lt;/span&gt; Adapter
-                        (&lt;span class=&quot;doctrine-color&quot;&gt;ORM&lt;/span&gt;)
-                    &lt;/h2&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator;
-use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
-use Zend\Paginator\Paginator;
-
-// Create a Doctrine Collection
-$query = $em-&gt;createQuery('SELECT f FROM Foo f JOIN f.bar b');
-
-// Create the paginator itself
-$paginator = new Paginator(
-    new DoctrinePaginator(new ORMPaginator($query))
-);
-
-$paginator
-    -&gt;setCurrentPageNumber(1)
-    -&gt;setItemCountPerPage(5);&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
+   <content type="html">&lt;style&gt;
+.quote {
+    font-style:italic;
+    font-size:10px;
+}
+&lt;/style&gt;
+&lt;div class=&quot;reveal&quot;&gt;
+    &lt;!-- Any section element inside of this container is displayed as a slide --&gt;
+    &lt;div class=&quot;slides&quot;&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Continuous Integration&lt;/h2&gt;
+                &amp;amp;
+            &lt;h2&gt;Continuous Deployment&lt;/h2&gt;
+        &lt;/section&gt;
+        &lt;section&gt;
+            &lt;h2&gt;
+                &lt;a href=&quot;http://ocramius.github.com/&quot; target=&quot;_blank&quot; rel=&quot;me&quot;&gt;Martin Shwalbe&lt;/a&gt;
+            &lt;/h2&gt;
+            &lt;p class=&quot;fragment&quot;&gt;
+                &lt;span class=&quot;zf-color&quot;&gt;Zf2&lt;/span&gt; contributor
+            &lt;/p&gt;
+            &lt;p class=&quot;fragment&quot;&gt;
+                &lt;span class=&quot;zf-color&quot;&gt;Modules&lt;/span&gt; &lt;strike&gt;developer&lt;/strike&gt; &lt;span class=&quot;fragment&quot;&gt;time waster&lt;/span&gt;
+            &lt;/p&gt;
+            &lt;p class=&quot;fragment&quot;&gt;
+                &lt;a href=&quot;http://twitter.com/mshwalbe&quot; target=&quot;_blank&quot;&gt;@mshwalbe&lt;/a&gt;
+                -
+                &lt;a href=&quot;http://github.com/Hounddog&quot; target=&quot;_blank&quot;&gt;Hounddog&lt;/a&gt;
+            &lt;/p&gt;
+        &lt;/section&gt;
+        &lt;section&gt;
             &lt;section&gt;
-                &lt;h2&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Object-Exists&lt;/span&gt; &lt;span class=&quot;zf-color&quot;&gt;Validator&lt;/span&gt;&lt;/h2&gt;
-                &lt;pre&gt;&lt;code contenteditable&gt;$repository = $objectManager
-    -&gt;getRepository('Application\Entity\User');
-
-$validator = new \DoctrineModule\Validator\ObjectExists(array(
-    'object_repository' =&gt; $repository,
-    'fields' =&gt; array('email')
-));
-
-var_dump($validator-&gt;isValid('test@example.com'));
-var_dump($validator-&gt;isValid(array(
-    'email' =&gt; 'test@example.com'
-)));&lt;/code&gt;&lt;/pre&gt;
+                &lt;h2&gt;Continuous Integration&lt;/h2&gt;
             &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;&lt;span class=&quot;zf-color&quot;&gt;Cache&lt;/span&gt; adapters&lt;/h2&gt;
-                &lt;pre&gt;&lt;code contenteditable&gt;$zendCache = new \Zend\Cache\Storage\Adapter\Memory();
-
-$cache = new \DoctrineModule\Cache\ZendStorageCache($zendCache);&lt;/code&gt;&lt;/pre&gt;
-                &lt;pre&gt;&lt;code contenteditable&gt;$doctrineCache = new \Doctrine\Common\Cache\ArrayCache();
-$options = new \Zend\Cache\Storage\Adapter\AdapterOptions();
-
-$cache = new \DoctrineModule\Cache\DoctrineCacheStorage(
-    $options,
-    $doctrineCache
-);&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;&lt;span class=&quot;zf-color&quot;&gt;Hydrator&lt;/span&gt;&lt;/h2&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
-
-$hydrator = new DoctrineObject(
-    $objectManager,
-    'Application\Entity\City'
-);
-
-$city = new City();
-$data = array('name' =&gt; 'Frankfurt');
-
-$city = $hydrator-&gt;hydrate($data, $city);
-
-echo $city-&gt;getName(); // prints &quot;Frankfurt&quot;
-
-$dataArray = $hydrator-&gt;extract($city);
-echo $dataArray['name']; // prints &quot;Frankfurt&quot;&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
             &lt;section&gt;
-                &lt;h2&gt;&lt;span class=&quot;zf-color&quot;&gt;Hydrator&lt;/span&gt; (2)&lt;/h2&gt;
-                &lt;pre&gt;&lt;code contenteditable&gt;use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
-
-$hydrator = new DoctrineObject(
-    $objectManager,
-    'Application\Entity\City'
-);
-
-$city = new City();
-$data = array('country' =&gt; 123);
-
-$city = $hydrator-&gt;hydrate($data, $city);
-
-var_dump($city-&gt;getCountry());
-// prints class Country#1 (1) {
-//   protected $name =&gt; string(5) &quot;Germany&quot;
-// }&lt;/code&gt;&lt;/pre&gt;
-            &lt;/section&gt;
-
-            &lt;section&gt;
-                &lt;h2&gt;&lt;span class=&quot;zf-color&quot;&gt;Form Element&lt;/span&gt;&lt;/h2&gt;
-            &lt;pre&gt;&lt;code contenteditable&gt;$form-&gt;add(array(
-    'type' =&gt; 'DoctrineModule\Form\Element\ObjectSelect',
-    'name' =&gt; 'user',
-    'options' =&gt; array(
-        'object_manager' =&gt; $objectManager,
-        'target_class'   =&gt; 'Module\Entity\User',
-        'property'       =&gt; 'fullName',
-        'is_method'      =&gt; true,
-        'find_method'    =&gt; array(
-            'name'   =&gt; 'findBy',
-            'params' =&gt; array(
-                'criteria' =&gt; array('active' =&gt; 1),
-                'orderBy'  =&gt; array('lastName' =&gt; 'ASC'),
-            ),
-        ),
-    ),
-));&lt;/code&gt;&lt;/pre&gt;
-            &lt;/section&gt;
-
-            &lt;section&gt;
-                &lt;h2&gt;More stuff!&lt;/h2&gt;
-                &lt;p class=&quot;fragment&quot;&gt;Everything works with &lt;span class=&quot;doctrine-color&quot;&gt;MongoDB ODM&lt;/span&gt; too!&lt;/p&gt;
-                &lt;p class=&quot;fragment&quot;&gt;&lt;span class=&quot;doctrine-color&quot;&gt;CouchDB ODM&lt;/span&gt;/&lt;span class=&quot;doctrine-color&quot;&gt;PHPCR ODM&lt;/span&gt;/&lt;span class=&quot;doctrine-color&quot;&gt;OrientDB ODM&lt;/span&gt;&lt;/p&gt;
-            &lt;/section&gt;
-
-            &lt;section&gt;
-                &lt;section&gt;
-                    &lt;h2&gt;&lt;span class=&quot;zf-color&quot;&gt;Good Practices&lt;/span&gt;&lt;/h2&gt;
-                    &lt;img width=&quot;178&quot; height=&quot;238&quot; src=&quot;assets/img/down-arrow.png&quot; alt=&quot;Down arrow&quot;/&gt;
-                &lt;/section&gt;
-                &lt;section&gt;
-                    &lt;h2&gt;Keep &lt;span class=&quot;doctrine-color&quot;&gt;Entities&lt;/span&gt; simple&lt;/h2&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;Think of entities as value-objects&lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;Don't add logic to entities (hard to change later!)&lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;Keep entities aware only of themselves + relations&lt;/p&gt;
-                &lt;/section&gt;
-                &lt;section&gt;
-                    &lt;h2&gt;Use &lt;span class=&quot;doctrine-color&quot;&gt;doctrine/common&lt;/span&gt; API&lt;/h2&gt;
-                    &lt;p&gt;
-                        If you stick with using only &lt;span class=&quot;doctrine-color&quot;&gt;doctrine/common&lt;/span&gt; API,
-                        users of your modules can switch between &lt;span class=&quot;doctrine-color&quot;&gt;ORM&lt;/span&gt;/
-                        &lt;span class=&quot;doctrine-color&quot;&gt;MongoDB ODM&lt;/span&gt;/&lt;span class=&quot;doctrine-color&quot;&gt;CouchDB ODM&lt;/span&gt;/
-                        &lt;span class=&quot;doctrine-color&quot;&gt;PHPCR ODM&lt;/span&gt;/&lt;span class=&quot;doctrine-color&quot;&gt;OrientDB ODM&lt;/span&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-                &lt;section&gt;
-                    &lt;h2&gt;Use &lt;span class=&quot;doctrine-color&quot;&gt;doctrine/common&lt;/span&gt; API&lt;/h2&gt;
-                    &lt;p&gt;Prefer&lt;/p&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;Doctrine\Common\Persistence\ObjectManager&lt;/code&gt;&lt;/pre&gt;
-                    &lt;p&gt;over&lt;/p&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;Doctrine\ORM\EntityManager&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-                &lt;section&gt;
-                    &lt;h2&gt;Use &lt;span class=&quot;doctrine-color&quot;&gt;doctrine/common&lt;/span&gt; API&lt;/h2&gt;
-                    &lt;p&gt;Prefer&lt;/p&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;Doctrine\Common\Persistence\ObjectRepository&lt;/code&gt;&lt;/pre&gt;
-                    &lt;p&gt;over&lt;/p&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;Doctrine\ORM\EntityRepository&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Use &lt;span class=&quot;doctrine-color&quot;&gt;collections&lt;/span&gt; extensively&lt;/h2&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        Doctrine comes with a powerful &lt;span class=&quot;doctrine-color&quot;&gt;collections&lt;/span&gt;
-                        &lt;a href=&quot;https://github.com/doctrine/collections&quot; target=&quot;_blank&quot;&gt;API&lt;/a&gt;
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        OOP API for array-like data structures
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Use the &lt;span class=&quot;doctrine-color&quot;&gt;Criteria API&lt;/span&gt;&lt;/h2&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        Collections provide a &lt;span class=&quot;doctrine-color&quot;&gt;Criteria&lt;/span&gt;
-                        &lt;a href=&quot;https://github.com/doctrine/collections/blob/v1.0/lib/Doctrine/Common/Collections/Criteria.php&quot; target=&quot;_blank&quot;&gt;API&lt;/a&gt;
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        Allows you to filter virtually any kind of data structure
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Criteria API&lt;/span&gt; example&lt;/h2&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;use Doctrine\Common\Collections\Criteria;
-use Doctrine\Common\Collections\ArrayCollection;
-
-$collection = new ArrayCollection(array($user1, $user2, $user3));
-$criteria   = new Criteria();
-$criteria-&gt;andWhere(
-    $criteria-&gt;expr()-&gt;gt(
-        'lastLogin',
-        new \DateTime('-1 day')
-    )
-);
-
-$recentVisitors = $collection-&gt;matching($criteria);&lt;/code&gt;&lt;/pre&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;$recentVisitors = $em
-    -&gt;getRepository('Application\Entity\Users')
-    -&gt;matching($criteria);&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;&lt;span class=&quot;doctrine-color&quot;&gt;Criteria API&lt;/span&gt; advantages&lt;/h2&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        Works in &lt;span class=&quot;doctrine-color&quot;&gt;ORM Repositories&lt;/span&gt;,
-                        &lt;span class=&quot;doctrine-color&quot;&gt;Collections&lt;/span&gt;, etc...
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        Abstracts the problem of &quot;searching&quot;
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        Same criteria for different storages (ORM, ODM, Memory, ElasticSearch, cache...)
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        Allows you to define your own &lt;code&gt;RecentUsersCriteria&lt;/code&gt; or &lt;code&gt;InactiveUsersCriteria&lt;/code&gt;...
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Inject the &lt;span class=&quot;doctrine-color&quot;&gt;Object Manager&lt;/span&gt;&lt;/h2&gt;
-                    &lt;p&gt;
-                        If you fetch the entity manager from within your services, replacing it will become very hard:
-                        Inject it instead!
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Inject the &lt;span class=&quot;doctrine-color&quot;&gt;Object Manager&lt;/span&gt;&lt;/h2&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;'factories' =&gt; array(
-    'my_service' =&gt; function ($sl) {
-        $objectManager = $sl-&gt;get('Doctrine\ORM\EntityManager');
-        return new MyService($objectManager);
-    }
-),&lt;/code&gt;&lt;/pre&gt;
-                    &lt;pre&gt;&lt;code contenteditable&gt;class MyService
-{
-    public function __construct(ObjectManager $objectManager)
-    {
-        // [...]
-    }
-}&lt;/code&gt;&lt;/pre&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Keep &lt;span class=&quot;doctrine-color&quot;&gt;Object Manager&lt;/span&gt; out of &lt;span class=&quot;zf-color&quot;&gt;Controllers&lt;/span&gt;&lt;/h2&gt;
-                    &lt;p&gt;
-                        &lt;img
-                            src=&quot;assets/img/if-you-inject-objectmanager-in-your-controllers.jpg&quot;
-                            alt=&quot;If you inject ObjectManager in your controllers, you're gonna have a bad architecture&quot;
-                        /&gt;
-                    &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Don't use &lt;span class=&quot;doctrine-color&quot;&gt;persistence&lt;/span&gt; to solve &lt;span class=&quot;zf-color&quot;&gt;application&lt;/span&gt; problems&lt;/h2&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;Filtering data when saved to DB&lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;Validating data when saved to DB&lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;Saving files when records are saved to DB&lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;Using DB-level errors to check input validity&lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt;
-                    &lt;h2&gt;Keep your &lt;span class=&quot;doctrine-color&quot;&gt;object graph&lt;/span&gt; consistent&lt;/h2&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        An &lt;span class=&quot;doctrine-color&quot;&gt;ObjectManager&lt;/span&gt; works under the assumption that managed
-                        objects are valid!
-                    &lt;/p&gt;
-                    &lt;p class=&quot;fragment&quot;&gt;
-                        Assign values to your entities only when data is valid!
-                    &lt;/p&gt;
-                &lt;/section&gt;
-            &lt;/section&gt;
-
-            &lt;section&gt;
-                &lt;h2&gt;Questions?&lt;/h2&gt;
-            &lt;/section&gt;
-
-            &lt;section&gt;
-                &lt;h2&gt;Fork it!&lt;/h2&gt;
-                &lt;p&gt;
-                    You can find these slides on GitHub at
-                    &lt;a href=&quot;https://github.com/Ocramius/doctrine-orm-zf2-tutorial&quot; target=&quot;_blank&quot;&gt;
-                        https://github.com/Ocramius/doctrine-orm-zf2-tutorial
-                    &lt;/a&gt;
+                &lt;h2&gt;What is Continuous Integration?&lt;/h2&gt;
+                &lt;p class=&quot;quote&quot;&gt;
+                    &quot;Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible.&quot; --Martin Fowler
                 &lt;/p&gt;
             &lt;/section&gt;
-
             &lt;section&gt;
-                &lt;h2&gt;Thanks for watching!&lt;/h2&gt;
+                &lt;h2&gt;Testing&lt;/h2&gt;
+            &lt;/section&gt;
+            &lt;section&gt;
+                &lt;h2&gt;Available Tools&lt;/h2&gt;
+                &lt;p class=&quot;fragment&quot;&gt;
+                    Travis
+                &lt;/p&gt;
+                &lt;p class=&quot;fragment&quot;&gt;
+                    Bamboo
+                &lt;/p&gt;
+                &lt;p class=&quot;fragment&quot;&gt;
+                    Jenkins
+                &lt;/p&gt;
+                &lt;p class=&quot;fragment&quot;&gt;
+                    many more...
+                &lt;/p&gt;
+            &lt;/section&gt;
+             &lt;section&gt;
+                &lt;h2&gt;Requirements for successfull CI&lt;/h2&gt;
+                &lt;p&gt;100% Code Coverage&lt;/p&gt;
+                &lt;p&gt;100% Clean Code&lt;/p&gt;
+            &lt;/section&gt;
+            &lt;section&gt;
+                &lt;h2&gt;Is this guy Crazy?&lt;/h2&gt;
+                &lt;p&gt;We are developing alreay for some time, implementing Code Coverage till 100% will take us at least 6 Months!&lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/section&gt;
+        &lt;section&gt;
+            &lt;section&gt;
+                &lt;h2&gt;Continuous Deployment&lt;/h2&gt;
+            &lt;/section&gt;
+            &lt;section&gt;
+                &lt;h2&gt;What Is Continuous Deployment?&lt;/h2&gt;
+            &lt;/section&gt;
+            &lt;section&gt;
+                &lt;h2&gt;Available Tools?&lt;/h2&gt;
+                &lt;p&gt;Jenkins, Bamboo&lt;/p&gt;
             &lt;/section&gt;
 
-            &lt;/div&gt;
-
-        &lt;/div&gt;
-
-</content>
+        &lt;/section&gt;
+        &lt;section&gt;
+            &lt;section&gt;
+                &lt;h2&gt;Considerations&lt;/h2&gt;
+            &lt;/section&gt;
+        &lt;/section&gt;
+        &lt;section&gt;
+            &lt;section&gt;
+                &lt;h2&gt;Strategies&lt;/h2&gt;
+            &lt;/section&gt;
+            &lt;section&gt;
+                &lt;h2&gt;UI Upgrades&lt;/h2&gt;
+                &lt;p&gt;Enable ui upgrades only through configuration Switches&lt;/p&gt;
+            &lt;/section&gt;
+            &lt;section&gt;
+                &lt;h2&gt;Database Upgrades&lt;/h2&gt;
+                &lt;p&gt;Only do non-destructive database updates&lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/section&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</content>
  </entry>
  
  <entry>
@@ -2198,6 +1493,26 @@ class MyService  implements ServiceManagerAwareInterface, EventManagerAwareInter
     &lt;p&gt;
       To be Continued... :)
     &lt;/p&gt;
+&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Creating my own page with Jekyll and Github</title>
+   <link href="http://hounddog.github.com/blog/creating-my-page-with-jekyll.html"/>
+   <updated>2012-09-29T00:00:00+02:00</updated>
+   <id>http://hounddog.github.com/blog/creating-my-page-with-jekyll.html</id>
+   <content type="html">&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;span12 columns&quot;&gt;
+        &lt;h2&gt;Why?&lt;/h2&gt;
+        &lt;p&gt;I want to share my thoughts with the community.&lt;/p&gt;
+        &lt;p&gt;
+            I have been working as a Developer for a long time now without my own page.
+            So i decided to create one on Github and with a short discussion thx to &lt;a href=&quot;http://ocramius.github.com/blog/moving-my-blog-to-jekyll/&quot; target=&quot;_blank&quot;&gt;Marco Pivetta &lt;/a&gt;. I copied his page and quickly dived into the code and found it very simple to setup.
+        &lt;/p&gt;
+        &lt;p&gt;
+            Within just a few hours i was able to setup and modify my page. So here i am finally. Keep watching for updates.
+        &lt;/p&gt;
+    &lt;/div&gt;
 &lt;/div&gt;</content>
  </entry>
  
