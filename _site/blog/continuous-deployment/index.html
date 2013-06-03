@@ -95,9 +95,9 @@
             </section>
             <section>
                 <h2>What is Continuous Integration?</h2>
-                <p class="quote">
-                    "Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible." --Martin Fowler
-                </p>
+                <blockquote>
+                    Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible." --Martin Fowler
+                <blockquote>
             </section>
             <section>
                 <h2>Testing</h2>
@@ -129,10 +129,32 @@
         </section>
         <section>
             <section>
-                <h2>Continuous Deployment</h2>
+                <h2>What Is Continuous Deployment?</h2>
             </section>
             <section>
-                <h2>What Is Continuous Deployment?</h2>
+                <h2>Automation</h2>
+                <img src="/img/presentation_cd/automate.jpg" />
+            </section>
+            <section>
+                <h2>Reduces code inventory</h2>
+                <img src="/img/presentation_cd/warehouse2.jpg" />
+            </section>
+            <section>
+                <h2>Improves Confidence</h2>
+                <img src="/img/presentation_cd/mrt.png" />
+            </section>
+            <section>
+                <h2>Safety</h2>
+                <img src="/img/presentation_cd/safety.gif" />
+            </section>
+            <section>
+                <h2>Fast turnaround</h2>
+                <h3>Happy Customers</h3>
+                <img src="/img/presentation_cd/happy-customers.jpg" />
+            </section>
+            <section>
+                <h2>Happy Developers</h2>
+                <img src="/img/presentation_cd/happy-developer.gif" />
             </section>
             <section>
                 <h2>Available Tools?</h2>
@@ -143,6 +165,90 @@
         <section>
             <section>
                 <h2>Considerations</h2>
+            </section>
+            <section>
+                <h2>Traditional Release Cycles</h2>
+                <table cellspacing="0" class="trc">
+                    <thead>
+                        <tr>
+                            <td>Development</td>
+                            <td>
+                                Release<br> Cut
+                            </td>
+                            <td>Stage</td>
+                            <td>QA</td>
+                            <td>Fix Bugs</td>
+                            <td>Integrate Patches</td>
+                            <td>Release</td>
+                        </tr>
+                        <tr>
+                            <td><br /></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="right_arrow">
+                    <div class="dotted"></div>
+                    <div class="body"></div>
+                    <div class="arrow"></div>
+                </div>
+                <style type="text/css">
+                    .trc tbody td{
+                        border-right:4px solid red;
+                        height:80px;
+                    }
+                    .trc thead td {
+                        text-align: center;
+                        vertical-align: middle;
+                    }
+                    .trc hr {
+                        border:0;
+                        background-color: blue;
+                        height:5px;
+                        width:5px;
+                        float:left;
+                        margin:0;
+                        padding:0;
+                    }
+
+                    .right_arrow {
+                        top:-60px;
+                        position:relative;
+                        height:50px;
+                        width:100%;
+                        border:5px solid black;
+                    }
+                    .right_arrow .arrow {
+                        border-color: transparent transparent transparent blue;
+                        border-style:solid;
+                        border-width:20px 0 25px 25px;
+                        width:0; height:0;
+                        float:left;
+                    }
+                    .right_arrow .body {
+                        float: left;
+                        margin-top:18px;
+                        height: 10px;
+                        width: 655px;
+                        background-color: blue;
+                    }
+                    .right_arrow .dotted {
+                        margin-top:18px;
+                        float: left;
+                        border-bottom:10px dashed blue;
+                        width:215px;
+                    }
+                </style>
             </section>
         </section>
         <section>
@@ -158,6 +264,7 @@
                 <p>Only do non-destructive database updates</p>
             </section>
         </section>
+        <section>Questions?</section>
     </div>
 </div>
         <script src="/js/reveal.js/lib/js/head.min.js"></script>
