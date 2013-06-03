@@ -3,7 +3,7 @@
     <title>Martin Shwalbe - Hounddog</title>
     <link href="http://hounddog.github.com/atom.xml" rel="self"/>
     <link href="http://hounddog.github.com/"/>
-    <updated>2013-06-03T15:54:30+02:00</updated>
+    <updated>2013-06-03T17:14:49+02:00</updated>
     <id>http://hounddog.github.com</id>
     <author>
         <name>Martin Shwalbe</name>
@@ -51,7 +51,7 @@
             &lt;section&gt;
                 &lt;h2&gt;What is Continuous Integration?&lt;/h2&gt;
                 &lt;blockquote&gt;
-                    Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible.&quot; --Martin Fowler
+                    &quot;Continuous Integration is a software development practice where members of a team integrate their work frequently&quot; --Martin Fowler
                 &lt;blockquote&gt;
             &lt;/section&gt;
             &lt;section&gt;
@@ -79,7 +79,7 @@
             &lt;/section&gt;
             &lt;section&gt;
                 &lt;h2&gt;Is this guy Crazy?&lt;/h2&gt;
-                &lt;p&gt;We are developing alreay for some time, implementing Code Coverage till 100% will take us at least 6 Months!&lt;/p&gt;
+                &lt;p&gt;We are developing already for some time, implementing Code Coverage till 100% will take us at least 6 Months!&lt;/p&gt;
             &lt;/section&gt;
         &lt;/section&gt;
         &lt;section&gt;
@@ -123,6 +123,8 @@
             &lt;/section&gt;
             &lt;section&gt;
                 &lt;h2&gt;Traditional Release Cycles&lt;/h2&gt;
+                &lt;h3&gt;Timeline&lt;/h3&gt;
+                &lt;h4&gt;1-4 Weeks&lt;/h4&gt;
                 &lt;table cellspacing=&quot;0&quot; class=&quot;trc&quot;&gt;
                     &lt;thead&gt;
                         &lt;tr&gt;
@@ -134,6 +136,92 @@
                             &lt;td&gt;QA&lt;/td&gt;
                             &lt;td&gt;Fix Bugs&lt;/td&gt;
                             &lt;td&gt;Integrate Patches&lt;/td&gt;
+                            &lt;td&gt;Release&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;&lt;br /&gt;&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                            &lt;td&gt;&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+                &lt;div class=&quot;right_arrow&quot;&gt;
+                    &lt;div class=&quot;dotted&quot;&gt;&lt;/div&gt;
+                    &lt;div class=&quot;body&quot;&gt;&lt;/div&gt;
+                    &lt;div class=&quot;arrow&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;style type=&quot;text/css&quot;&gt;
+                    .trc tbody td{
+                        border-right:4px solid red;
+                        height:80px;
+                    }
+                    .trc thead td {
+                        text-align: center;
+                        vertical-align: middle;
+                    }
+                    .trc hr {
+                        border:0;
+                        background-color: blue;
+                        height:5px;
+                        width:5px;
+                        float:left;
+                        margin:0;
+                        padding:0;
+                    }
+
+                    .right_arrow {
+                        top:-60px;
+                        position:relative;
+                        height:50px;
+                        width:100%;
+                        border:5px solid black;
+                    }
+                    .right_arrow .arrow {
+                        border-color: transparent transparent transparent blue;
+                        border-style:solid;
+                        border-width:20px 0 25px 25px;
+                        width:0; height:0;
+                        float:left;
+                    }
+                    .right_arrow .body {
+                        float: left;
+                        margin-top:18px;
+                        height: 10px;
+                        width: 655px;
+                        background-color: blue;
+                    }
+                    .right_arrow .dotted {
+                        margin-top:18px;
+                        float: left;
+                        border-bottom:10px dashed blue;
+                        width:215px;
+                    }
+                &lt;/style&gt;
+            &lt;/section&gt;
+            &lt;section&gt;
+                &lt;h2&gt;Continuous Deployment Release Cycles&lt;/h2&gt;
+                &lt;h3&gt;Timeline&lt;/h3&gt;
+                &lt;h4&gt;5-10 minutes&lt;/h4&gt;
+                &lt;table cellspacing=&quot;0&quot; class=&quot;trc&quot;&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Development&lt;/td&gt;
+                            &lt;td style=&quot;text-decoration:line-through&quot;&gt;
+                                Release&lt;br&gt; Cut
+                            &lt;/td&gt;
+                            &lt;td style=&quot;text-decoration:line-through&quot;&gt;Stage&lt;/td&gt;
+                            &lt;td&gt;Automated QA testing and staging&lt;/td&gt;
+                            &lt;td style=&quot;text-decoration:line-through&quot;&gt;Fix Bugs&lt;/td&gt;
+                            &lt;td style=&quot;text-decoration:line-through&quot;&gt;Integrate Patches&lt;/td&gt;
                             &lt;td&gt;Release&lt;/td&gt;
                         &lt;/tr&gt;
                         &lt;tr&gt;
