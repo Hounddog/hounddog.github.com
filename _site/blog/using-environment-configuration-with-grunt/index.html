@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Using Environment configuration with Yeoman Angular Generator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="How to use environment variables with yeoman angular"/>
+        <meta name="author" content="Martin Shwalbe"/>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css" rel="stylesheet"/>
+        <link href="/js/google-code-prettify/sunburst.css" type="text/css" rel="stylesheet" />
+        <link href="/css/style.css" rel="stylesheet"/>
+	   <link href="/css/docs.css" rel="stylesheet"/>
+    </head>
+    <body data-spy="scroll" data-target=".subnav" data-offset="50">
+        <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a style="float:right;margin:5px 15px;" href="/feed/feed.rss" title="RSS Feed"><img src="/img/feed-icon-28x28.png" alt="RSS Feed"/></a>
+
+            <a class="brand" href="http://hounddog.github.com">Martin Shwalbe</a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="">
+                        <a href="http://hounddog.github.com">Home</a>
+                    </li>
+                    <li class="divider-vertical"></li>
+                    <li class="">
+                        <a href="http://github.com/hounddog" target="_blank">GitHub</a>
+                    </li>
+                    <li class="divider-vertical"></li>
+                    <li class="">
+                        <a href="http://linkedin.com/in/mshwalbe" title="Go to Martin Shwalbe's LinkedIn profile" target="_blank">LinkedIn</a>
+                    </li>
+                    <li class="divider-vertical"></li>
+                    <li class="">
+                        <a href="http://www.twitter.com/mshwalbe" title="Martin Shwalbe's Twitter profile" target="_blank">Twitter</a>
+                    </li>
+                    <li class="divider-vertical"></li>
+                    <li class="">
+                        <a href="/resume" title="Martin Shwalbe's Resume">Resume</a>
+                    </li>
+                    <li class="divider-vertical"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="marketing">
+                <div class="content">
+    <div class="row">
+
+    <div class="span3 column">
+        <h4>
+            <strong>
+                March  2, 2014
+                <small>
+                    .  .
+                    <a href="http://hounddog.github.com/blog/using-environment-configuration-with-grunt#disqus_thread" data-disqus-identifier="/blog/using-environment-configuration-with-grunt">Comments</a>
+                </small>
+            </strong>
+            <br/>
+            <small>
+                Tags:
+                
+            </small>
+        </h4>
+    </div>
+    <div class="span9 column">
+        <p class="pull-right">
+            
+            <a href="/blog/continuous-deployment" title="Previous Post: Continuous Deployment">
+                <i class="icon-chevron-left"></i>
+            </a>
+            
+            
+        </p>
+        <p>
+            <a class="btn btn-mini btn-warning" href="https://github.com/Hounddog/hounddog.github.com/issues/new" target="_blank">
+                Report an issue
+            </a>
+            <a class="btn btn-mini btn-success" href="https://github.com/Hounddog/hounddog.github.com/fork_select" target="_blank">
+                Fork and help me
+            </a>
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="span12 column">
+            <hr/>
+        </div>
+    </div>
+
+    <h1>Using Environment configuration with Yeoman Angular Generator</h1>
+
+    <div class="row">
+        <div class="span12 column">
+            <hr/>
+        </div>
+    </div>
+
+</div>
+
+    <div class="row well">
+    <iframe
+        src="http://ghbtns.com/github-btn.html?user=Hounddog&type=follow&count=true"
+        allowtransparency="true"
+        frameborder="0"
+        scrolling="0"
+        width="160px"
+        height="20px"
+    ></iframe>
+    <iframe
+        src="http://ghbtns.com/github-btn.html?user=Hounddog&repo=hounddog.github.com&type=watch&count=true"
+        allowtransparency="true"
+        frameborder="0"
+        scrolling="0"
+        width="105px"
+        height="20px"
+    ></iframe>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="mshwalbe">Tweet</a>
+    <a href="https://twitter.com/mshwalbe" class="twitter-follow-button btn btn-mini" data-show-count="false">
+        Follow @mshwalbe
+    </a>
+    <g:plusone size="medium"></g:plusone>
+</div>
+    <div class="row">
+    I am using <a href="https://github.com/yeoman/generator-angular">generator-angular</a> and needed to inject environment variables.
+    As it turns out it was really simple using <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant</a>
+    <br>
+    To install ng-constant
+<pre>
+npm install grunt-ng-constant --save-dev
+</pre>
+
+We need to then add ngconstant to our Grunfile in the init section
+<pre class="prettyprint linenums lang-prepro">
+// Define the configuration for all the tasks
+grunt.initConfig({
+    //...
+
+    ngconstant: {
+      options: {
+        space: '  '
+      },
+      // Environment targets
+      development: [{
+        dest: '.tmp/scripts/config.js',
+        wrap: '"use strict";\n\n <%= __ngModule %>',
+        name: 'config',
+        constants: {
+          ENV: {
+            name: 'development',
+            foo: 'We are in development!'
+          }
+        }
+      }],
+      production: [{
+        dest: '.tmp/scripts/config.js',
+        wrap: '"use strict";\n\n <%= __ngModule %>',
+        name: 'config',
+        constants: {
+          ENV: 'production',
+          foo: 'We are in production!'
+        }
+      }]
+    },
+</pre>
+
+Make sure that you have the destination in production and development set to .tmp. I was facing problems that the config files where not generated properly.
+<br />
+For development look for this section and add the ngconstant:development
+<pre class="prettyprint linenums lang-prepro">
+    grunt.task.run([
+      'clean:server',
+      'ngconstant:development',//add this
+      'bower-install',
+      'concurrent:server',
+      'autoprefixer',
+      'connect:livereload',
+      'watch'
+    ]);
+</pre>
+And for build add ngconstant:production
+<pre class="prettyprint linenums lang-prepro">
+  grunt.registerTask('build', [
+    'clean:dist',
+    'ngconstant:production',//add this
+    'bower-install',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin',
+    'htmlmin'
+  ]);
+</pre>
+
+In our index html we need to include the config file
+<pre class="prettyprint linenums lang-prepro">
+&lt;!--build:js({.tmp,app}) scripts/scripts.js --&gt;
+&lt;script src=&quot;/scripts/app.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/scripts/config.js&quot;&gt;&lt;/script&gt;
+&lt;!-- endbuild --&gt;
+</pre>
+
+If you now run grunt serve or grunt build this will generate following module
+
+<pre class="prettyprint linenums lang-prepro">
+"use strict";
+
+ angular.module("config", [])
+
+.constant("ENV", "production")
+
+.constant("apiEndpoint", "http://api.memoflo.com")
+
+;
+</pre>
+
+Inject the module into your app
+<pre class="prettyprint linenums lang-prepro">
+angular.module('myApp', [
+  'config'
+])
+</pre>
+
+Now whenever you require you can inject ENV as a dependency and use 
+<pre class="prettyprint linenums lang-prepro">
+angular.module('myApp')
+  .controller('Ctrl', function (ENV) {
+  alert(ENV.foo);
+});
+</pre>
+
+Happy coding!
+</div>
+</div>
+
+<div class="row">
+    <div class="span3 columns">&nbsp;</div>
+    <div class="span9 column">
+        <p class="pull-right">
+            
+            <a href="/blog/continuous-deployment" title="Previous Post: Continuous Deployment">
+                <i class="icon-chevron-left"></i>
+            </a>
+            
+            
+        </p>
+    </div>
+</div>
+
+<hr/>
+<div class="row well">
+    <iframe
+        src="http://ghbtns.com/github-btn.html?user=Hounddog&type=follow&count=true"
+        allowtransparency="true"
+        frameborder="0"
+        scrolling="0"
+        width="160px"
+        height="20px"
+    ></iframe>
+    <iframe
+        src="http://ghbtns.com/github-btn.html?user=Hounddog&repo=hounddog.github.com&type=watch&count=true"
+        allowtransparency="true"
+        frameborder="0"
+        scrolling="0"
+        width="105px"
+        height="20px"
+    ></iframe>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="mshwalbe">Tweet</a>
+    <a href="https://twitter.com/mshwalbe" class="twitter-follow-button btn btn-mini" data-show-count="false">
+        Follow @mshwalbe
+    </a>
+    <g:plusone size="medium"></g:plusone>
+</div>
+
+<div class="row">
+    <div class="span12 columns">
+        <h2>Comments</h2>
+        <p>Please feel free to leave any comments as long as they're related to the topic.</p>
+        <div id="disqus_thread"></div>
+    </div>
+</div>
+            </div>
+
+            <footer class="footer">
+	<p style="text-align:center">Using Environment configuration with Yeoman Angular Generator updated on March  4, 2014</p>
+</footer>
+
+        </div>
+
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap.min.js"></script>
+<script src="/js/google-code-prettify/prettify.js"></script>
+<script src="/js/jquery.githubwidget.min.js"></script>
+<script src="/js/custom.js"></script>
+<script>$(prettyPrint);</script>
+<script>
+    var disqus_shortname = 'hounddog-dev';
+    var disqus_identifier = '/blog/using-environment-configuration-with-grunt';
+    var disqus_url = 'http://hounddog.github.com//blog/using-environment-configuration-with-grunt';
+</script>
+<script src="http://hounddog-dev.disqus.com/count.js"></script>
+<script src="http://hounddog-dev.disqus.com/embed.js"></script>
+<script src="http://platform.twitter.com/widgets.js"></script>
+<script src="https://apis.google.com/js/plusone.js"></script>
+<script src="/js/analytics.js"></script>
+    </body>
+</html>

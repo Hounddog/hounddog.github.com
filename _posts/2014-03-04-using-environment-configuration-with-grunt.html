@@ -1,0 +1,126 @@
+---
+layout: post
+title: Using Environment configuration with Yeoman Angular Generator
+categories: Continuous Deployment Jenkins Phing blog
+date: 2014-03-02
+published: true
+summary: How to use environment variables with yeoman angular
+---
+
+<div class="row">
+    I am using <a href="https://github.com/yeoman/generator-angular">generator-angular</a> and needed to inject environment variables.
+    As it turns out it was really simple using <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant</a>
+    <br>
+    To install ng-constant
+<pre>
+npm install grunt-ng-constant --save-dev
+</pre>
+
+We need to then add ngconstant to our Grunfile in the init section
+<pre class="prettyprint linenums lang-prepro">
+// Define the configuration for all the tasks
+grunt.initConfig({
+    //...
+
+    ngconstant: {
+      options: {
+        space: '  '
+      },
+      // Environment targets
+      development: [{
+        dest: '.tmp/scripts/config.js',
+        wrap: '"use strict";\n\n <%= __ngModule %>',
+        name: 'config',
+        constants: {
+          ENV: {
+            name: 'development',
+            foo: 'We are in development!'
+          }
+        }
+      }],
+      production: [{
+        dest: '.tmp/scripts/config.js',
+        wrap: '"use strict";\n\n <%= __ngModule %>',
+        name: 'config',
+        constants: {
+          ENV: 'production',
+          foo: 'We are in production!'
+        }
+      }]
+    },
+</pre>
+
+Make sure that you have the destination in production and development set to .tmp. I was facing problems that the config files where not generated properly.
+<br />
+For development look for this section and add the ngconstant:development
+<pre class="prettyprint linenums lang-prepro">
+    grunt.task.run([
+      'clean:server',
+      'ngconstant:development',//add this
+      'bower-install',
+      'concurrent:server',
+      'autoprefixer',
+      'connect:livereload',
+      'watch'
+    ]);
+</pre>
+And for build add ngconstant:production
+<pre class="prettyprint linenums lang-prepro">
+  grunt.registerTask('build', [
+    'clean:dist',
+    'ngconstant:production',//add this
+    'bower-install',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin',
+    'htmlmin'
+  ]);
+</pre>
+
+In our index html we need to include the config file
+<pre class="prettyprint linenums lang-prepro">
+&lt;!--build:js({.tmp,app}) scripts/scripts.js --&gt;
+&lt;script src=&quot;/scripts/app.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/scripts/config.js&quot;&gt;&lt;/script&gt;
+&lt;!-- endbuild --&gt;
+</pre>
+
+If you now run grunt serve or grunt build this will generate following module
+
+<pre class="prettyprint linenums lang-prepro">
+"use strict";
+
+ angular.module("config", [])
+
+.constant("ENV", "production")
+
+.constant("apiEndpoint", "http://api.memoflo.com")
+
+;
+</pre>
+
+Inject the module into your app
+<pre class="prettyprint linenums lang-prepro">
+angular.module('myApp', [
+  'config'
+])
+</pre>
+
+Now whenever you require you can inject ENV as a dependency and use 
+<pre class="prettyprint linenums lang-prepro">
+angular.module('myApp')
+  .controller('Ctrl', function (ENV) {
+  alert(ENV.foo);
+});
+</pre>
+
+Happy coding!
+</div>

@@ -1,0 +1,38 @@
+.resume h2 {
+    border-bottom: 1px dotted #CCCCCC;
+    line-height: 49px;
+    margin: 20px 0 10px;
+    padding: 0;
+}
+
+.resume h3{
+    margin: 20px 0 20px 0;
+}
+
+.resume ul li {
+    margin-left:20px;
+    background-image: url("../img/glyphicons-halflings.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: -456px -72px;
+    padding-left:16px;
+}
+
+.resume ul li.sub{
+    background:none;
+}
+
+.resume code {
+    color: #000;
+    float:right
+}
+
+.resume {
+    width:900px;
+    margin:auto;
+}
+
+.resume img {
+    position:relative;
+    top:-2px;
+}

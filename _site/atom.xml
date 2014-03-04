@@ -3,11 +3,135 @@
     <title>Martin Shwalbe - Hounddog</title>
     <link href="http://hounddog.github.com/atom.xml" rel="self"/>
     <link href="http://hounddog.github.com/"/>
-    <updated>2013-06-03T17:14:49+02:00</updated>
+    <updated>2014-03-04T18:59:47+01:00</updated>
     <id>http://hounddog.github.com</id>
     <author>
         <name>Martin Shwalbe</name>
     </author>
+    
+    <entry>
+        <title>Using Environment configuration with Yeoman Angular Generator</title>
+        <link href="http://hounddog.github.com/blog/using-environment-configuration-with-grunt"/>
+        <updated>2014-03-02T00:00:00+01:00</updated>
+        <id>http://hounddog.github.com/blog/using-environment-configuration-with-grunt</id>
+        <content type="html">&lt;div class=&quot;row&quot;&gt;
+    I am using &lt;a href=&quot;https://github.com/yeoman/generator-angular&quot;&gt;generator-angular&lt;/a&gt; and needed to inject environment variables.
+    As it turns out it was really simple using &lt;a href=&quot;https://github.com/werk85/grunt-ng-constant&quot;&gt;grunt-ng-constant&lt;/a&gt;
+    &lt;br&gt;
+    To install ng-constant
+&lt;pre&gt;
+npm install grunt-ng-constant --save-dev
+&lt;/pre&gt;
+
+We need to then add ngconstant to our Grunfile in the init section
+&lt;pre class=&quot;prettyprint linenums lang-prepro&quot;&gt;
+// Define the configuration for all the tasks
+grunt.initConfig({
+    //...
+
+    ngconstant: {
+      options: {
+        space: '  '
+      },
+      // Environment targets
+      development: [{
+        dest: '.tmp/scripts/config.js',
+        wrap: '&quot;use strict&quot;;\n\n &lt;%= __ngModule %&gt;',
+        name: 'config',
+        constants: {
+          ENV: {
+            name: 'development',
+            foo: 'We are in development!'
+          }
+        }
+      }],
+      production: [{
+        dest: '.tmp/scripts/config.js',
+        wrap: '&quot;use strict&quot;;\n\n &lt;%= __ngModule %&gt;',
+        name: 'config',
+        constants: {
+          ENV: 'production',
+          foo: 'We are in production!'
+        }
+      }]
+    },
+&lt;/pre&gt;
+
+Make sure that you have the destination in production and development set to .tmp. I was facing problems that the config files where not generated properly.
+&lt;br /&gt;
+For development look for this section and add the ngconstant:development
+&lt;pre class=&quot;prettyprint linenums lang-prepro&quot;&gt;
+    grunt.task.run([
+      'clean:server',
+      'ngconstant:development',//add this
+      'bower-install',
+      'concurrent:server',
+      'autoprefixer',
+      'connect:livereload',
+      'watch'
+    ]);
+&lt;/pre&gt;
+And for build add ngconstant:production
+&lt;pre class=&quot;prettyprint linenums lang-prepro&quot;&gt;
+  grunt.registerTask('build', [
+    'clean:dist',
+    'ngconstant:production',//add this
+    'bower-install',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin',
+    'htmlmin'
+  ]);
+&lt;/pre&gt;
+
+In our index html we need to include the config file
+&lt;pre class=&quot;prettyprint linenums lang-prepro&quot;&gt;
+&amp;lt;!--build:js({.tmp,app}) scripts/scripts.js --&amp;gt;
+&amp;lt;script src=&amp;quot;/scripts/app.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;/scripts/config.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;!-- endbuild --&amp;gt;
+&lt;/pre&gt;
+
+If you now run grunt serve or grunt build this will generate following module
+
+&lt;pre class=&quot;prettyprint linenums lang-prepro&quot;&gt;
+&quot;use strict&quot;;
+
+ angular.module(&quot;config&quot;, [])
+
+.constant(&quot;ENV&quot;, &quot;production&quot;)
+
+.constant(&quot;apiEndpoint&quot;, &quot;http://api.memoflo.com&quot;)
+
+;
+&lt;/pre&gt;
+
+Inject the module into your app
+&lt;pre class=&quot;prettyprint linenums lang-prepro&quot;&gt;
+angular.module('myApp', [
+  'config'
+])
+&lt;/pre&gt;
+
+Now whenever you require you can inject ENV as a dependency and use 
+&lt;pre class=&quot;prettyprint linenums lang-prepro&quot;&gt;
+angular.module('myApp')
+  .controller('Ctrl', function (ENV) {
+  alert(ENV.foo);
+});
+&lt;/pre&gt;
+
+Happy coding!
+&lt;/div&gt;</content>
+    </entry>
     
     <entry>
         <title>Continuous Deployment</title>
@@ -1685,26 +1809,6 @@ class MyService  implements ServiceManagerAwareInterface, EventManagerAwareInter
     &lt;p&gt;
       To be Continued... :)
     &lt;/p&gt;
-&lt;/div&gt;</content>
-    </entry>
-    
-    <entry>
-        <title>Creating my own page with Jekyll and Github</title>
-        <link href="http://hounddog.github.com/blog/creating-my-page-with-jekyll.html"/>
-        <updated>2012-09-29T00:00:00+02:00</updated>
-        <id>http://hounddog.github.com/blog/creating-my-page-with-jekyll.html</id>
-        <content type="html">&lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;span12 columns&quot;&gt;
-        &lt;h2&gt;Why?&lt;/h2&gt;
-        &lt;p&gt;I want to share my thoughts with the community.&lt;/p&gt;
-        &lt;p&gt;
-            I have been working as a Developer for a long time now without my own page.
-            So i decided to create one on Github and with a short discussion thx to &lt;a href=&quot;http://ocramius.github.com/blog/moving-my-blog-to-jekyll/&quot; target=&quot;_blank&quot;&gt;Marco Pivetta &lt;/a&gt;. I copied his page and quickly dived into the code and found it very simple to setup.
-        &lt;/p&gt;
-        &lt;p&gt;
-            Within just a few hours i was able to setup and modify my page. So here i am finally. Keep watching for updates.
-        &lt;/p&gt;
-    &lt;/div&gt;
 &lt;/div&gt;</content>
     </entry>
     
