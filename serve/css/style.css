@@ -1,0 +1,11 @@
+body {
+  padding-top: 90px;
+  font-size: 1em;
+  line-height:1.3em;
+  -webkit-font-smoothing: antialiased;
+}
+
+pre {
+    font-size: 1em;
+    line-height:1.1em;
+}

@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Martin Shwalbe - Hounddog</title>
+    <link href="http://hounddog.github.com/atom.xml" rel="self"/>
+    <link href="http://hounddog.github.com/"/>
+    <updated>2012-11-06T19:17:44+01:00</updated>
+    <id>http://hounddog.github.com</id>
+    <author>
+        <name>Martin Shwalbe</name>
+    </author>
+    
+    <entry>
+        <title>Using Traits with Zend Framework 2</title>
+        <link href="http://hounddog.github.com/blog/using-traits-in-zend-framework-2"/>
+        <updated>2012-11-06T00:00:00+01:00</updated>
+        <id>http://hounddog.github.com/blog/using-traits-in-zend-framework-2</id>
+        <content type="html">&lt;div class=&quot;row&quot;&gt;
+  &lt;p&gt;
+    Today i want to show you the usefullness of Traits within ZF 2.
+    Some of you like me are maybe wondering when you want to have the Servicemanager injected you allways have to create something like this.
+  &lt;p&gt;
+    &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
+      &lt;?php
+
+        namespace Application\Service;
+
+        use Zend\ServiceManager\ServiceManagerAwareInterface;
+        use Zend\ServiceManager\ServiceManager;
+
+        class MyService  implements ServiceManagerAwareInterface
+        {
+            /**
+             * @var ServiceManager
+             */
+            protected $serviceManager;
+
+            //implement some code here
+
+            /**
+             * Retrieve service manager instance
+             *
+             * @return ServiceManager
+             */
+            public function getServiceManager()
+            {
+                return $this-&gt;serviceManager;
+            }
+
+            /**
+             * Set service manager instance
+             *
+             * @param ServiceManager $locator
+             * @return User
+             */
+            public function setServiceManager(ServiceManager $serviceManager)
+            {
+                $this-&gt;serviceManager = $serviceManager;
+                return $this;
+            }
+        }
+
+    &lt;/pre&gt;
+    &lt;p&gt;
+      This you will propably be doing for many Services. The result... the code becomes bloated. We are not following DRY principles. Instead we are copying and pasting this all over the place. If the structure changes sometime in the future we have to also replace this everywhere.
+      &lt;/p&gt;
+      &lt;p&gt; You are in luck! if you are working on php version 5.4 you now can use traits. I will not go into detail on what traits are as there are a good bunch of tutorials out there explaining these and the php manual is also quite extensive.
+      &lt;/p&gt;
+      &lt;p&gt;
+        I just want to show you a short example here on how you can actually benefit from them.
+      &lt;/p&gt;
+        Let's get started creating a trait for ServiceManager. I assume here that you have installed the ZendSkeletonApplication.
+      &lt;p&gt;
+
+      &lt;pre&gt;
+      &lt;?php
+
+      namespace Application\Traits;
+
+      use Zend\ServiceManager\ServiceManager;
+
+      trait TraitServiceManager
+      {
+        /**
+         * @var ServiceManager
+         */
+        protected $serviceManager;
+
+        /**
+         * Retrieve service manager instance
+         *
+         * @return ServiceManager
+         */
+        public function getServiceManager()
+        {
+            return $this-&gt;serviceManager;
+        }
+
+        /**
+         * Set service manager instance
+         *
+         * @param ServiceManager $locator
+         * @return User
+         */
+        public function setServiceManager(ServiceManager $serviceManager)
+        {
+            $this-&gt;serviceManager = $serviceManager;
+            return $this;
+        }
+      }
+      &lt;/pre&gt;
+
+      &lt;p&gt;
+        To use this now we go back to our Service and change it to following
+      &lt;/p&gt;
+
+      &lt;pre&gt;
+      &lt;?php
+
+        namespace Application\Service;
+
+        use Zend\ServiceManager\ServiceManagerAwareInterface;
+        use Application\Traits\TraitServiceManager;
+
+        class MyService  implements ServiceManagerAwareInterface
+        {
+            use TraitServiceManager;
+
+            // implement code here....
+        }
+
+    &lt;/pre&gt;
+    &lt;p&gt;
+      And voila, we are now using all the methods from TraitServiceManager within our own service!
+      The  same could already be done using the EntityManager
+    &lt;/p&gt;
+
+    &lt;pre&gt;
+      &lt;?php
+
+      namespace Application\Traits;
+
+      use Zend\EventManager\EventManagerInterface;
+      use Zend\EventManager\EventManager;
+
+      trait TraitEventManager
+      {
+        /**
+         * @var EventManagerInterface
+         */
+        protected $events;
+
+        /**
+         * Set Event Manager
+         *
+         * @param  EventManagerInterface $events
+         * @return HybridAuth
+         */
+        public function setEventManager(EventManagerInterface $events)
+        {
+            $events-&gt;setIdentifiers(array(
+                __CLASS__,
+                get_called_class(),
+            ));
+            $this-&gt;events = $events;
+            return $this;
+        }
+
+        /**
+         * Get Event Manager
+         *
+         * Lazy-loads an EventManager instance if none registered.
+         *
+         * @return EventManagerInterface
+         */
+        public function getEventManager()
+        {
+            if (null === $this-&gt;events) {
+                $this-&gt;setEventManager(new EventManager());
+            }
+            return $this-&gt;events;
+        }
+      }
+    &lt;/pre&gt;
+      &lt;p&gt;And add it to our Service.&lt;/p&gt;
+    &lt;pre&gt;
+      &lt;?php
+
+        namespace Application\Service;
+
+        use Zend\EventManager\EventManagerAwareInterface;
+        use Zend\ServiceManager\ServiceManagerAwareInterface;
+        use Application\Traits\TraitServiceManager;
+
+        class MyService  implements ServiceManagerAwareInterface, EventManagerAwareInterface
+        {
+            use TraitServiceManager;
+            use TraitEventManager;
+
+            // implement code here....
+        }
+
+    &lt;/pre&gt;
+    &lt;p&gt;There are many other usefull things for using Traits i can think of like DbMapper implementing a pagination etc etc etc. I hope you enjoyed this little excursion on How traits can be usefull in your daily development.
+    &lt;/p&gt;
+</content>
+    </entry>
+    
+    <entry>
+        <title>Zend Framework 1.x + Doctrine Migrations 2.x - How to</title>
+        <link href="http://hounddog.github.com/blog/zend-framework-1.x-doctrine-migrations-2.x-how-to"/>
+        <updated>2012-10-05T00:00:00+02:00</updated>
+        <id>http://hounddog.github.com/blog/zend-framework-1.x-doctrine-migrations-2.x-how-to</id>
+        <content type="html">&lt;div class=&quot;row&quot;&gt;
+  &lt;p&gt;
+    Hello everybody!
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    PEM (on irc freenode #dojo) and me have worked hard to make something useful to you! 
+  &lt;/p&gt;
+  &lt;p&gt;
+    I'm pretty sure some of you already encountered that situation when you feel like poping your eyes out because of incomplete documentations, or lack of help/support... 
+    If you are reading this, you most likely were about to throw away your computer in anger... Fear not! We will try to save your day :)
+  &lt;p&gt;
+  &lt;p&gt;Just follow the steps :&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;
+      You can have a look at my repository on github : &lt;a href=&quot;https://github.com/PEM-FR/Doctrine2-ZendFramework1-Migrations-Setup&quot; title=&quot;Doctrine Migration Scripts&quot; target=&quot;_blank&quot;&gt;Doctrine Migration Scripts for Zend Framework support&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      You have now two choices : 
+      &lt;ul&gt;
+        &lt;li&gt;
+          Integrates Migrations into your already existing Doctrine folder, in this path : Doctrine/DBAL/Migrations.
+        &lt;/li&gt;
+        &lt;li&gt;
+          Use Migrations as Standalone (in that case jump to step xxx).
+        &lt;/li&gt;
+      &lt;/ul
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;h3&gt;USING MIGRATIONS INSIDE DOCTRINE FOLDER&lt;/h3&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;
+      So now basically you should have something like this :
+      &lt;ul&gt;
+       &lt;li&gt;Doctrine/DBAl/Migrations&lt;/li&gt;
+       &lt;li&gt;Doctrine/DBAl/Migrations/Configuration&lt;/li&gt;
+       &lt;li&gt;Doctrine/DBAl/Migrations/Tools&lt;/li&gt;
+       &lt;li&gt;Doctrine/DBAl/Migrations/Tools/Console&lt;/li&gt;
+       &lt;li&gt;Doctrine/DBAl/Migrations/Tools/Console/Command&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;In the *scripts* directory you should have a file called ZendConfiguration.php (if not something went wrong go back to step 1)&lt;/li&gt;
+    &lt;li&gt;If you have zend framework installed and running, with doctrine, you might want to create a file called doctrine.php (or whatever you like if you know already what we are talking about, or you could use the one provided in the scripts folder).&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;doctrine.php should look like that (DO NOT FORGET TO EDIT THE FILE AND CHANGE THE PATHS)&lt;/p&gt;
+  &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
+  // Display errors ?
+  //ini_set('display_errors', 1);
+  //error_reporting(E_ALL | E_STRICT);
+
+  // Define path to application directory
+  // DO NOT FORGET TO EDIT
+  defined('APPLICATION_PATH')
+      || define('APPLICATION_PATH','/path/to/your/application');
+
+  // Define application environment
+  defined('APPLICATION_ENV')
+      || define(
+          'APPLICATION_ENV',
+          (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'development')
+      );
+
+  // Ensure library/ is on include_path
+  // DO NOT FORGET TO EDIT
+  set_include_path(
+      '/path/to/where/your/zend/library/is' . PATH_SEPARATOR .
+      '/path/to/Doctrine' . PATH_SEPARATOR .
+      get_include_path()
+  );
+
+  // Requiring a batch of Classes we will need for namespacing
+  use Doctrine\Common\ClassLoader,
+      Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper,
+      Doctrine\ORM\Version,
+      Doctrine\ORM\Tools\Console\ConsoleRunner,
+      Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper,
+      Symfony\Component\Console\Helper\HelperSet,
+      Symfony\Component\Console\Helper\DialogHelper,
+      Symfony\Component\Console\Application;
+
+  // namespacing migrations commands we will be needing later
+  use Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand,
+      Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand,
+      Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand,
+      Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand,
+      Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand,
+      Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand;
+
+  // We need the Doctrine ClassLoader to manage autoloading
+  require_once 'Doctrine/Common/ClassLoader.php';
+
+  // Load Doctrine
+  $classLoader = new ClassLoader('Doctrine');
+  $classLoader-&gt;register();
+
+  // Load Symfony tools
+  $classLoader = new ClassLoader('Symfony', 'Doctrine');
+  $classLoader-&gt;register();
+
+  // Load Migration
+  $classLoader = new ClassLoader('Migrations', 'Doctrine/DBAL/');
+  $classLoader-&gt;register();
+
+  // Zend_Application
+  require_once 'Zend/Application.php';
+
+  // Create application
+  // DO NOT FORGET TO EDIT
+  $application = new Zend_Application(
+      APPLICATION_ENV, '/path/to/application.ini'
+  );
+
+  // Bootstrap
+  $application-&gt;bootstrap();
+
+  // loading doctrine resource, sometimes called entityManager
+  // DO NOT FORGET TO EDIT, set the resource to your entityManager
+  $em = $application-&gt;getBootstrap()-&gt;getResource('db');
+
+  // Load doctrine helpers
+  $helperSet = new HelperSet(array(
+      'db'     =&gt; new ConnectionHelper($em-&gt;getConnection()),
+      'em'     =&gt; new EntityManagerHelper($em),
+      'dialog' =&gt; new DialogHelper()
+  ));
+
+  $cli = new Application('Doctrine Command Line Interface', Version::VERSION);
+  $cli-&gt;setCatchExceptions(true);
+  $cli-&gt;setHelperSet($helperSet);
+
+  // We are settign the commands to bypass the configuration process and
+  // directly use our ZendConfiguration
+  // Just make sure to load from where the file actually is
+  require_once('ZendConfiguration.php');
+  $connexion = $em-&gt;getConnection();
+  $zendConfig = new ZendConfiguration($connexion);
+
+  // injecting configurations necessary to our ZendConfiguration
+  // Pass the Application.ini Parameters to our Configuration
+  $applicationConfig = new Zend_Config(
+      $application-&gt;getBootstrap()-&gt;getOptions(), true
+  );
+  // DO NOT FORGET TO EDIT, if needed
+  $zendConfig-&gt;setConfig($applicationConfig-&gt;resources-&gt;db-&gt;migration);
+  // Here we just need to put some string because the parameter is not optional
+  // though will not need it. Just need to call the function
+  $zendConfig-&gt;load('zend');
+
+  // Setting up Migrations Commands
+  $diffCmd = new DiffCommand();
+  $diffCmd-&gt;setMigrationConfiguration($zendConfig);
+
+  $executeCmd = new ExecuteCommand();
+  $executeCmd-&gt;setMigrationConfiguration($zendConfig);
+
+  $generateCmd = new GenerateCommand();
+  $generateCmd-&gt;setMigrationConfiguration($zendConfig);
+
+  $migrateCmd = new MigrateCommand();
+  $migrateCmd-&gt;setMigrationConfiguration($zendConfig);
+
+  $statusCmd = new StatusCommand();
+  $statusCmd-&gt;setMigrationConfiguration($zendConfig);
+
+  $versionCmd = new VersionCommand();
+  $versionCmd-&gt;setMigrationConfiguration($zendConfig);
+
+
+  // Register migration Commands
+  $cli-&gt;addCommands(array(
+      $diffCmd, $executeCmd, $generateCmd, $migrateCmd, $statusCmd, $versionCmd
+  ));
+
+  // Register All Doctrine Commands
+  ConsoleRunner::addCommands($cli);
+
+  // Runs console application
+  $cli-&gt;run();
+  &lt;/pre&gt;
+  &lt;p&gt;for some more information you might want to check this article : &lt;a href=&quot;http://victimofbabylon.com/setting-up-doctrine-2-cli-with-zend-framework&quot; title=&quot;Setting up doctrine 2 cli for zend framework&quot; target=&quot;_blank&quot;&gt;Setting up doctrine 2 cli for zend framework&lt;/a&gt;
+  &lt;p&gt;
+  &lt;p&gt;We now have to tweak your Zend Framework application.ini file. Add these few lines :&lt;/p&gt;
+  &lt;pre class=&quot;prettyprint linemus lang-prepro&quot;&gt;
+  ; ------------------------------------------------------------------------------
+  ; Doctrine Migrations Configuration
+  ; ------------------------------------------------------------------------------
+  resources.db.migration.name = &quot;YourSoft (development) Database Migrations&quot;
+  resources.db.migration.tableName = &quot;doctrine_migration_versions&quot;
+  resources.db.migration.namespace = &quot;DoctrineMigrations&quot;
+  resources.db.migration.directory = APPLICATION_PATH &quot;/path/to/migrationsClass/directory&quot;
+  ;set the following two properties if you want to do manual naming on migration classes
+  ;resources.doctrine.migration.migrations.migration1.version = &quot;20111020071337&quot;
+  ;resources.doctrine.migration.migrations.migration1.class = &quot;DoctrineMigrations\VersionNewMigration&quot;
+  &lt;/pre&gt;
+  &lt;p&gt;Now, try running from the scripts directory : &lt;/p&gt;
+  &lt;pre class=&quot;prettyprint linemus lang-sh&quot;&gt;
+  ~$ php doctrine.php list migrations
+  &lt;/pre&gt;
+  &lt;p&gt;As a result, you should see the commands available, something like that :&lt;/p&gt;
+  &lt;pre class=&quot;prettyprint linemus lang-sh&quot;&gt;
+    Doctrine Command Line Interface version 2.2.1
+
+    Usage:
+      [options] command [arguments]
+
+    Options:
+      --help           -h Display this help message.
+      --quiet          -q Do not output any message.
+      --verbose        -v Increase verbosity of messages.
+      --version        -V Display this program version.
+      --ansi              Force ANSI output.
+      --no-ansi           Disable ANSI output.
+      --no-interaction -n Do not ask any interactive question.
+
+    Available commands for the &quot;migration&quot; namespace:
+      migrations:diff       Generate a migration by comparing your...
+      migrations:execute    Execute a single migration version up or down manually.
+      migrations:generate   Generate a blank migration class.
+      migrations:migrate    Execute a migration to a specified version...
+      migrations:status     View the status of a set of migrations.
+      migrations:version    Manually add and delete migration versions...
+    &lt;/pre&gt;
+
+  &lt;p&gt;You are now supposed to cry of joy and let a Victory shout be heard by the whole company :)&lt;/p&gt;
+&lt;/div&gt;</content>
+    </entry>
+    
+    <entry>
+        <title>My Journey in Continuous Deployment</title>
+        <link href="http://hounddog.github.com/blog/continuous-deployment-1"/>
+        <updated>2012-10-05T00:00:00+02:00</updated>
+        <id>http://hounddog.github.com/blog/continuous-deployment-1</id>
+        <content type="html">&lt;div class=&quot;row&quot;&gt;
+    &lt;p&gt;
+      This will be a series of blogs about Continuous Deployment and how to get there. I will be writing about problems which I am facing and what I am experimenting with.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      The target of this is to implement a fully automated system which continuously integrates and deploys our development to production servers.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      Our main tool we use for this is &lt;a href=&quot;http://jenkins-ci.org/&quot; title=&quot;jenkins&quot;&gt;Jenkins&lt;/a&gt;. If you are not familiar with this. Please have a look. It has lot of plugins which can help you implement automated strategies.
+    &lt;/p&gt;
+
+    &lt;p&gt;So, where am I at the moment?&lt;/p&gt;
+
+    &lt;p&gt;
+      We are fairly new at using git and are currently discussing viable options on how to implement a successful strategy for git.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      Currently I have implemented the solution given &lt;a href=&quot;http://twasink.net/2011/09/20/git-feature-branches-and-jenkins-or-how-i-learned-to-stop-worrying-about-broken-builds/&quot; title=&quot;here&quot;&gt;here&lt;/a&gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      This solution is great, all the branches are tracked and tested against the master branch.
+      But... this provides us with another problem... What if we do not want every branch to be tested directly or tested against the master branch?
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      For this I am currently looking at opt-in branches by using a configuration file as described &lt;a href=&quot;http://amokti.me/2011/10/11/automatic-opt-in-branch-building-with-jenkins-and-git-2/&quot; title=&quot;here&quot;&gt;here&lt;/a&gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      What I find interesting in this approach is that I could also modify it to use different jobs within Jenkins by adding parameters in the config file.
+      More about this later as I am not sure which approach I would be finally taking.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      So, our branching as described above works and all the branches are automatically pushed to the master. Just that each developer has to wait currently for about 12 minutes to know if anything has failed or is Working as expected.
+    &lt;/p&gt;
+
+    &lt;p&gt;I like working fast and getting Results fast. &lt;/p&gt;
+
+    &lt;p&gt;
+      I have been toying around with Jenkins to make things work faster but hitting lot of Road blocks on the way.
+      As this is a pure php project we are also using phing to create the build.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      The first question arises when I look at the build.xml which is one huge build process.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      To make the build process faster I need to split this up into tasks which can be run in parallel.
+    &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Cleanup the Workspace&lt;/li&gt;
+      &lt;li&gt;Initialize the Database&lt;/li&gt;
+      &lt;li&gt;Run Unit Tests&lt;/li&gt;
+      &lt;li&gt;Run Integration Tests&lt;/li&gt;
+      &lt;li&gt;Run Statistic Analysers (PHPMD, Pdepend etc)&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;
+      I had a look at Creating Downstream jobs within Jenkins. This is an Interesting Approach but does not suit our needs currently.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      A downstream job is a job that executes after the Upstream job is completed.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      My first attempt was to have a look at the build pipeline plugin. Works great but the Master job is successful even if the Downstream job fails. So I would never really get a fully broken build through the Downstream jobs.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      I am going to check today if it is possible by using the Job Join plugin from Jenkins.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      As per the information I have gathered I can run another Job after all the Downstream jobs have Completed which would allow me to aggregate all the final Results.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      So, I will get started and let you guys know how it ended very soon!
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      To be Continued... :)
+    &lt;/p&gt;
+&lt;/div&gt;</content>
+    </entry>
+    
+    <entry>
+        <title>Creating my own page with Jekyll and Github</title>
+        <link href="http://hounddog.github.com/blog/creating-my-page-with-jekyll"/>
+        <updated>2012-09-29T00:00:00+02:00</updated>
+        <id>http://hounddog.github.com/blog/creating-my-page-with-jekyll</id>
+        <content type="html">&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;span12 columns&quot;&gt;
+        &lt;h2&gt;Why?&lt;/h2&gt;
+        &lt;p&gt;I want to share my thoughts with the community.&lt;/p&gt;
+        &lt;p&gt;
+            I have been working as a Developer for a long time now without my own page.
+            So i decided to create one on Github and with a short discussion thx to &lt;a href=&quot;http://ocramius.github.com/blog/moving-my-blog-to-jekyll/&quot; target=&quot;_blank&quot;&gt;Marco Pivetta &lt;/a&gt;. I copied his page and quickly dived into the code and found it very simple to setup.
+        &lt;/p&gt;
+        &lt;p&gt;
+            Within just a few hours i was able to setup and modify my page. So here i am finally. Keep watching for updates.
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</content>
+    </entry>
+    
+</feed>
