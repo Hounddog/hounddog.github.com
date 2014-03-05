@@ -43,8 +43,10 @@ grunt.initConfig({
         wrap: '"use strict";\n\n <%= __ngModule %>',
         name: 'config',
         constants: {
-          ENV: 'production',
-          foo: 'We are in production!'
+          ENV: {
+            name: 'production',
+            foo: 'We are in production!'
+          }
         }
       }]
     },
